@@ -1,0 +1,12 @@
+--2021-07-05 18:08:16--  https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvashobereg.ru%2Fwp-content%2Fuploads%2F2018%2F06%2FClover-1-1024x700.jpg
+Loaded CA certificate '/etc/ssl/certs/ca-certificates.crt'
+Resolving external-content.duckduckgo.com (external-content.duckduckgo.com)... 40.114.178.124
+Connecting to external-content.duckduckgo.com (external-content.duckduckgo.com)|40.114.178.124|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/jpeg]
+Saving to: ‘index.html?u=https:%2F%2Fvashobereg.ru%2Fwp-content%2Fuploads%2F2018%2F06%2FClover-1-1024x700.jpg’
+
+                  index.html?u=http     [<=>                                                              ]       0  --.-KB/s                                index.html?u=https     [ <=>                                                             ] 111.05K   549KB/s               index.html?u=https:%2F%2Fvashobereg     [  <=>                                                            ] 216.56K   692KB/s    in 0.3s    
+
+2021-07-05 18:08:18 (692 KB/s) - ‘index.html?u=https:%2F%2Fvashobereg.ru%2Fwp-content%2Fuploads%2F2018%2F06%2FClover-1-1024x700.jpg’ saved [221761]
+

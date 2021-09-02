@@ -1,0 +1,450 @@
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-22' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=SyntaxError('syntax error at or near "VALUES1737649749"\nLINE 1: INSERT INTO games(userid)VALUES1737649749\n                                 ^\n')>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 98, in welcome
+    cursor.execute(f"INSERT INTO games(userid)VALUES{userid}")
+psycopg2.errors.SyntaxError: syntax error at or near "VALUES1737649749"
+LINE 1: INSERT INTO games(userid)VALUES1737649749
+                                 ^
+
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+INFO:root:change 204764 > 1392 and 596 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 74578 > 533 and 228 userid: 1737649749
+INFO:root:1737649749 bought 🍑 500000
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 277517 > 2003 and 858 userid: 1737649749
+INFO:root:change 0 > 0 and 0 userid: 1737649749
+INFO:root:change 0 > 0 and 0 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 19691 > 143 and 60 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 20855 > 151 and 64 userid: 1737649749
+INFO:root:change 7904 > 54 and 22 userid: 1896062007
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1896062007
+INFO:root:new luder: 1840832309
+INFO:root:change 8008 > 54 and 23 userid: 1840832309
+INFO:root:new luder: 1882355196
+INFO:root:new luder: 1737649749
+INFO:root:1737649749 bought 🍑 500000
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 99500 > 697 and 298 userid: 1737649749
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 3062200 > 21436 and 9186 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 35880 > 242 and 103 userid: 1737649749
+INFO:root:1737649749 > 11 1000
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:1737649749 > 11 1000
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-12' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=AttributeError("'int' object has no attribute 'from_user'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 168, in tran1
+    await message.answer(f'Готово! Вы перевели пользователю {mess[0]} {selec(mon)} 💲')
+  File "/home/nail/oir/main.py", line 45, in selec
+    cursor.execute(f"SELECT cc1 FROM users WHERE userid = {message.from_user.id}")
+AttributeError: 'int' object has no attribute 'from_user'
+INFO:root:1737649749 > 11 10000
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-23' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=AttributeError("'int' object has no attribute 'from_user'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 168, in tran1
+    await message.answer(f'Готово! Вы перевели пользователю {mess[0]} {selec(mon)} 💲')
+  File "/home/nail/oir/main.py", line 45, in selec
+    cursor.execute(f"SELECT cc1 FROM users WHERE userid = {message.from_user.id}")
+AttributeError: 'int' object has no attribute 'from_user'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:1737649749 > 11 10000
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=AttributeError("'str' object has no attribute 'from_user'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 168, in tran1
+    await message.answer(f'Готово! Вы перевели пользователю {mess[0]} {selec(str(mon))} 💲')
+  File "/home/nail/oir/main.py", line 45, in selec
+    cursor.execute(f"SELECT cc1 FROM users WHERE userid = {message.from_user.id}")
+AttributeError: 'str' object has no attribute 'from_user'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:1737649749 > 11 1000
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 26883 > 183 and 78 userid: 1737649749
+INFO:root:new luder: 1882355196
+INFO:root:new luder: 1737649749
+INFO:root:new luder: 1737649749
+INFO:root:new luder: 1737649749
+INFO:root:new luder: 1737649749
+INFO:root:change 721874 > 5210 and 2232 userid: 1737649749
+INFO:root:1737649749 bought 🍑 500000
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-24' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=TypeError("type str doesn't define __round__ method")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 295, in bus3
+    keff = round(message.text)
+TypeError: type str doesn't define __round__ method
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-24' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=TypeError("'>=' not supported between instances of 'str' and 'float'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 296, in bus3
+    if keff >= 1.2:
+TypeError: '>=' not supported between instances of 'str' and 'float'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-36' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=TypeError("'>=' not supported between instances of 'str' and 'float'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 296, in bus3
+    if keff >= 1.2:
+TypeError: '>=' not supported between instances of 'str' and 'float'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-40' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=TypeError("'>=' not supported between instances of 'str' and 'float'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 296, in bus3
+    if keff >= 1.2:
+TypeError: '>=' not supported between instances of 'str' and 'float'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-47' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=InvalidTextRepresentation('invalid input syntax for type integer: "Решка"\nLINE 1: UPDATE games SET bustav = \'Решка\' WHERE userid = 1737649749\n                                  ^\n')>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 267, in bus2
+    cursor.execute(f"UPDATE games SET bustav = '{rubb}' WHERE userid = {message.from_user.id}")
+psycopg2.errors.InvalidTextRepresentation: invalid input syntax for type integer: "Решка"
+LINE 1: UPDATE games SET bustav = 'Решка' WHERE userid = 1737649749
+                                  ^
+
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-62' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=InvalidTextRepresentation('invalid input syntax for type integer: "Орел"\nLINE 1: UPDATE games SET bustav = \'Орел\' WHERE userid = 1737649749\n                                  ^\n')>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 267, in bus2
+    cursor.execute(f"UPDATE games SET bustav = '{rubb}' WHERE userid = {message.from_user.id}")
+psycopg2.errors.InvalidTextRepresentation: invalid input syntax for type integer: "Орел"
+LINE 1: UPDATE games SET bustav = 'Орел' WHERE userid = 1737649749
+                                  ^
+
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-36' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UnboundLocalError("local variable 'stavka' referenced before assignment")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 316, in bus3
+    if stavka > 10 and stavka < 10000 and stavka >= money:
+UnboundLocalError: local variable 'stavka' referenced before assignment
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 1768437 > 12505 and 5358 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:1737649749 bought 🍌 100000
+INFO:root:1737649749 bought 🍌 100000
+INFO:root:change 150570 > 1004 and 430 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.

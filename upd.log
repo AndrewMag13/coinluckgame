@@ -1,0 +1,112 @@
+INFO:root:[(2, 1882355196, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (3, 1840832309, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (1, 1737649749, 1, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (4, 1896062007, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (5, 1266662970, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None)]
+INFO:root:[(2, 1882355196, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (3, 1840832309, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (1, 1737649749, 1, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (4, 1896062007, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (5, 1266662970, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None)]
+INFO:root:[(2, 1882355196, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (3, 1840832309, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (1, 1737649749, 1, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (4, 1896062007, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (5, 1266662970, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None)]
+INFO:root:[(2, 1882355196, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (3, 1840832309, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (1, 1737649749, 1, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (4, 1896062007, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (5, 1266662970, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None)]
+INFO:root:[(2, 1882355196, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (3, 1840832309, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (1, 1737649749, 1, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (4, 1896062007, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (5, 1266662970, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None)]
+INFO:root:[(2, 1882355196, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (3, 1840832309, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (1, 1737649749, 1, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (4, 1896062007, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (5, 1266662970, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None)]
+INFO:root:[(2, 1882355196, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (3, 1840832309, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (1, 1737649749, 1, 0, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (4, 1896062007, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None), (5, 1266662970, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, None, None, None)]
+INFO:root:userid: 1882355196
+INFO:root:0.16
+INFO:root:userid: 1840832309
+INFO:root:0.16
+INFO:root:userid: 1737649749
+INFO:root:109.26
+INFO:root:userid: 1896062007
+INFO:root:0.16
+INFO:root:userid: 1266662970
+INFO:root:0.16
+INFO:root:userid: 1882355196
+INFO:root:0.16
+INFO:root:userid: 1840832309
+INFO:root:0.16
+INFO:root:userid: 1737649749
+INFO:root:109.26
+INFO:root:userid: 1896062007
+INFO:root:0.16
+INFO:root:userid: 1266662970
+INFO:root:0.16
+INFO:root:userid: 1882355196
+INFO:root:0.16
+INFO:root:userid: 1840832309
+INFO:root:0.16
+INFO:root:userid: 1737649749
+INFO:root:109.26
+INFO:root:userid: 1896062007
+INFO:root:0.16
+INFO:root:userid: 1266662970
+INFO:root:0.16
+INFO:root:userid: 1882355196
+INFO:root:0.16
+INFO:root:userid: 1840832309
+INFO:root:0.16
+INFO:root:userid: 1737649749
+INFO:root:109.26
+INFO:root:userid: 1896062007
+INFO:root:0.16
+INFO:root:userid: 1266662970
+INFO:root:0.16
+INFO:root:userid: 1882355196
+INFO:root:0.16
+INFO:root:userid: 1840832309
+INFO:root:0.16
+INFO:root:userid: 1737649749
+INFO:root:109.26
+INFO:root:userid: 1896062007
+INFO:root:0.16
+INFO:root:userid: 1266662970
+INFO:root:0.16
+INFO:root:userid: 1882355196
+INFO:root:0.16
+INFO:root:userid: 1840832309
+INFO:root:0.16
+INFO:root:userid: 1737649749
+INFO:root:109.26
+INFO:root:userid: 1896062007
+INFO:root:0.16
+INFO:root:userid: 1266662970
+INFO:root:0.16
+INFO:root:userid: 1882355196
+INFO:root:0.16
+INFO:root:userid: 1840832309
+INFO:root:0.16
+INFO:root:userid: 1737649749
+INFO:root:109.26
+INFO:root:userid: 1896062007
+INFO:root:0.16
+INFO:root:userid: 1266662970
+INFO:root:0.16
+INFO:root:userid: 1882355196
+INFO:root:userid:1882355196 0.16
+INFO:root:userid: 1840832309
+INFO:root:userid:1840832309 0.16
+INFO:root:userid: 1737649749
+INFO:root:userid:1737649749 109.26
+INFO:root:userid: 1896062007
+INFO:root:userid:1896062007 0.16
+INFO:root:userid: 1266662970
+INFO:root:userid:1266662970 0.16
+INFO:root:userid: 1882355196
+INFO:root:userid:1882355196 0.16
+INFO:root:userid: 1840832309
+INFO:root:userid:1840832309 0.16
+INFO:root:userid: 1737649749
+INFO:root:userid:1737649749 109.26
+INFO:root:userid: 1896062007
+INFO:root:userid:1896062007 0.16
+INFO:root:userid: 1266662970
+INFO:root:userid:1266662970 0.16
+INFO:root:userid:1882355196 0.16
+INFO:root:userid:1840832309 0.16
+INFO:root:userid:1737649749 109.26
+INFO:root:userid:1896062007 0.16
+INFO:root:userid:1266662970 0.16
+INFO:root:userid:1882355196 0.16
+INFO:root:userid:1840832309 0.16
+INFO:root:userid:1737649749 109.26
+INFO:root:userid:1896062007 0.16
+INFO:root:userid:1266662970 0.16
+INFO:root:userid:1882355196 0.16
+INFO:root:userid:1840832309 0.16
+INFO:root:userid:1737649749 109.26
+INFO:root:userid:1896062007 0.16
+INFO:root:userid:1266662970 0.16
