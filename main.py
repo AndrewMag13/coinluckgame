@@ -80,7 +80,7 @@ async def welcome(message):
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
     except Error:
-        pass
+        await message.answer(f'*Ошибка регистарции, {fname}!*')
     try:
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
