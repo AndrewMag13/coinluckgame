@@ -484,3 +484,152 @@ WARNING:aiogram:Goodbye!
 INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
 INFO:aiogram.dispatcher.dispatcher:Start polling.
 INFO:root:change 616605 > 4274 and 1831 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-20' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=TypeError("'>=' not supported between instances of 'str' and 'int'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 107, in notify
+    data.update(await check_filters(handler_obj.filters, args))
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/filters/filters.py", line 72, in check_filters
+    f = await execute_filter(filter_, args)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/filters/filters.py", line 58, in execute_filter
+    return filter_.filter(*args, **filter_.kwargs)
+  File "/home/nail/oir/main.py", line 276, in <lambda>
+    @dp.message_handler(lambda message: message.text and selec(message) == 69692 and message.text >= 1 and message.text <= 3)
+TypeError: '>=' not supported between instances of 'str' and 'int'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-24' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=TypeError("'>=' not supported between instances of 'str' and 'int'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 107, in notify
+    data.update(await check_filters(handler_obj.filters, args))
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/filters/filters.py", line 72, in check_filters
+    f = await execute_filter(filter_, args)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/filters/filters.py", line 58, in execute_filter
+    return filter_.filter(*args, **filter_.kwargs)
+  File "/home/nail/oir/main.py", line 280, in <lambda>
+    @dp.message_handler(lambda message: message.text and selec(message) == 69692 and message.text >= 1 and message.text <= 3)
+TypeError: '>=' not supported between instances of 'str' and 'int'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-20' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=TypeError("'<=' not supported between instances of 'str' and 'int'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 107, in notify
+    data.update(await check_filters(handler_obj.filters, args))
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/filters/filters.py", line 72, in check_filters
+    f = await execute_filter(filter_, args)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/filters/filters.py", line 58, in execute_filter
+    return filter_.filter(*args, **filter_.kwargs)
+  File "/home/nail/oir/main.py", line 368, in <lambda>
+    @dp.message_handler(lambda message: message.text and selec(message) == 69694 and message.text <= 30 and message.text > 0)
+TypeError: '<=' not supported between instances of 'str' and 'int'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-24' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UnboundLocalError("local variable 'stavka' referenced before assignment")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 411, in otc3
+    cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
+UnboundLocalError: local variable 'stavka' referenced before assignment
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-32' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=ValueError("invalid literal for int() with base 10: 'Повторить'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 107, in notify
+    data.update(await check_filters(handler_obj.filters, args))
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/filters/filters.py", line 72, in check_filters
+    f = await execute_filter(filter_, args)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/filters/filters.py", line 58, in execute_filter
+    return filter_.filter(*args, **filter_.kwargs)
+  File "/home/nail/oir/main.py", line 368, in <lambda>
+    @dp.message_handler(lambda message: message.text and selec(message) == 69694 and int(message.text) <= 30 and int(message.text) > 0)
+ValueError: invalid literal for int() with base 10: 'Повторить'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 67670 > 469 and 201 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.

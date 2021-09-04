@@ -73,9 +73,9 @@ async def welcome(message):
     bon = 0
     bond = 0
     course = 100
-    valua = (userid, username, rub, mesh, vivc, plod, plodd, ref, refc, inp, outp, bon, bond, course)
+    valua = (userid, username, fname, rub, mesh, vivc, plod, plodd, ref, refc, inp, outp, bon, bond, course)
     try:
-        cursor.execute(f"INSERT INTO users(userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course)VALUES{valua};")
+        cursor.execute(f"INSERT INTO users(userid, username, fname, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course)VALUES{valua};")
         cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc)VALUES({userid}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
@@ -246,16 +246,20 @@ async def games(message):
     conn.commit()
     cursor.close()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Орел и Решка', 'Краш', '1/3','👈 Назад')
+    keyboard.add('Орел и Решка', 'Краш', '1/3', '1/30', '👈 Назад')
     await message.answer('Выберите игру', reply_markup=keyboard, parse_mode= 'Markdown')
     
-    @dp.message_handler(lambda message: message.text and '1/3' in message.text and selec(message) == 666)
+    @dp.message_handler(lambda message: message.text and message.text == '1/3' and selec(message) == 666)
     async def ot(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
+        cursor = conn.cursor()
+        cursor.execute(f'UPDATE users SET cc1 = 666220 WHERE userid = {message.from_user.id}')
+        conn.commit()
+        cursor.close()
         await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
 
-        @dp.message_handler(lambda message: message.text and selec(message) == 666)
+        @dp.message_handler(lambda message: message.text and selec(message) == 666220)
         async def ot2(message):
             lis = message.text.split()
             if len(lis) == 2:
@@ -325,13 +329,100 @@ async def games(message):
                             win = win + stavka
                             cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
                             conn.commit()
-                            await message.answer(f'Поздравляем!👏 \nВаш выйгрыш: {win} 💲\n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard, parse_mode= 'Markdown')
+                            await message.answer(f'Поздравляем!👏 \nВаш выйгрыш: {stavka * 3} 💲\n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard, parse_mode= 'Markdown')
                         else:
                             cc = random.randint(1,3)
                             while cc == keff:
                                 cc = random.randint(1,3)
                             await message.answer(f'Сожалеем, вы проиграли!\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard)
-                        
+                except Error:
+                    await message.answer('Неверный ввод!')
+    @dp.message_handler(lambda message: message.text and '1/30' in message.text and selec(message) == 666)
+    async def otc(message):
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
+        cursor = conn.cursor()
+        cursor.execute(f'UPDATE users SET cc1 = 66620 WHERE userid = {message.from_user.id}')
+        conn.commit()
+        cursor.close()
+        await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
+
+        @dp.message_handler(lambda message: message.text and selec(message) == 66620)
+        async def otc2(message):
+            lis = message.text.split()
+            if len(lis) == 2:
+                rubb = message.text
+                rubb = rubb[:-2]
+            if len(lis) == 1:
+                rubb = message.text
+            rubb = int(rubb)
+            cursor = conn.cursor()
+            cursor.execute(f"UPDATE games SET otcv = '{rubb}' WHERE userid = {message.from_user.id}")
+            cursor.execute(f'UPDATE users SET cc1 = 69694 WHERE userid = {message.from_user.id}')
+            conn.commit()
+            cursor.close()
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            keyboard.add('1', '2', '3', '4', '5', '10', '👈 Назад')
+            await message.answer('Введите число от 1 до 30\n\nПри выйгрыше вы получите 30x от вашей стаки', reply_markup=keyboard, parse_mode= 'Markdown')
+
+            @dp.message_handler(lambda message: message.text and selec(message) == 69694)
+            async def otc3(message):
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                keyboard.add('Повторить', '👈 Назад')
+                try:
+                    if message.text == 'Повторить':
+                            cursor = conn.cursor()
+                            cursor.execute(f'SELECT otck FROM games WHERE userid = {message.from_user.id}')
+                            keff = cursor.fetchone()
+                            keff = keff[0]
+                            keff = int(keff)
+                            cursor.execute(f'SELECT otcv FROM games WHERE userid = {message.from_user.id}')
+                            stavka = cursor.fetchone()
+                            stavka = stavka[0]
+                            stavka = int(stavka)
+                            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                            money = cursor.fetchone()
+                            money = money[0]
+                            cursor.close()
+                    else:
+                        try:
+                            keff = int(message.text)
+                            if isint(keff) and keff > 0 and keff <= 30:
+                                cursor = conn.cursor()
+                                cursor.execute(f"UPDATE games SET otck = '{keff}' WHERE userid = {message.from_user.id}")
+                                conn.commit()
+                                cursor.execute(f"SELECT otcv FROM games WHERE userid = {message.from_user.id}")
+                                stavka = cursor.fetchone()
+                                stavka = stavka[0]
+                                stavka = int(stavka)
+                                cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                                money = cursor.fetchone()
+                                money = money[0]
+                                money = int(money)
+                                print(f'is {stavka}')
+                                print(money)
+                                cursor.close()
+                            else:
+                                await message.answer('Неверный ввод!')
+                        except Error:
+                            await message.answer('Неверный ввод!')
+                    if isint(keff):
+                        cursor = conn.cursor()
+                        cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
+                        conn.commit()
+                        otr = random.randint(1,45)
+                        if otr == 1:
+                            cc = keff
+                            win = stavka * 30
+                            win = win + stavka
+                            cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
+                            conn.commit()
+                            await message.answer(f'Поздравляем!👏 \nВаш выйгрыш: {stavka * 30} 💲\n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard, parse_mode= 'Markdown')
+                        else:
+                            cc = random.randint(1,30)
+                            while cc == keff:
+                                cc = random.randint(1,30)
+                            await message.answer(f'Сожалеем, вы проиграли!\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard)
                 except Error:
                     await message.answer('Неверный ввод!')
 
@@ -339,9 +430,13 @@ async def games(message):
     async def bus1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
+        cursor = conn.cursor()
+        cursor.execute(f'UPDATE users SET cc1 = 666000 WHERE userid = {message.from_user.id}')
+        conn.commit()
+        cursor.close()
         await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
         
-        @dp.message_handler(lambda message: message.text and selec(message) == 666)
+        @dp.message_handler(lambda message: message.text and selec(message) == 666000)
         async def bus2(message):
             lis = message.text.split()
             if len(lis) == 2:
@@ -409,10 +504,10 @@ async def games(message):
                         print('potracheno')
                         ab = random.randint(1, 1000)
                         if ab <= 75:
-                            cc = round(random.uniform(1.00, 1.25), 2)
+                            cc = round(random.uniform(1.00, 1.24), 2)
                         elif ab <= 400:
                             cc = round(random.uniform(1.00, 2.00), 2)
-                        elif ab >= 541 and ab <= 800:
+                        elif ab >= 600 and ab <= 800:
                             cc = round(random.uniform(2.00, 4.00), 2)
                         elif ab >= 802 and ab <= 915:
                             cc = round(random.uniform(4.00, 8.00), 2)
@@ -431,10 +526,11 @@ async def games(message):
                         print(cc)
                         if cc >= keff:
                             win = keff * stavka
+                            win = win + stavka
                             cursor = conn.cursor()
                             cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
                             conn.commit()
-                            await message.answer(f'Поздравляем!👏 \nВаш выйгрыш: {win} 💲\n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: {stavka} 💲\n\nВаш коэффицент: {keff}\nКоэффицент: {cc}', reply_markup=keyboard, parse_mode= 'Markdown')
+                            await message.answer(f'Поздравляем!👏 \nВаш выйгрыш: {keff * stavka} 💲\n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: *{stavka}* 💲\n\nВаш коэффицент: *{keff}*\nКоэффицент: {cc}', reply_markup=keyboard, parse_mode= 'Markdown')
                         else:
                             await message.answer(f'Сожалеем, вы проиграли!\n\nВаш коэффицент: {keff}\nКоэффицент: {cc}', reply_markup=keyboard)
                     else:
