@@ -57,7 +57,6 @@ def former(a):
 async def welcome(message):
     userid = message.from_user.id
     username = message.from_user.username
-    fname = message.from_user.first_name
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('Начать')
     cursor = conn.cursor()
@@ -73,14 +72,15 @@ async def welcome(message):
     bon = 0
     bond = 0
     course = 100
-    valua = (userid, username, fname, rub, mesh, vivc, plod, plodd, ref, refc, inp, outp, bon, bond, course)
+    cc1 = 0
+    valua = (userid, username, rub, mesh, vivc, plod, plodd, ref, refc, inp, outp, bon, bond, course, cc1)
     try:
-        cursor.execute(f"INSERT INTO users(userid, username, fname, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course)VALUES{valua};")
+        cursor.execute(f"INSERT INTO users(userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc1)VALUES{valua};")
         cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc)VALUES({userid}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
     except Error:
-        await message.answer(f'*Ошибка регистарции, {fname}!*')
+        await message.answer(f'*Ошибка регистарции, {message.from_user.id}!*')
     try:
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
@@ -112,7 +112,7 @@ async def welcome(message):
     r = requests.get('https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id=1737649749&text=+1luder')
     cursor.close()
     logging.info(f"new luder: {userid}")
-    await message.answer(f'*Приветствую {fname}♦* \nЭтот бот представляет собой сборник азартных игр\n\nНажимая кнопку Начать вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n{pho}', parse_mode= 'Markdown', reply_markup=keyboard)
+    await message.answer(f'*Приветствую {message.from_user.id}♦* \nЭтот бот представляет собой сборник азартных игр\n\nНажимая кнопку Начать вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n{pho}', parse_mode= 'Markdown', reply_markup=keyboard)
 @dp.message_handler(lambda message: message.text and '👈' in message.text or 'Начать' in message.text)
 async def mainn(message):
     cursor = conn.cursor()

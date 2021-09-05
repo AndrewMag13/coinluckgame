@@ -60,6 +60,10 @@ cursor.execute("""
     casiv      INTEGER,
     caset      INTEGER,
     casev      INTEGER,
+    otv        INTEGER,
+    otk        INTEGER,
+    otvc       INTEGER,
+    otvk       INTEGER,
     UNIQUE     ("userid"));
     """)
 conn.commit()
