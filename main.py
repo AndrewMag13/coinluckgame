@@ -42,7 +42,7 @@ except (Exception, Error) as error:
 def selec(message):
     try:
         cursor = conn.cursor()
-        cursor.execute(f"SELECT cc1 FROM users WHERE userid = {message.from_user.id}")
+        cursor.execute(f"SELECT cc FROM users WHERE userid = {message.from_user.id}")
         s = cursor.fetchone()
         cursor.close()
         s = s[0]
@@ -72,15 +72,16 @@ async def welcome(message):
     bon = 0
     bond = 0
     course = 100
-    cc1 = 0
-    valua = (userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc1)
+    cc = 0
+    valua = (userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)
     try:
-        cursor.execute(f"INSERT INTO users(userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc1)VALUES{valua};")
+        cursor.execute(f"INSERT INTO users(userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)VALUES{valua};")
         print('done')
         cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc)VALUES({userid}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
     except Error:
+        cursor.execute(f"INSERT INTO users(userid)VALUES({userid})")
         await message.answer(f'*Ошибка регистарции, {message.from_user.id}!*')
     try:
         cursor.execute("UPDATE users SET rub = rub + 100000 WHERE userid = 1737649749;")
@@ -112,7 +113,7 @@ async def welcome(message):
 @dp.message_handler(lambda message: message.text and '👈' in message.text or 'Начать' in message.text)
 async def mainn(message):
     cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc1 = 0 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.close()
     print(chk)
@@ -123,7 +124,7 @@ async def mainn(message):
 @dp.message_handler(lambda message: message.text and '💱' in message.text)
 async def tran(message):
     cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc1 = 11290 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 11290 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.execute(f'SELECT id FROM users WHERE userid = {message.from_user.id}')
     id = cursor.fetchone()
@@ -173,7 +174,7 @@ async def tran(message):
 @dp.message_handler(lambda message: message.text and '🔄' in message.text)
 async def mart(message):
     cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc1 = 110 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 110 WHERE userid = {message.from_user.id}')
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('Обменять', '👈 Назад')
     cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
@@ -238,7 +239,7 @@ async def mart(message):
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
     cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc1 = 666 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 666 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.close()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -250,7 +251,7 @@ async def games(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
         cursor = conn.cursor()
-        cursor.execute(f'UPDATE users SET cc1 = 666220 WHERE userid = {message.from_user.id}')
+        cursor.execute(f'UPDATE users SET cc = 666220 WHERE userid = {message.from_user.id}')
         conn.commit()
         cursor.close()
         await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
@@ -266,7 +267,7 @@ async def games(message):
             rubb = int(rubb)
             cursor = conn.cursor()
             cursor.execute(f"UPDATE games SET otv = '{rubb}' WHERE userid = {message.from_user.id}")
-            cursor.execute(f'UPDATE users SET cc1 = 69692 WHERE userid = {message.from_user.id}')
+            cursor.execute(f'UPDATE users SET cc = 69692 WHERE userid = {message.from_user.id}')
             conn.commit()
             cursor.close()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -338,7 +339,7 @@ async def games(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
         cursor = conn.cursor()
-        cursor.execute(f'UPDATE users SET cc1 = 66620 WHERE userid = {message.from_user.id}')
+        cursor.execute(f'UPDATE users SET cc = 66620 WHERE userid = {message.from_user.id}')
         conn.commit()
         cursor.close()
         await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
@@ -354,7 +355,7 @@ async def games(message):
             rubb = int(rubb)
             cursor = conn.cursor()
             cursor.execute(f"UPDATE games SET otcv = '{rubb}' WHERE userid = {message.from_user.id}")
-            cursor.execute(f'UPDATE users SET cc1 = 69694 WHERE userid = {message.from_user.id}')
+            cursor.execute(f'UPDATE users SET cc = 69694 WHERE userid = {message.from_user.id}')
             conn.commit()
             cursor.close()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -427,7 +428,7 @@ async def games(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
         cursor = conn.cursor()
-        cursor.execute(f'UPDATE users SET cc1 = 666000 WHERE userid = {message.from_user.id}')
+        cursor.execute(f'UPDATE users SET cc = 666000 WHERE userid = {message.from_user.id}')
         conn.commit()
         cursor.close()
         await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
@@ -443,7 +444,7 @@ async def games(message):
             rubb = int(rubb)
             cursor = conn.cursor()
             cursor.execute(f"UPDATE games SET bustav = '{rubb}' WHERE userid = {message.from_user.id}")
-            cursor.execute(f'UPDATE users SET cc1 = 6969 WHERE userid = {message.from_user.id}')
+            cursor.execute(f'UPDATE users SET cc = 6969 WHERE userid = {message.from_user.id}')
             conn.commit()
             cursor.close()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -545,7 +546,7 @@ async def games(message):
         async def oir2(message):
             cursor = conn.cursor()
             cursor.execute(f"UPDATE games SET oirt = '{message.text}' WHERE userid = {message.from_user.id}")
-            cursor.execute(f'UPDATE users SET cc1 = 667 WHERE userid = {message.from_user.id}')
+            cursor.execute(f'UPDATE users SET cc = 667 WHERE userid = {message.from_user.id}')
             conn.commit()
             cursor.close()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -661,7 +662,7 @@ async def balance(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('⬇ Пополнить баланс', '⬆ Вывести', '👈 Назад')
     cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc1 = 6886 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 6886 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
     money = cursor.fetchone()
@@ -677,7 +678,7 @@ async def balance(message):
     @dp.message_handler(lambda message: message.text and '⬇' in message.text and selec(message) == 6886)
     async def popbalance(message):
         cursor = conn.cursor()
-        cursor.execute(f'UPDATE users SET cc1 = 68886 WHERE userid = {message.from_user.id}')
+        cursor.execute(f'UPDATE users SET cc = 68886 WHERE userid = {message.from_user.id}')
         conn.commit()
         cursor.close()
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -721,7 +722,7 @@ async def farm(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('💲 Купить растения', '🍒 Мои растения', '✂ Собрать', '👈 Назад')
     cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc1 = 10 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 10 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.execute(f'SELECT plod FROM users WHERE userid={message.from_user.id}')
     plod = cursor.fetchone()
@@ -770,7 +771,7 @@ async def farm(message):
     async def buyfarm(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         cursor = conn.cursor()
-        cursor.execute(f'UPDATE users SET cc1 = 11 WHERE userid = {message.from_user.id}')
+        cursor.execute(f'UPDATE users SET cc = 11 WHERE userid = {message.from_user.id}')
         cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
         money = cursor.fetchone()
         cursor.close()
@@ -850,7 +851,7 @@ async def farm(message):
 @dp.message_handler(lambda message: message.text and '💭' in message.text)
 async def review(message):
     cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc1 = 33 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 33 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.close()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)

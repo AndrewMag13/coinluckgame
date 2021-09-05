@@ -145,7 +145,7 @@ Traceback (most recent call last):
   File "/home/nail/oir/main.py", line 168, in tran1
     await message.answer(f'Готово! Вы перевели пользователю {mess[0]} {selec(mon)} 💲')
   File "/home/nail/oir/main.py", line 45, in selec
-    cursor.execute(f"SELECT cc1 FROM users WHERE userid = {message.from_user.id}")
+    cursor.execute(f"SELECT cc FROM users WHERE userid = {message.from_user.id}")
 AttributeError: 'int' object has no attribute 'from_user'
 INFO:root:1737649749 > 11 10000
 ERROR:asyncio:Task exception was never retrieved
@@ -164,7 +164,7 @@ Traceback (most recent call last):
   File "/home/nail/oir/main.py", line 168, in tran1
     await message.answer(f'Готово! Вы перевели пользователю {mess[0]} {selec(mon)} 💲')
   File "/home/nail/oir/main.py", line 45, in selec
-    cursor.execute(f"SELECT cc1 FROM users WHERE userid = {message.from_user.id}")
+    cursor.execute(f"SELECT cc FROM users WHERE userid = {message.from_user.id}")
 AttributeError: 'int' object has no attribute 'from_user'
 INFO:aiogram.dispatcher.dispatcher:Stop polling...
 WARNING:aiogram:Goodbye!
@@ -187,7 +187,7 @@ Traceback (most recent call last):
   File "/home/nail/oir/main.py", line 168, in tran1
     await message.answer(f'Готово! Вы перевели пользователю {mess[0]} {selec(str(mon))} 💲')
   File "/home/nail/oir/main.py", line 45, in selec
-    cursor.execute(f"SELECT cc1 FROM users WHERE userid = {message.from_user.id}")
+    cursor.execute(f"SELECT cc FROM users WHERE userid = {message.from_user.id}")
 AttributeError: 'str' object has no attribute 'from_user'
 INFO:aiogram.dispatcher.dispatcher:Stop polling...
 WARNING:aiogram:Goodbye!
@@ -637,7 +637,7 @@ INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
 INFO:aiogram.dispatcher.dispatcher:Start polling.
 INFO:root:new luder: 1737649749
 ERROR:asyncio:Task exception was never retrieved
-future: <Task finished name='Task-16' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UndefinedColumn('column "cc1" of relation "users" does not exist\nLINE 1: UPDATE users SET cc1 = 0 WHERE userid = 1737649749\n                         ^\n')>
+future: <Task finished name='Task-16' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UndefinedColumn('column "cc" of relation "users" does not exist\nLINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749\n                         ^\n')>
 Traceback (most recent call last):
   File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
     for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
@@ -650,9 +650,9 @@ Traceback (most recent call last):
   File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
     response = await handler_obj.handler(*args, **partial_data)
   File "/home/nail/oir/main.py", line 118, in mainn
-    cursor.execute(f'UPDATE users SET cc1 = 0 WHERE userid = {message.from_user.id}')
-psycopg2.errors.UndefinedColumn: column "cc1" of relation "users" does not exist
-LINE 1: UPDATE users SET cc1 = 0 WHERE userid = 1737649749
+    cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
+psycopg2.errors.UndefinedColumn: column "cc" of relation "users" does not exist
+LINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749
                          ^
 
 INFO:aiogram.dispatcher.dispatcher:Stop polling...
@@ -681,6 +681,192 @@ WARNING:aiogram:Goodbye!
 INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
 INFO:aiogram.dispatcher.dispatcher:Start polling.
 INFO:root:new luder: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-13' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UndefinedColumn('column "cc" of relation "users" does not exist\nLINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749\n                         ^\n')>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 115, in mainn
+    cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
+psycopg2.errors.UndefinedColumn: column "cc" of relation "users" does not exist
+LINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749
+                         ^
+
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UndefinedColumn('column "cc" of relation "users" does not exist\nLINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749\n                         ^\n')>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 115, in mainn
+    cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
+psycopg2.errors.UndefinedColumn: column "cc" of relation "users" does not exist
+LINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749
+                         ^
+
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-12' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UndefinedColumn('column "cc" of relation "users" does not exist\nLINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749\n                         ^\n')>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 105, in mainn
+    cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
+psycopg2.errors.UndefinedColumn: column "cc" of relation "users" does not exist
+LINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749
+                         ^
+
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UndefinedColumn('column "cc" of relation "users" does not exist\nLINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749\n                         ^\n')>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 104, in mainn
+    cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
+psycopg2.errors.UndefinedColumn: column "cc" of relation "users" does not exist
+LINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749
+                         ^
+
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-12' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UndefinedColumn('column "cc" of relation "users" does not exist\nLINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749\n                         ^\n')>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 104, in mainn
+    cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
+psycopg2.errors.UndefinedColumn: column "cc" of relation "users" does not exist
+LINE 1: UPDATE users SET cc = 0 WHERE userid = 1737649749
+                         ^
+
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:new luder: 1737649749
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=TypeError("unsupported operand type(s) for *: 'NoneType' and 'int'")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 722, in farm
+    ssq1 = i[3] * 600
+TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UniqueViolation('duplicate key value violates unique constraint "users_userid_key"\nDETAIL:  Key (userid)=(1737649749) already exists.\n')>
+Traceback (most recent call last):
+  File "/home/nail/oir/main.py", line 78, in welcome
+    cursor.execute(f"INSERT INTO users(userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)VALUES{valua};")
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_userid_key"
+DETAIL:  Key (userid)=(1737649749) already exists.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 84, in welcome
+    cursor.execute(f"INSERT INTO users(userid)VALUES({userid})")
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_userid_key"
+DETAIL:  Key (userid)=(1737649749) already exists.
+
 INFO:aiogram.dispatcher.dispatcher:Stop polling...
 WARNING:aiogram:Goodbye!
 INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]

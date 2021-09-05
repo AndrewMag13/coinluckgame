@@ -39,7 +39,7 @@ CREATE TABLE public.fruits (
     pineapplc integer,
     drag integer,
     dragc integer,
-    cc1 integer,
+    cc integer,
     cc2 integer,
     cc3 integer
 );
@@ -126,7 +126,7 @@ CREATE TABLE public.users (
     bon integer,
     bond integer,
     course integer,
-    cc1 integer,
+    cc integer,
     cc2 integer,
     cc3 integer
 );
@@ -181,7 +181,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: fruits; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.fruits (id, userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc, cc1, cc2, cc3) FROM stdin;
+COPY public.fruits (id, userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc, cc, cc2, cc3) FROM stdin;
 2	1882355196	1	0	0	0	0	0	0	0	0	0	0	0	\N	\N	\N
 3	1840832309	1	0	0	0	0	0	0	0	0	0	0	0	\N	\N	\N
 1	1737649749	1	0	3	4	0	0	0	0	0	0	0	0	\N	\N	\N
@@ -202,7 +202,7 @@ COPY public.req (id, userid, mon, app) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, userid, username, fname, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc1, cc2, cc3) FROM stdin;
+COPY public.users (id, userid, username, fname, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc, cc2, cc3) FROM stdin;
 11	1266662970	Xz308	\N	0	0	0	30.079977	0	0	0	0	0	0	0	99	\N	\N	\N
 8	1882355196	suckmyliberty	@coinluck_bot	0	0	0	1360.9562	0	1737649749	0	0	0	0	0	99	\N	\N	\N
 9	1840832309	gringos_shop	Нерон	0	0	0	1343.5125	0	1737649749	0	0	0	0	0	99	\N	\N	\N
