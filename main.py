@@ -66,26 +66,22 @@ async def welcome(message):
     plod = 0
     plodd = 0
     ref = 0
-    refc = 0
+    refco = 0
     inp = 0
     outp = 0
     bon = 0
     bond = 0
     course = 100
     cc1 = 0
-    valua = (userid, username, rub, mesh, vivc, plod, plodd, ref, refc, inp, outp, bon, bond, course, cc1)
+    valua = (userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc1)
     try:
         cursor.execute(f"INSERT INTO users(userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc1)VALUES{valua};")
+        print('done')
         cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc)VALUES({userid}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
     except Error:
         await message.answer(f'*Ошибка регистарции, {message.from_user.id}!*')
-    try:
-        cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
-        conn.commit()
-    except Error:
-        pass
     try:
         cursor.execute("UPDATE users SET rub = rub + 100000 WHERE userid = 1737649749;")
         conn.commit()
