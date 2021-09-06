@@ -73,9 +73,9 @@ async def welcome(message):
     bond = 0
     course = 100
     cc = 0
-    valua = (userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)
+    valua = (userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)
     try:
-        cursor.execute(f"INSERT INTO users(userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)VALUES{valua};")
+        cursor.execute(f"INSERT INTO users(userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)VALUES{valua};")
         print('done')
         cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc)VALUES({userid}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
@@ -315,7 +315,9 @@ async def games(message):
                                 await message.answer('Неверный ввод!')
                         except Error:
                             await message.answer('Неверный ввод!')
-                    if keff == 1 or keff == 2 or keff == 3:
+                    if stavka < 10 and stavka > 10000:
+                        await message.answer(f'Ставка должна быть от 10 💲 до 10000 💲', reply_markup=keyboard)
+                    if money >= stavka and (keff == 1 or keff == 2 or keff == 3) and stavka >= 10 and stavka <= 10000:
                         cursor = conn.cursor()
                         cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
                         conn.commit()
@@ -332,6 +334,8 @@ async def games(message):
                             while cc == keff:
                                 cc = random.randint(1,3)
                             await message.answer(f'Сожалеем, вы проиграли!\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard)
+                    else:
+                        await message.answer(f'Недостаточно 💲 на балансе! / Неверная ставка!', reply_markup=keyboard)
                 except Error:
                     await message.answer('Неверный ввод!')
     @dp.message_handler(lambda message: message.text and '1/30' in message.text and selec(message) == 666)
@@ -354,7 +358,7 @@ async def games(message):
                 rubb = message.text
             rubb = int(rubb)
             cursor = conn.cursor()
-            cursor.execute(f"UPDATE games SET otcv = '{rubb}' WHERE userid = {message.from_user.id}")
+            cursor.execute(f"UPDATE games SET otvc = {rubb} WHERE userid = {message.from_user.id}")
             cursor.execute(f'UPDATE users SET cc = 69694 WHERE userid = {message.from_user.id}')
             conn.commit()
             cursor.close()
@@ -369,11 +373,11 @@ async def games(message):
                 try:
                     if message.text == 'Повторить':
                             cursor = conn.cursor()
-                            cursor.execute(f'SELECT otck FROM games WHERE userid = {message.from_user.id}')
+                            cursor.execute(f'SELECT otvk FROM games WHERE userid = {message.from_user.id}')
                             keff = cursor.fetchone()
                             keff = keff[0]
                             keff = int(keff)
-                            cursor.execute(f'SELECT otcv FROM games WHERE userid = {message.from_user.id}')
+                            cursor.execute(f'SELECT otvc FROM games WHERE userid = {message.from_user.id}')
                             stavka = cursor.fetchone()
                             stavka = stavka[0]
                             stavka = int(stavka)
@@ -386,9 +390,9 @@ async def games(message):
                             keff = int(message.text)
                             if isint(keff) and keff > 0 and keff <= 30:
                                 cursor = conn.cursor()
-                                cursor.execute(f"UPDATE games SET otck = '{keff}' WHERE userid = {message.from_user.id}")
+                                cursor.execute(f"UPDATE games SET otvk = '{keff}' WHERE userid = {message.from_user.id}")
                                 conn.commit()
-                                cursor.execute(f"SELECT otcv FROM games WHERE userid = {message.from_user.id}")
+                                cursor.execute(f"SELECT otvc FROM games WHERE userid = {message.from_user.id}")
                                 stavka = cursor.fetchone()
                                 stavka = stavka[0]
                                 stavka = int(stavka)
@@ -400,10 +404,12 @@ async def games(message):
                                 print(money)
                                 cursor.close()
                             else:
-                                await message.answer('Неверный ввод!')
+                                await message.answer('Неверный ввод! Число должно быть от 1 до 30')
                         except Error:
-                            await message.answer('Неверный ввод!')
-                    if isint(keff):
+                            await message.answer('Неверный ввод')
+                    if stavka < 10 and stavka > 10000:
+                        await message.answer(f'Ставка должна быть от 10 💲 до 10000 💲', reply_markup=keyboard)
+                    if isint(keff) and money >= stavka and stavka >= 10 and stavka <= 10000:
                         cursor = conn.cursor()
                         cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
                         conn.commit()
@@ -420,6 +426,9 @@ async def games(message):
                             while cc == keff:
                                 cc = random.randint(1,30)
                             await message.answer(f'Сожалеем, вы проиграли!\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard)
+                    else:
+                        await message.answer(f'Недостаточно 💲 на балансе! / Неверная ставка', reply_markup=keyboard)
+                    
                 except Error:
                     await message.answer('Неверный ввод!')
 
