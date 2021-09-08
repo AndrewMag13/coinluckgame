@@ -702,7 +702,7 @@ async def balance(message):
             keyboard.add('👈 Назад')
             try:
                 pop = int(pop)
-                if pop > 80 and pop < 10000:
+                if pop >= 80 and pop <= 10000:
                     cursor = conn.cursor()
                     cursor.execute(f"INSERT INTO req(userid, mon, app) VALUES({message.from_user.id}, {pop}, 0)")
                     conn.commit()
@@ -933,6 +933,14 @@ async def upt(message):
     upt = subprocess.check_output(['uptime'])
     upt = upt.decode()
     await message.answer(f'{upt}')
+
+@dp.message_handler(lambda message: message.text and 'log' in message.text and message.from_user.id == 1737649749)
+async def upt(message):
+    logg = subprocess.check_output(['cat','main.log'])
+    logg = logg.decode()
+    print(logg)
+    await message.answer(f'{logg}')
+
 
 if __name__ == '__main__':
     executor.start_polling(dp)

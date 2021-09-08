@@ -17,7 +17,7 @@ async def upp(message):
     print(lil)
     conn = sqlite3.connect("/home/nail/oir/luck.db")
     cursor = conn.cursor()
-    cursor.execute(f"UPDATE users SET rub = rub + {lil[1]} WHERE userid = {lil[3]}")
+    cursor.execute(f"UPDATE users SET rub = rub + {lil[1]*100} WHERE userid = {lil[3]}")
     cursor.execute(f"UPDATE users SET inp = inp + {lil[1]} WHERE userid = {lil[3]}")
     cursor.execute(f"UPDATE req SET app = 1 WHERE userid = {lil[3]}")
     conn.commit()
