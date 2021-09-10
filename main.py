@@ -691,18 +691,19 @@ async def balance(message):
         conn.commit()
         cursor.close()
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('80', '100', '500','👈 Назад')
-        await message.answer('Введите сумму пополнения вашего счета (минимальная сумма пополнения - 80 рублей)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💵', reply_markup=keyboard)
+        keyboard.add('150 ₽', '300 ₽', '500 ₽','1000 ₽', '👈 Назад')
+        await message.answer('Введите сумму пополнения вашего счета (минимальная сумма пополнения - 150 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💵', reply_markup=keyboard)
         
-        @dp.message_handler(lambda message: message.text and isint(message.text) and selec(message) == 68886)
+        @dp.message_handler(lambda message: message.text and selec(message) == 68886)
         async def popbalance1(message):
-            pop = message.text
+            pop = message.text.split()
+            pop = pop[0]
             print(message.text)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
             keyboard.add('👈 Назад')
             try:
                 pop = int(pop)
-                if pop >= 80 and pop <= 10000:
+                if pop >= 150 and pop <= 10000:
                     cursor = conn.cursor()
                     cursor.execute(f"INSERT INTO req(userid, mon, app) VALUES({message.from_user.id}, {pop}, 0)")
                     conn.commit()
