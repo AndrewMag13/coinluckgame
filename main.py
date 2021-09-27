@@ -81,7 +81,6 @@ async def welcome(message):
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
     except Error:
-        cursor.execute(f"INSERT INTO users(userid)VALUES({userid})")
         await message.answer(f'*Ошибка регистарции, {message.from_user.id}!*')
     try:
         cursor.execute("UPDATE users SET rub = rub + 100000 WHERE userid = 1737649749;")
@@ -176,7 +175,7 @@ async def mart(message):
     cursor = conn.cursor()
     cursor.execute(f'UPDATE users SET cc = 110 WHERE userid = {message.from_user.id}')
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Обменять', '👈 Назад')
+    keyboard.add('Обменять 🌟 на 💲','Обменять 💸 на 💲', '👈 Назад')
     cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
     course = cursor.fetchone()
     course = course[0]
@@ -185,9 +184,9 @@ async def mart(message):
     plod = plod[0]
     cursor.close()
     plod = former(plod)
-    await message.answer(f'Здесь вы можете обменять ваши 🌟 на 💲 \nУ вас {plod} 🌟\n\nТекущий курс: \n 1 🔄 = {course} 🌟\n С каждого перевода вы получите 70% 💲 и 30% 💸', reply_markup=keyboard)
+    await message.answer(f'Здесь вы можете обменять ваши 🌟 на 💲 и 💸 на 💲\nУ вас {plod} 🌟\n\nТекущий курс для обмена 🌟 на 💲: \n 1 🔄 = {course} 🌟\n С каждого перевода вы получите 70% 💲 и 30% 💸\n\nПри переводе 💸 на 💲 курс: 1 💸 = 1.3 💲', reply_markup=keyboard)
     
-    @dp.message_handler(lambda message: message.text and 'Обменять' in message.text and selec(message) == 110)
+    @dp.message_handler(lambda message: message.text and 'Обменять 🌟 на 💲' in message.text and selec(message) == 110)
     async def mart1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add('👈 Назад')
@@ -236,6 +235,47 @@ async def mart(message):
             await message.answer(f'Готово! \n\nВы обменяли {plods} 🌟 на {rubs} 💲 и на {vivc} 💸\n\nУ вас на балансе: {rub} 💲 ', reply_markup=keyboard)
         else:
             await message.answer(f'Недостаточно 🌟 для обмена', reply_markup=keyboard)
+
+    @dp.message_handler(lambda message: message.text and 'Обменять 💸 на 💲' in message.text and selec(message) == 110)
+    async def mart2(message):
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        keyboard.add('👈 Назад')
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
+        course = cursor.fetchone()
+        course = course[0]
+        cursor.execute(f'SELECT vivc FROM users WHERE userid={message.from_user.id}')
+        vivc = cursor.fetchone()
+        cursor.close
+        vivc = vivc[0]
+        if vivc >= 10:
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+            rubs = cursor.fetchone()
+            rubs = rubs[0]
+            rubs = int(rubs)
+            cursor.execute(f"SELECT vivc FROM users WHERE userid = {message.from_user.id}")
+            vivc = cursor.fetchone()
+            vivc = vivc[0]
+            vivc = int(vivc)
+            rubs = vivc * 1.3
+            rubs = int(rubs)
+            print(vivc)
+            print(rubs)
+            cursor.execute(f"UPDATE users SET rub = rub + {rubs} WHERE userid = {message.from_user.id}")
+            cursor.execute(f"UPDATE users SET vivc = 0 WHERE userid = {message.from_user.id}")
+            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+            rub = cursor.fetchone()
+            rub = rub[0]
+            conn.commit()
+            cursor.close()
+            logging.info(f"change {vivc} > {rubs} userid: {message.from_user.id}")
+            rubs = former(rubs)
+            vivc = former(vivc)
+            rub = former(rub)
+            await message.answer(f'Готово! \n\nВы обменяли {vivc} 💸 на {rubs} 💲\n\nУ вас на балансе: {rub} 💲 ', reply_markup=keyboard)
+        else:
+            await message.answer(f'Недостаточно 💸 для обмена\nМинимальная сумма: 10 💸', reply_markup=keyboard)
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
     cursor = conn.cursor()
@@ -942,6 +982,23 @@ async def upt(message):
     print(logg)
     await message.answer(f'{logg}')
 
-
+@dp.message_handler(lambda message: message.text and 'all' in message.text and message.from_user.id == 1737649749)
+async def usender(message):
+    try:
+        meess = message.text.split(' ')
+        meess = meess[1:]
+        meess = " ".join(meess)
+        cursor = conn.cursor()
+        cursor.execute('SELECT userid FROM users')
+        listin = cursor.fetchall()
+        print(listin)
+        for i in listin:
+            i = i[0]
+            print(i)
+            r = requests.get(f'https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={i}&text={meess}')
+        await message.answer(f'Вы отправили: {meess}')
+    except Error:
+        await message.answer(f'Ошибка')
+    
 if __name__ == '__main__':
     executor.start_polling(dp)

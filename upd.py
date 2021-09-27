@@ -4,6 +4,7 @@ import time
 import datetime
 import random
 import subprocess
+import logging
 #import logging
 #logging.basicConfig(filename="upd.log", level=logging.INFO)
 try:

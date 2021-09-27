@@ -1,7 +1,20 @@
-import sqlite3
+import psycopg2
+from psycopg2 import Error
 import requests
 import random
 import time
+import logging
+logging.basicConfig(filename="inputer.log", level=logging.INFO)
+
+try:
+    conn = psycopg2.connect(user="postgres",
+                                    password="iwasbornfree",
+                                    host="127.0.0.1",
+                                    port="5432",
+                                    database="luck")
+except (Exception, Error) as error:
+    print("Ошибка при работе с PostgreSQL", error)
+
 
 from aiogram import Bot, Dispatcher, executor, types
 
@@ -14,13 +27,19 @@ dp = Dispatcher(bot)
 async def upp(message):
     print(message.text)
     lil = message.text.split(':')
+    logging.info(f"{message.text}")
     print(lil)
-    conn = sqlite3.connect("/home/nail/oir/luck.db")
     cursor = conn.cursor()
     cursor.execute(f"UPDATE users SET rub = rub + {lil[1]*100} WHERE userid = {lil[3]}")
     cursor.execute(f"UPDATE users SET inp = inp + {lil[1]} WHERE userid = {lil[3]}")
     cursor.execute(f"UPDATE req SET app = 1 WHERE userid = {lil[3]}")
     conn.commit()
+    cursor.execute(f"SELECT ref from users WHERE userid = {lil[3]}")
+    ref = cursor.fetchone()
+    ref = ref[0]
+    if ref != 0:
+        cursor.execute(f"UPDATE users SET rub = rub + {(lil[1]) / 100 * 5} WHERE userid = {ref}")
+        conn.commit()
     conn.close()
 
 
