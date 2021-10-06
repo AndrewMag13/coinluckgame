@@ -46,7 +46,7 @@ async def welcome(message):
 @dp.message_handler(lambda message: message.text and 'СЛИФФКИ' in message.text)
 async def main(message):
     cursor = conn.cursor()
-    cursor.execute(f'SELECT link FROM actual WHERE userid = {message.from_user.id}')
+    cursor.execute(f'SELECT link FROM actual WHERE id = 1')
     link = cursor.fetchone()
     link = link[0]
     cursor.close()
@@ -59,7 +59,7 @@ async def add(message):
         linked = linked[1]
         print(linked)
         cursor = conn.cursor()
-        cursor.execute(f"UPDATE actual SET link = '{linked}' WHERE id > 0")
+        cursor.execute(f"UPDATE actual SET link = '{linked}' WHERE id = 1")
         conn.commit()
         cursor.close()
         await message.answer(f'DONE\n{linked}')
