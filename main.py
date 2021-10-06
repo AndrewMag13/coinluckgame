@@ -1,6 +1,5 @@
 import psycopg2
 from psycopg2 import Error
-import sqlite3
 from typing import Type
 import requests
 import random
