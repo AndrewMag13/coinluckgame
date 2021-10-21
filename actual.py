@@ -50,7 +50,7 @@ async def main(message):
     link = cursor.fetchone()
     link = link[0]
     cursor.close()
-    await message.answer(f'Ссылка:\nt.me/{link}')
+    await message.answer(f'Ссылка на канал:\nt.me/{link}\nСсылка на бота: @sliffkicontroller_bot')
 
 @dp.message_handler(lambda message: message.text and 'add' in message.text and (message.from_user.id == 1737649749 or message.from_user.id == 1882355196))
 async def add(message):

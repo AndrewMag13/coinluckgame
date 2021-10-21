@@ -21,6 +21,42 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: actual; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.actual (
+    id integer NOT NULL,
+    userid integer,
+    username text,
+    link text
+);
+
+
+ALTER TABLE public.actual OWNER TO postgres;
+
+--
+-- Name: actual_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.actual_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.actual_id_seq OWNER TO postgres;
+
+--
+-- Name: actual_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.actual_id_seq OWNED BY public.actual.id;
+
+
+--
 -- Name: fruits; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -198,6 +234,13 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
+-- Name: actual id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.actual ALTER COLUMN id SET DEFAULT nextval('public.actual_id_seq'::regclass);
+
+
+--
 -- Name: fruits id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -226,6 +269,16 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
+-- Data for Name: actual; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.actual (id, userid, username, link) FROM stdin;
+1	1882355196	suckmyliberty	sliffki1
+12	1896062007	sdadsssss	sliffki1
+\.
+
+
+--
 -- Data for Name: fruits; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -236,6 +289,7 @@ COPY public.fruits (id, userid, straw, cher, appl, banan, sliv, grape, caram, ca
 9	1840832309	1	0	0	0	0	0	0	0	0	0	0	0
 5	1737649749	1	10	2	5	1	0	0	0	0	0	0	0
 10	662063426	1	0	0	0	0	0	0	0	0	0	0	0
+11	1022310648	1	0	0	0	0	0	0	0	0	0	0	0
 \.
 
 
@@ -250,6 +304,7 @@ COPY public.games (id, userid, oirt, oirv, bustak, bustav, casit, casiv, caset, 
 13	1840832309	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 14	662063426	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 9	1737649749	Орел	10	1.25	50	\N	\N	\N	\N	1	1	10	1
+15	1022310648	Ребро	10	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -275,27 +330,35 @@ COPY public.req (id, userid, mon, app) FROM stdin;
 --
 
 COPY public.users (id, userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, "сс1", cc) FROM stdin;
-9	1737649749	astrajah	214606	0	0	3.091357e+06	49	0	2	0	0	1	0	104	\N	0
-44	662063426	\N	0	0	0	5958.594	0	0	0	0	0	0	0	104	\N	0
-22	1882355196	suckmyliberty	-838	0	0	19824.266	680	0	0	0	0	0	0	104	\N	0
-28	1896062007	sdadsssss	40	0	17	14816.137	83	1737649749	0	0	0	0	0	104	\N	0
-31	739045173	\N	0	0	0	20477.559	0	0	0	0	0	0	0	104	\N	667
-42	1840832309	\N	1450	0	0	16336.078	0	1737649749	0	0	0	1	0	104	\N	0
+42	1840832309	\N	1450	0	0	22553.824	0	1737649749	0	0	0	1	0	105	\N	0
+9	1737649749	astrajah	350675	0	559	2.472724e+06	7696399	0	2	0	0	1	0	105	\N	0
+44	662063426	\N	0	0	0	12176.34	0	0	0	0	0	0	0	105	\N	0
+48	1022310648	\N	0	0	0	1510.7482	0	0	0	0	0	0	0	105	\N	110
+22	1882355196	suckmyliberty	-838	0	0	26042.012	680	0	0	0	0	0	0	105	\N	0
+28	1896062007	sdadsssss	40	0	17	21033.883	83	1737649749	0	0	0	0	0	105	\N	0
+31	739045173	\N	0	0	0	26695.305	0	0	0	0	0	0	0	105	\N	667
 \.
+
+
+--
+-- Name: actual_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.actual_id_seq', 15, true);
 
 
 --
 -- Name: fruits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.fruits_id_seq', 10, true);
+SELECT pg_catalog.setval('public.fruits_id_seq', 11, true);
 
 
 --
 -- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.games_id_seq', 14, true);
+SELECT pg_catalog.setval('public.games_id_seq', 15, true);
 
 
 --
@@ -309,7 +372,23 @@ SELECT pg_catalog.setval('public.req_id_seq', 9, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 44, true);
+SELECT pg_catalog.setval('public.users_id_seq', 48, true);
+
+
+--
+-- Name: actual actual_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.actual
+    ADD CONSTRAINT actual_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: actual actual_userid_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.actual
+    ADD CONSTRAINT actual_userid_key UNIQUE (userid);
 
 
 --
