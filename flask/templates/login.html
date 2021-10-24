@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="icon" type="image/icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <form action="" method="post">
+        <p>
+            <label for="username">Username</label>
+            <input type="text" name="username">
+        </p>
+        <p>
+            <label for="password">Password</label>
+            <input type="password" name="password">
+        </p>
+        <p>
+            <label for="hum">Are you human?</label>
+            <input type="checkbox" name="hum">
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+    </form>
+    <p>
+    <h1><a href="/">Back</a></h1>
+    </p>
+</body>
+
+</html>

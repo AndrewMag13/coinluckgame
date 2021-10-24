@@ -1,6 +1,6 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer, CGIHTTPRequestHandler
 import os
-
+import cgi
 
 class ServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -25,12 +25,34 @@ class ServerHandler(BaseHTTPRequestHandler):
             html = open('/home/nail/oir/pyServ/'+self.path)
             html = html.read()
             self.wfile.write(html.encode('utf-8'))
+        elif self.path.endswith(".css"):
+            self.send_response(200)
+            self.send_header('Content-type', 'text/css')
+            self.end_headers()
+            css = open('/home/nail/oir/pyServ/'+self.path)
+            css = css.read()
+            self.wfile.write(css.encode('utf-8'))
+        elif self.path == "favicon.ico":
+            self.send_response(200)
+            self.send_header('Content-type', 'image/icon')
+            self.end_headers()
+            with open(os.curdir + os.sep + self.path, 'rb') as file:
+                self.wfile.write(file.read())
+        elif ".js" in self.path:
+            self.send_response(200)
+            self.send_header('Content-type', 'text/javascript')
+            self.end_headers()
+            javascript = open('/home/nail/oir/pyServ/'+self.path)
+            javascript = javascript.read()
+            self.wfile.write(javascript.encode('utf-8')) 
+        elif '?' in self.path:
+             pass
         else:
             self.send_error(404, "Page Not Found {}".format(self.path))
 
 def server_thread(port):
     server_address = ('', port)
-    httpd = HTTPServer(server_address, ServerHandler)
+    httpd = HTTPServer(server_address, ServerHandler, CGIHTTPRequestHandler)
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
