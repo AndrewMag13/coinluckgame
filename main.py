@@ -7,15 +7,17 @@ import hashlib
 import subprocess
 import logging
 from aiogram import Bot, Dispatcher, executor, types
+from former import former
+from starexchange import s2d
+from temps import temps
+from selec import selec
 logging.basicConfig(filename="main.log", level=logging.INFO)
-
 
 API_TOKEN = '1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74'
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
 chk = 0
-
 
 secret='Y[wUkLSn7W,U>wZ'
 merchant_id='1159'
@@ -27,7 +29,6 @@ def isint(s):
     except ValueError:
         return False
 
-
 try:
     conn = psycopg2.connect(user="postgres",
                                 password="iwasbornfree",
@@ -38,121 +39,6 @@ try:
 except (Exception, Error) as error:
     print("Ошибка при работе с PostgreSQL", error)
 
-pho = 'https://imbt.ga/ZFdnBeO4pg'
-
-#templates
-class temps(object):
-        def fl():
-            return('Choose language\nВыберите язык')
-        def start():
-            return('English','Русский')
-        def inter(message):
-            cursor = conn.cursor()
-            cursor.execute(f"SELECT lang FROM users WHERE userid = {message.from_user.id}")
-            slang = cursor.fetchone()
-            cursor.close()
-            return(f'*Приветствую {message.from_user.id}♦* \nЭтот бот представляет собой игру-симулятор фермера\n\nВыбрав язык вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n\n*Welcome {message.from_user.id}♦* \This bot is a farming simulator\n\nBy choosing the language you accept the User Agreement: telegra.ph/Polzovatelskoe-soglashenie-07-06\nYou can also get a bonus, if you dont have one, enter BONUS\n\nGood luck!🍀\n{pho}')
-        def intererr(message):
-            return(f'*Ошибка регистарции, {message.from_user.id}!*')
-        ###
-        def startb():
-            return('▶ Играть', '🍓 Ферма', '🔄 Рынок', '💼 Баланс', '💱 Перевод', '⚡ Ежедневный бонус', '💭 Отзывы', '👥 Реферальная система')
-        def market(message, plod, course):
-            return(f'Здесь вы можете *обменять* ваши 🌟 на 💲 и 💸 на 💲\nУ вас для продажи {plod} 🌟\n\nТекущий курс для обмена 🌟 на 💲: \n1 🔄 = {course} 🌟\nС каждого *обмена* вы получите 70% 💲 и 30% 💸\n\nПри переводе 💸 на 💲 курс: 1 💸 = 1.3 💲')
-        ###
-        def main(message):
-            return(f'*Приветствую {message.from_user.first_name}♦* \nВы находитесь в главном меню CoinLuck Game\n{pho}')
-        ###
-        def trans(id):
-            return(f'Здесь вы можете *перевести* 💲 другим пользователям по *id*. \nВаш id: {id}\n\nДля перевода в ответном сообщении введите сначала *id* пользователя, затем *сумму перевода* через *пробел*.\nПример: 12 700\nЕдиноразово вы можете перевести от *10* 💲 до *10.000* 💲')
-        def err():
-            return('Ошибка!')
-        def transsucc(plods, rubs, vivc, rub):
-            return(f'*Готово!*\n\nВы обменяли {plods} 🌟 на {rubs} 💲 и на {vivc} 💸\n\nУ вас на балансе: {rub} 💲')
-        def transerr():
-            return(f'Недостаточно средств!')
-        def transsucc2(vivc, rubs, rub):
-            return(f'*Готово!*\n\nВы обменяли {vivc} 💸 на {rubs} 💲\n\nУ вас на балансе: {rub} 💲')
-        ###
-        def choose():
-            return('Выберите игру')
-        ###
-        def stavka13():
-            return('Делайте *ставку*\n\nСтавка должна быть от 10 до 10.000\nВы также можете ввести свою сумму введя ее в ответном сообщении')
-        def number13():
-            return('Введите число от 1 до 3')
-        def wrongent():
-            return('Неверный ввод!')
-        def normstavka():
-            return(f'Ставка должна быть от 10 💲 до 10000 💲')
-        def win13(stavka, money, keff, cc):
-            return(f'*Поздравляем!👏*\nВаш выйгрыш: {stavka * 3} 💲\n\nВаш текущий баланс: {money} 💲\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nВыпавшее число: {cc}')
-        def lose13(keff, cc):
-            return(f'Сожалеем, вы проиграли!\n\nВаше число:  {keff} \nЧисло:  {cc} ')
-        def back():
-            return('👈 Назад')
-        def standarts():
-            return ('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲', '👈 Назад')
-        def keffs():
-            return('Введите коэффициент\nКоэффицент должен быть от 1.2 до 1000\n\nВведеная вами ставка обрежется до 2 нулей после точки\nПрим: 2.4235 > 2.42')
-        def otri():
-            return('Введите число от  1  до  30 \n\nПри выйгрыше вы получите *30x* от вашей ставки')
-        def otrwin(stavka, money, keff, cc):
-            return(f'Поздравляем!👏 \nВаш выйгрыш: {stavka * 30} 💲\n\nВаш текущий баланс   *{money} 💲*\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nЧисло: {cc}')
-        def otrlose(keff, cc):
-            return(f'Сожалеем, вы проиграли!\n\nВаше число: {keff}\nЧисло: {cc}')
-        def crashwin(keff, money, stavka, cc):
-            return(f'Поздравляем!👏 \nВаш выйгрыш: {keff * stavka} 💲\n\nВаш текущий баланс   *{money} 💲*\nВаша ставка: *{stavka}* 💲\n\nВаш коэффицент: *{keff}*\nКоэффицент: {cc}')
-        def crashlose(keff, cc):
-            return(f'Сожалеем, вы проиграли!\n\nВаш коэффицент: {keff}\nКоэффицент: {cc}')
-        def oirs():
-            return('*Выберите сторону*\n\nКоэффиценты для сторон:\n\n*Орел/Решка* 2x \n*Ребро* 25x')
-        def oirep(wiin, money, rubb):
-            return(f'{wiin} \n\nВаш текущий баланс *{money} 💲*\nВаша ставка: {rubb} 💲')
-        def bal(money, vivc):
-            return(f'Здесь вы можете пополнить или вывести ваш баланс\n\nВаш баланс для покупок: {money} 💲\nВаш баланс для вывода: {vivc} 💸')
-        def pop():
-            return('Введите сумму пополнения вашего счета (минимальная сумма пополнения 150 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💵')
-        def link():
-            return(f'Ваша ссылка для пополнения')
-        def viv():
-            return('Введите сумму')
-        def farm(all, plod):
-            return(f'Это ваша небольшая горная ферма на севере Калифорнии у необычайно красивого берега \nЗдесь вы можете купить еще фруктовых растений или собрать спелые плоды \n\nУ вас на ферме {str(plod)} 🌟\n\nВ час вы зарабатываете {all} 🌟')
-        def sbor(plod):
-            return(f'Готово вы собрали {plod} 🌟!')    
-        def allf(myplod):
-            return(f'У вас: \n\n{myplod[2]} грядок клубники 🍓\n\n{myplod[3]} вишневых деревьев 🍒\n\n{myplod[4]} яблочных деревьев 🍎\n\n{myplod[5]} банановых деревьев 🍌\n\n{myplod[6]} персиковых деревьев 🍑\n\n{myplod[7]} виноградных деревьев 🍇')
-        def buyf(money):
-            return(f'Здесь вы можете купить растения на вашу ферму: \n\n🍓 - 1.000 💲\nПриносит 100 🌟 в час\n\n🍒 - 5.000 💲\nПриносит 600 🌟 в час\n\n🍎 - 25.000 💲\nПриносит 3.200 🌟 в час\n\n🍌 - 100.000 💲\nПриносит 14.000 🌟 в час\n\n🍑 - 500.000 💲\nПриносит 80.000 🌟 в час\n\n🍇 - 1.000.000 💲\nПриносит 200.000 🌟 в час \n\nУ вас на балансе: {former(money)} 💲')
-        def succ():
-            return('Успешно!')
-        def bon1():
-            return('Поздравляем!👏 Ваш бонус: 250 💲')
-        def bone():
-            return('Отлично!👏 Вы получили ваш ежедневный бонус на сумму 200 💲')
-        def rev():
-            return('Здесь вы можете прочитать или написать отзывы')
-        def goodrev():
-            return('В ответном сообщении вы можете оставить отзыв, за каждый качественный отзыв вы получите 50 💲')
-        def refl(message, refff):
-            return(f'Ваша реферальная ссылка: \nt.me/coinluck_bot?start={message.from_user.id} \n\nУ вас {refff} рефералов!')
-#formatter
-def selec(message):
-    try:
-        cursor = conn.cursor()
-        cursor.execute(f"SELECT cc FROM users WHERE userid = {message.from_user.id}")
-        s = cursor.fetchone()
-        cursor.close()
-        s = s[0]
-        return s
-    except Error:
-        return False
-
-def former(a):
-    a = '{:,}'.format(a)
-    return a
-
 @dp.message_handler(commands=['start'])
 async def welcome(message):
     userid = message.from_user.id
@@ -161,19 +47,7 @@ async def welcome(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(lang[0], lang[1])
     cursor = conn.cursor()
-    rub = 0
-    mesh = 0
-    vivc = 0
-    plod = 0
-    plodd = 0
-    ref = 0
-    refco = 0
-    inp = 0
-    outp = 0
-    bon = 0
-    bond = 0
-    course = 100
-    cc = 0
+    rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc = 0
     valua = (userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)
     try:
         cursor.execute(f"INSERT INTO users(userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)VALUES{valua};")
@@ -291,51 +165,15 @@ async def mart(message):
     async def mart1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(temps.back())
-        cursor = conn.cursor()
-        cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
-        course = cursor.fetchone()
-        course = course[0]
-        cursor.execute(f'SELECT plodd FROM users WHERE userid={message.from_user.id}')
-        plodd = cursor.fetchone()
-        cursor.close
-        plodd = plodd[0]
-        if plodd > course:
-            cursor = conn.cursor()
-            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-            rubs = cursor.fetchone()
-            rubs = rubs[0]
-            cursor.execute(f"SELECT plodd FROM users WHERE userid = {message.from_user.id}")
-            plod = cursor.fetchone()
-            plod = plod[0]
-            plod = int(plod)
-            plods = int(plod)
-            rubs = plod // course
-            vivc = rubs / 100 * 30
-            print(vivc)
-            vivc = int(vivc)
-            rubs = rubs - vivc
-            plod = plod % course
-            plods = plods - plod
-            print(rubs)
-            print(plod)
-            print(plods)
-            print(course)
-            cursor.execute(f"UPDATE users SET rub = rub + {rubs} WHERE userid = {message.from_user.id}")
-            cursor.execute(f"UPDATE users SET plodd = plodd - {plods} WHERE userid = {message.from_user.id}")
-            cursor.execute(f"UPDATE users SET vivc = vivc + {vivc} WHERE userid = {message.from_user.id}")
-            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-            rub = cursor.fetchone()
-            rub = rub[0]
-            conn.commit()
-            cursor.close()
-            logging.info(f"change {plods} > {rubs} and {vivc} userid: {message.from_user.id}")
-            plods = former(plods)
-            rubs = former(rubs)
-            vivc = former(vivc)
-            rub = former(rub)
-            await message.answer(temps.transsucc(plods, rubs, vivc, rub), reply_markup=keyboard, parse_mode= 'Markdown')
-        else:
+        a = s2d(message)
+        if a == None:
             await message.answer(temps.transerr(), reply_markup=keyboard)
+        else:
+            plods = a[0]
+            rubs = a[1]
+            vivc = a[2]
+            rub = a[3]
+            await message.answer(temps.transsucc(plods, rubs, vivc, rub), reply_markup=keyboard, parse_mode= 'Markdown')
 
     @dp.message_handler(lambda message: message.text and 'Обменять 💸 на 💲' in message.text and selec(message) == 110)
     async def mart2(message):
@@ -970,36 +808,6 @@ async def farm(message):
             else:
                 cursor.close()
                 await message.answer(temps.err())
-    
-    #@dp.message_handler(lambda message: message.text and '✨ qswafukwafvb ' in message.text and selec(message) == 10)
-    #async def buyvipfarm(message):
-    #    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    #    keyboard.add('Купить VIP🍍','Купить VIP🐉','Купить VIP⭐',temps.back())
-    #    await message.answer('магаз', reply_markup=keyboard)
-   
-    #@dp.message_handler(lambda message: message.text and 'Купить VIP wsuwarasdfkaw ' in message.text and selec(message) == 10)
-    #async def buyvipfarm1(message):
-    #    fruit = message.text[-1]
-    #    if fruit == "🍍":
-    #        fruitm = 99
-    #    elif fruit == "🐉":
-    #        fruitm = 299
-    #    elif fruit == "⭐":
-    #        fruitm = 499
-    #    else:
-    #        await message.answer('Не могу тебя понять')
-    #    cursor = conn.cursor()
-    #    cursor.execute(f"INSERT INTO req(userid, mon, app) VALUES({message.from_user.id}, {fruitm}, 0)")
-    #    conn.commit()
-    #    conn.close()
-    #    opl = hashlib.md5(f'{merchant_id}:{fruitm}:{secret}:RUB:{message.from_user.id}'.encode('utf-8')).hexdigest()
-    #    print(opl)
-    #    urrl = f'https://pay.freekassa.ru/?m={merchant_id}&oa={fruitm}&o={message.from_user.id}&s={opl}&currency=RUB&us_key={fruitm}'
-    #    markup = types.InlineKeyboardMarkup()
-    #    btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=urrl)
-    #    markup.add(btn_my_site)
-    #    logging.info(f"{message.from_user.id} buy ")
-    #    await message.answer(f'Ваша ссылка для покупки', reply_markup = markup)
 
 @dp.message_handler(lambda message: message.text and '💭' in message.text)
 async def review(message):
