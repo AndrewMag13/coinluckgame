@@ -16,6 +16,7 @@ dp = Dispatcher(bot)
 
 chk = 0
 
+
 secret='Y[wUkLSn7W,U>wZ'
 merchant_id='1159'
 
@@ -26,7 +27,6 @@ def isint(s):
     except ValueError:
         return False
 
-pho = 'https://imbt.ga/ZFdnBeO4pg'
 
 try:
     conn = psycopg2.connect(user="postgres",
@@ -38,6 +38,106 @@ try:
 except (Exception, Error) as error:
     print("Ошибка при работе с PostgreSQL", error)
 
+pho = 'https://imbt.ga/ZFdnBeO4pg'
+
+#templates
+class temps(object):
+        def fl():
+            return('Choose language\nВыберите язык')
+        def start():
+            return('English','Русский')
+        def inter(message):
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT lang FROM users WHERE userid = {message.from_user.id}")
+            slang = cursor.fetchone()
+            cursor.close()
+            return(f'*Приветствую {message.from_user.id}♦* \nЭтот бот представляет собой игру-симулятор фермера\n\nВыбрав язык вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n\n*Welcome {message.from_user.id}♦* \This bot is a farming simulator\n\nBy choosing the language you accept the User Agreement: telegra.ph/Polzovatelskoe-soglashenie-07-06\nYou can also get a bonus, if you dont have one, enter BONUS\n\nGood luck!🍀\n{pho}')
+        def intererr(message):
+            return(f'*Ошибка регистарции, {message.from_user.id}!*')
+        ###
+        def startb():
+            return('▶ Играть', '🍓 Ферма', '🔄 Рынок', '💼 Баланс', '💱 Перевод', '⚡ Ежедневный бонус', '💭 Отзывы', '👥 Реферальная система')
+        def market(message, plod, course):
+            return(f'Здесь вы можете *обменять* ваши 🌟 на 💲 и 💸 на 💲\nУ вас для продажи {plod} 🌟\n\nТекущий курс для обмена 🌟 на 💲: \n1 🔄 = {course} 🌟\nС каждого *обмена* вы получите 70% 💲 и 30% 💸\n\nПри переводе 💸 на 💲 курс: 1 💸 = 1.3 💲')
+        ###
+        def main(message):
+            return(f'*Приветствую {message.from_user.first_name}♦* \nВы находитесь в главном меню CoinLuck Game\n{pho}')
+        ###
+        def trans(id):
+            return(f'Здесь вы можете *перевести* 💲 другим пользователям по *id*. \nВаш id: {id}\n\nДля перевода в ответном сообщении введите сначала *id* пользователя, затем *сумму перевода* через *пробел*.\nПример: 12 700\nЕдиноразово вы можете перевести от *10* 💲 до *10.000* 💲')
+        def err():
+            return('Ошибка!')
+        def transsucc(plods, rubs, vivc, rub):
+            return(f'*Готово!*\n\nВы обменяли {plods} 🌟 на {rubs} 💲 и на {vivc} 💸\n\nУ вас на балансе: {rub} 💲')
+        def transerr():
+            return(f'Недостаточно средств!')
+        def transsucc2(vivc, rubs, rub):
+            return(f'*Готово!*\n\nВы обменяли {vivc} 💸 на {rubs} 💲\n\nУ вас на балансе: {rub} 💲')
+        ###
+        def choose():
+            return('Выберите игру')
+        ###
+        def stavka13():
+            return('Делайте *ставку*\n\nСтавка должна быть от 10 до 10.000\nВы также можете ввести свою сумму введя ее в ответном сообщении')
+        def number13():
+            return('Введите число от 1 до 3')
+        def wrongent():
+            return('Неверный ввод!')
+        def normstavka():
+            return(f'Ставка должна быть от 10 💲 до 10000 💲')
+        def win13(stavka, money, keff, cc):
+            return(f'*Поздравляем!👏*\nВаш выйгрыш: {stavka * 3} 💲\n\nВаш текущий баланс: {money} 💲\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nВыпавшее число: {cc}')
+        def lose13(keff, cc):
+            return(f'Сожалеем, вы проиграли!\n\nВаше число:  {keff} \nЧисло:  {cc} ')
+        def back():
+            return('👈 Назад')
+        def standarts():
+            return ('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲', '👈 Назад')
+        def keffs():
+            return('Введите коэффициент\nКоэффицент должен быть от 1.2 до 1000\n\nВведеная вами ставка обрежется до 2 нулей после точки\nПрим: 2.4235 > 2.42')
+        def otri():
+            return('Введите число от  1  до  30 \n\nПри выйгрыше вы получите *30x* от вашей ставки')
+        def otrwin(stavka, money, keff, cc):
+            return(f'Поздравляем!👏 \nВаш выйгрыш: {stavka * 30} 💲\n\nВаш текущий баланс   *{money} 💲*\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nЧисло: {cc}')
+        def otrlose(keff, cc):
+            return(f'Сожалеем, вы проиграли!\n\nВаше число: {keff}\nЧисло: {cc}')
+        def crashwin(keff, money, stavka, cc):
+            return(f'Поздравляем!👏 \nВаш выйгрыш: {keff * stavka} 💲\n\nВаш текущий баланс   *{money} 💲*\nВаша ставка: *{stavka}* 💲\n\nВаш коэффицент: *{keff}*\nКоэффицент: {cc}')
+        def crashlose(keff, cc):
+            return(f'Сожалеем, вы проиграли!\n\nВаш коэффицент: {keff}\nКоэффицент: {cc}')
+        def oirs():
+            return('*Выберите сторону*\n\nКоэффиценты для сторон:\n\n*Орел/Решка* 2x \n*Ребро* 25x')
+        def oirep(wiin, money, rubb):
+            return(f'{wiin} \n\nВаш текущий баланс *{money} 💲*\nВаша ставка: {rubb} 💲')
+        def bal(money, vivc):
+            return(f'Здесь вы можете пополнить или вывести ваш баланс\n\nВаш баланс для покупок: {money} 💲\nВаш баланс для вывода: {vivc} 💸')
+        def pop():
+            return('Введите сумму пополнения вашего счета (минимальная сумма пополнения 150 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💵')
+        def link():
+            return(f'Ваша ссылка для пополнения')
+        def viv():
+            return('Введите сумму')
+        def farm(all, plod):
+            return(f'Это ваша небольшая горная ферма на севере Калифорнии у необычайно красивого берега \nЗдесь вы можете купить еще фруктовых растений или собрать спелые плоды \n\nУ вас на ферме {str(plod)} 🌟\n\nВ час вы зарабатываете {all} 🌟')
+        def sbor(plod):
+            return(f'Готово вы собрали {plod} 🌟!')    
+        def allf(myplod):
+            return(f'У вас: \n\n{myplod[2]} грядок клубники 🍓\n\n{myplod[3]} вишневых деревьев 🍒\n\n{myplod[4]} яблочных деревьев 🍎\n\n{myplod[5]} банановых деревьев 🍌\n\n{myplod[6]} персиковых деревьев 🍑\n\n{myplod[7]} виноградных деревьев 🍇')
+        def buyf(money):
+            return(f'Здесь вы можете купить растения на вашу ферму: \n\n🍓 - 1.000 💲\nПриносит 100 🌟 в час\n\n🍒 - 5.000 💲\nПриносит 600 🌟 в час\n\n🍎 - 25.000 💲\nПриносит 3.200 🌟 в час\n\n🍌 - 100.000 💲\nПриносит 14.000 🌟 в час\n\n🍑 - 500.000 💲\nПриносит 80.000 🌟 в час\n\n🍇 - 1.000.000 💲\nПриносит 200.000 🌟 в час \n\nУ вас на балансе: {former(money)} 💲')
+        def succ():
+            return('Успешно!')
+        def bon1():
+            return('Поздравляем!👏 Ваш бонус: 250 💲')
+        def bone():
+            return('Отлично!👏 Вы получили ваш ежедневный бонус на сумму 200 💲')
+        def rev():
+            return('Здесь вы можете прочитать или написать отзывы')
+        def goodrev():
+            return('В ответном сообщении вы можете оставить отзыв, за каждый качественный отзыв вы получите 50 💲')
+        def refl(message, refff):
+            return(f'Ваша реферальная ссылка: \nt.me/coinluck_bot?start={message.from_user.id} \n\nУ вас {refff} рефералов!')
+#formatter
 def selec(message):
     try:
         cursor = conn.cursor()
@@ -48,6 +148,7 @@ def selec(message):
         return s
     except Error:
         return False
+
 def former(a):
     a = '{:,}'.format(a)
     return a
@@ -56,8 +157,9 @@ def former(a):
 async def welcome(message):
     userid = message.from_user.id
     username = message.from_user.username
+    lang = temps.start()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Начать')
+    keyboard.add(lang[0], lang[1])
     cursor = conn.cursor()
     rub = 0
     mesh = 0
@@ -80,7 +182,7 @@ async def welcome(message):
         cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
         conn.commit()
     except Error:
-        await message.answer(f'*Ошибка регистарции, {message.from_user.id}!*')
+        await message.answer(temps.intererr(message))
     try:
         cursor.execute("UPDATE users SET rub = rub + 100000 WHERE userid = 1737649749;")
         conn.commit()
@@ -107,17 +209,17 @@ async def welcome(message):
     r = requests.get('https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id=1737649749&text=+1luder')
     cursor.close()
     logging.info(f"new luder: {userid}")
-    await message.answer(f'*Приветствую {message.from_user.id}♦* \nЭтот бот представляет собой сборник азартных игр\n\nНажимая кнопку Начать вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n{pho}', parse_mode= 'Markdown', reply_markup=keyboard)
-@dp.message_handler(lambda message: message.text and '👈' in message.text or 'Начать' in message.text)
+    await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
+@dp.message_handler(lambda message: message.text and temps.back() in message.text or 'English' in message.text or 'Русский' in message.text)
 async def mainn(message):
     cursor = conn.cursor()
     cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.close()
-    print(chk)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('▶ Играть', '🍓 Ферма', '🔄 Рынок', '💼 Баланс', '💱 Перевод', '⚡ Ежедневный бонус', '💭 Отзывы', '👥 Реферальная система')
-    await message.answer(f'*Приветствую {message.from_user.first_name}♦* \nВы находитесь в главном меню CoinLuck Game\n{pho}', parse_mode= 'Markdown', reply_markup=keyboard)
+    kk = temps.startb()
+    keyboard.add(kk[0], kk[1], kk[2], kk[3], kk[4], kk[5], kk[6], kk[7])
+    await message.answer(temps.main(message), parse_mode= 'Markdown', reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and '💱' in message.text)
 async def tran(message):
@@ -129,8 +231,8 @@ async def tran(message):
     cursor.close()
     id = id[0]
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('👈 Назад')
-    await message.answer(f'Здесь вы можете перевести 💲 другим пользователям по id. Ваш id: {id}\n\nДля перевода в ответном сообщении введите сначала id пользователя, затем сумму перевода через пробел.\nПример: 12 7000 \nЕдиноразово вы можете перевести от 10 💲 до 10.000 💲', reply_markup=keyboard)
+    keyboard.add(temps.back())
+    await message.answer(temps.trans(id), reply_markup=keyboard, parse_mode='Markdown')
     
     @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 11290)
     async def tran1(message):
@@ -161,20 +263,20 @@ async def tran(message):
                     print(messid)
                     logging.info(f'{message.from_user.id} > {mess[0]} {mon}')
                     r = requests.get(f"https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={messid}&text=Пользователь {id} перевел на ваш счет {mon} 💲!")
-                    await message.answer(f'Готово! Вы перевели пользователю {mess[0]} {mon} 💲')
+                    await message.answer(f'*Готово!* Вы перевели пользователю *{mess[0]}*  {mon}  💲', parse_mode= 'Markdown')
                 except Error:
-                    await message.answer(f'Ошибка! Неверный ввод!')
+                    await message.answer(temps.err())
             else:
-                await message.answer(f'Ошибка! Неверный ввод!')
+                await message.answer(temps.err())
         except Error:
-            await message.answer(f'Ошибка!')
+            await message.answer(temps.err())
 
 @dp.message_handler(lambda message: message.text and '🔄' in message.text)
 async def mart(message):
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.add('Обменять 🌟 на 💲', 'Обменять 💸 на 💲', temps.back())
     cursor = conn.cursor()
     cursor.execute(f'UPDATE users SET cc = 110 WHERE userid = {message.from_user.id}')
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Обменять 🌟 на 💲','Обменять 💸 на 💲', '👈 Назад')
     cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
     course = cursor.fetchone()
     course = course[0]
@@ -183,12 +285,12 @@ async def mart(message):
     plod = plod[0]
     cursor.close()
     plod = former(plod)
-    await message.answer(f'Здесь вы можете обменять ваши 🌟 на 💲 и 💸 на 💲\nУ вас {plod} 🌟\n\nТекущий курс для обмена 🌟 на 💲: \n 1 🔄 = {course} 🌟\n С каждого перевода вы получите 70% 💲 и 30% 💸\n\nПри переводе 💸 на 💲 курс: 1 💸 = 1.3 💲', reply_markup=keyboard)
+    await message.answer(temps.market(message, plod, course), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and 'Обменять 🌟 на 💲' in message.text and selec(message) == 110)
     async def mart1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('👈 Назад')
+        keyboard.add(temps.back())
         cursor = conn.cursor()
         cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
         course = cursor.fetchone()
@@ -231,14 +333,14 @@ async def mart(message):
             rubs = former(rubs)
             vivc = former(vivc)
             rub = former(rub)
-            await message.answer(f'Готово! \n\nВы обменяли {plods} 🌟 на {rubs} 💲 и на {vivc} 💸\n\nУ вас на балансе: {rub} 💲 ', reply_markup=keyboard)
+            await message.answer(temps.transsucc(plods, rubs, vivc, rub), reply_markup=keyboard, parse_mode= 'Markdown')
         else:
-            await message.answer(f'Недостаточно 🌟 для обмена', reply_markup=keyboard)
+            await message.answer(temps.transerr(), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and 'Обменять 💸 на 💲' in message.text and selec(message) == 110)
     async def mart2(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('👈 Назад')
+        keyboard.add(temps.back())
         cursor = conn.cursor()
         cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
         course = cursor.fetchone()
@@ -272,9 +374,9 @@ async def mart(message):
             rubs = former(rubs)
             vivc = former(vivc)
             rub = former(rub)
-            await message.answer(f'Готово! \n\nВы обменяли {vivc} 💸 на {rubs} 💲\n\nУ вас на балансе: {rub} 💲 ', reply_markup=keyboard)
+            await message.answer(temps.transsucc2(vivc, rubs, rub), reply_markup=keyboard, parse_mode= 'Markdown')
         else:
-            await message.answer(f'Недостаточно 💸 для обмена\nМинимальная сумма: 10 💸', reply_markup=keyboard)
+            await message.answer(temps.transerr(), reply_markup=keyboard, parse_mode= 'Markdown')
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
     cursor = conn.cursor()
@@ -282,18 +384,19 @@ async def games(message):
     conn.commit()
     cursor.close()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Орел и Решка', 'Краш', '1/3', '1/30', '👈 Назад')
-    await message.answer('Выберите игру', reply_markup=keyboard, parse_mode= 'Markdown')
+    keyboard.add('Орел и Решка', 'Краш', '1/3', '1/30', temps.back())
+    await message.answer(temps.choose(), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and message.text == '1/3' and selec(message) == 666)
     async def ot(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
+        ss = temps.standarts()
+        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
         cursor = conn.cursor()
         cursor.execute(f'UPDATE users SET cc = 666220 WHERE userid = {message.from_user.id}')
         conn.commit()
         cursor.close()
-        await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
+        await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
 
         @dp.message_handler(lambda message: message.text and selec(message) == 666220)
         async def ot2(message):
@@ -310,13 +413,13 @@ async def games(message):
             conn.commit()
             cursor.close()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1', '2', '3', '👈 Назад')
-            await message.answer('Введите число от 1 до 3', reply_markup=keyboard, parse_mode= 'Markdown')
+            keyboard.add('1', '2', '3', temps.back())
+            await message.answer(temps.number13(), reply_markup=keyboard, parse_mode= 'Markdown')
 
             @dp.message_handler(lambda message: message.text and selec(message) == 69692)
             async def ot3(message):
                 keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                keyboard.add('Повторить', '👈 Назад')
+                keyboard.add('Повторить', temps.back())
                 try:
                     if message.text == 'Повторить':
                             cursor = conn.cursor()
@@ -351,11 +454,11 @@ async def games(message):
                                 print(money)
                                 cursor.close()
                             else:
-                                await message.answer('Неверный ввод!')
+                                await message.answer(temps.wrongent())
                         except Error:
-                            await message.answer('Неверный ввод!')
+                            await message.answer(temps.wrongent())
                     if stavka < 10 and stavka > 10000:
-                        await message.answer(f'Ставка должна быть от 10 💲 до 10000 💲', reply_markup=keyboard)
+                        await message.answer(temps.normstavka(), reply_markup=keyboard, parse_mode= 'Markdown')
                     if money >= stavka and (keff == 1 or keff == 2 or keff == 3) and stavka >= 10 and stavka <= 10000:
                         cursor = conn.cursor()
                         cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
@@ -367,25 +470,26 @@ async def games(message):
                             win = win + stavka
                             cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
                             conn.commit()
-                            await message.answer(f'Поздравляем!👏 \nВаш выйгрыш: {stavka * 3} 💲\n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard, parse_mode= 'Markdown')
+                            await message.answer(temps.win13(stavka, money, keff, cc), reply_markup=keyboard, parse_mode= 'Markdown')
                         else:
                             cc = random.randint(1,3)
                             while cc == keff:
                                 cc = random.randint(1,3)
-                            await message.answer(f'Сожалеем, вы проиграли!\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard)
+                            await message.answer(temps.lose13(keff, cc), reply_markup=keyboard, parse_mode= 'Markdown')
                     else:
-                        await message.answer(f'Недостаточно 💲 на балансе! / Неверная ставка!', reply_markup=keyboard)
+                        await message.answer(temps.transerr(), reply_markup=keyboard)
                 except Error:
-                    await message.answer('Неверный ввод!')
+                    await message.answer(temps.wrongent())
     @dp.message_handler(lambda message: message.text and '1/30' in message.text and selec(message) == 666)
     async def otc(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
+        ss = temps.standarts()
+        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
         cursor = conn.cursor()
         cursor.execute(f'UPDATE users SET cc = 66620 WHERE userid = {message.from_user.id}')
         conn.commit()
         cursor.close()
-        await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
+        await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
 
         @dp.message_handler(lambda message: message.text and selec(message) == 66620)
         async def otc2(message):
@@ -402,13 +506,13 @@ async def games(message):
             conn.commit()
             cursor.close()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1', '2', '3', '4', '5', '10', '👈 Назад')
-            await message.answer('Введите число от 1 до 30\n\nПри выйгрыше вы получите 30x от вашей стаки', reply_markup=keyboard, parse_mode= 'Markdown')
+            keyboard.add('1', '2', '3', '4', '5', '10', temps.back())
+            await message.answer(temps.otri(), reply_markup=keyboard, parse_mode= 'Markdown')
 
             @dp.message_handler(lambda message: message.text and selec(message) == 69694)
             async def otc3(message):
                 keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                keyboard.add('Повторить', '👈 Назад')
+                keyboard.add('Повторить', temps.back())
                 try:
                     if message.text == 'Повторить':
                             cursor = conn.cursor()
@@ -443,11 +547,11 @@ async def games(message):
                                 print(money)
                                 cursor.close()
                             else:
-                                await message.answer('Неверный ввод! Число должно быть от 1 до 30')
+                                await message.answer(temps.wrongent())
                         except Error:
-                            await message.answer('Неверный ввод')
+                            await message.answer(temps.wrongent())
                     if stavka < 10 and stavka > 10000:
-                        await message.answer(f'Ставка должна быть от 10 💲 до 10000 💲', reply_markup=keyboard)
+                        await message.answer(temps.wrongent(), reply_markup=keyboard)
                     if isint(keff) and money >= stavka and stavka >= 10 and stavka <= 10000:
                         cursor = conn.cursor()
                         cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
@@ -459,27 +563,28 @@ async def games(message):
                             win = win + stavka
                             cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
                             conn.commit()
-                            await message.answer(f'Поздравляем!👏 \nВаш выйгрыш: {stavka * 30} 💲\n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard, parse_mode= 'Markdown')
+                            await message.answer(temps.otrwin(stavka, money, keff, cc), reply_markup=keyboard, parse_mode= 'Markdown')
                         else:
                             cc = random.randint(1,30)
                             while cc == keff:
                                 cc = random.randint(1,30)
-                            await message.answer(f'Сожалеем, вы проиграли!\n\nВаше число: {keff}\nЧисло: {cc}', reply_markup=keyboard)
+                            await message.answer(temps.otrlose(keff, cc), reply_markup=keyboard)
                     else:
-                        await message.answer(f'Недостаточно 💲 на балансе! / Неверная ставка', reply_markup=keyboard)
+                        await message.answer(temps.transerr(), reply_markup=keyboard)
                     
                 except Error:
-                    await message.answer('Неверный ввод!')
+                    await message.answer(temps.wrongent())
 
     @dp.message_handler(lambda message: message.text and 'Краш' in message.text and selec(message) == 666)
     async def bus1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
+        ss = temps.standarts()
+        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
         cursor = conn.cursor()
         cursor.execute(f'UPDATE users SET cc = 666000 WHERE userid = {message.from_user.id}')
         conn.commit()
         cursor.close()
-        await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
+        await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
         
         @dp.message_handler(lambda message: message.text and selec(message) == 666000)
         async def bus2(message):
@@ -496,13 +601,13 @@ async def games(message):
             conn.commit()
             cursor.close()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1.25', '1.5', '2', '3', '5', '10', '20', '👈 Назад')
-            await message.answer('Введите коэффициент\nКоэффицент должен быть от 1.2 до 1000\n\nВведеная вами ставка обрежется до 2 нулей после точки\nПрим: 2.4235 > 2.42', reply_markup=keyboard, parse_mode= 'Markdown')
+            keyboard.add('1.25', '1.5', '2', '3', '5', '10', '20', temps.back())
+            await message.answer(temps.keffs(), reply_markup=keyboard, parse_mode= 'Markdown')
             
             @dp.message_handler(lambda message: message.text and selec(message) == 6969)
             async def bus3(message):
                 keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                keyboard.add('Повторить', '👈 Назад')
+                keyboard.add('Повторить', temps.back())
                 try:
                     print(message.text)
                     if message.text == 'Повторить':
@@ -538,15 +643,14 @@ async def games(message):
                                 print(money)
                                 cursor.close()
                             else:
-                                await message.answer('Неверный ввод!\nКоэффицент должен быть от 1.2 до 1000')
+                                await message.answer(temps.wrongent())
                         except Error:
-                            await message.answer('Неверный ввод!')
+                            await message.answer(temps.wrongent())
                     if stavka >= 10 and stavka <= 10000 and money >= stavka:
                         print('YES')
                         cursor = conn.cursor()
                         cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
                         conn.commit()
-                        print('potracheno')
                         ab = random.randint(1, 1000)
                         if ab <= 75:
                             cc = round(random.uniform(1.00, 1.24), 2)
@@ -575,20 +679,20 @@ async def games(message):
                             cursor = conn.cursor()
                             cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
                             conn.commit()
-                            await message.answer(f'Поздравляем!👏 \nВаш выйгрыш: {keff * stavka} 💲\n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: *{stavka}* 💲\n\nВаш коэффицент: *{keff}*\nКоэффицент: {cc}', reply_markup=keyboard, parse_mode= 'Markdown')
+                            await message.answer(temps.crashwin(keff, money, stavka, cc), reply_markup=keyboard, parse_mode= 'Markdown')
                         else:
-                            await message.answer(f'Сожалеем, вы проиграли!\n\nВаш коэффицент: {keff}\nКоэффицент: {cc}', reply_markup=keyboard)
+                            await message.answer(temps.crashlose(keff, cc), reply_markup=keyboard)
                     else:
-                        await message.answer('Недостаточно средств на балансе')
+                        await message.answer(temps.transerr())
                 except Error:
-                    await message.answer('Неверный ввод!')
+                    await message.answer(temps.wrongent())
 
                 
     @dp.message_handler(lambda message: message.text and 'Орел и Решка' in message.text and selec(message) == 666)
     async def oir1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('Орел', 'Решка', 'Ребро', '👈 Назад')
-        await message.answer('*Выберите сторону*\n\nКоэффиценты для сторон:\n\n*Орел/Решка* - 2x \n*Ребро* - 25x', reply_markup=keyboard, parse_mode= 'Markdown')
+        keyboard.add('Орел', 'Решка', 'Ребро', temps.back())
+        await message.answer(temps.oirs(), reply_markup=keyboard, parse_mode= 'Markdown')
         
         @dp.message_handler(lambda message: message.text and 'Орел' in message.text or 'Решка' in message.text or 'Ребро' in message.text and selec(message) == 666)
         async def oir2(message):
@@ -597,9 +701,9 @@ async def games(message):
             cursor.execute(f'UPDATE users SET cc = 667 WHERE userid = {message.from_user.id}')
             conn.commit()
             cursor.close()
-            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲','👈 Назад')
-            await message.answer('Делайте ставку \n\nСтавка должна быть от *10* до *10.000* \nВы также можете ввести свою сумму введя ее в ответном сообщении', reply_markup=keyboard, parse_mode= 'Markdown')
+            ss = temps.standarts()
+            keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
+            await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
             
             @dp.message_handler(lambda message: message.text and selec(message) == 667)
             async def oir3(message):
@@ -618,10 +722,10 @@ async def games(message):
                         cursor.close
                     rubb = int(rubb)
                     if rubb > 10000 or rubb < 10:
-                        await message.answer('Ставка должна быть от *10* до *10.000*', parse_mode= 'Markdown')
+                        await message.answer(temps.normstavka(), parse_mode= 'Markdown')
                     else:
                         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                        keyboard.add('Повторить', '👈 Назад')
+                        keyboard.add('Повторить', temps.back())
                         cursor = conn.cursor()
                         if message.text == 'Повторить':
                             cursor.execute(f'SELECT oirt FROM games WHERE userid = {message.from_user.id}')
@@ -697,18 +801,18 @@ async def games(message):
                             cursor.close()
                             rubb = former(rubb)
                             money = former(money)
-                            await message.answer(f'{wiin} \n\nВаш текущий баланс - *{money} 💲*\nВаша ставка: {rubb} 💲', reply_markup=keyboard, parse_mode= 'Markdown')
+                            await message.answer(temps.oirep(wiin, money, rubb), reply_markup=keyboard, parse_mode= 'Markdown')
                         else:
-                            await message.answer(f'Недостаточно средств на балансе', reply_markup=keyboard)
+                            await message.answer(temps.transerr(), reply_markup=keyboard)
                 except ValueError:
-                    await message.answer('Неверно введено число')
+                    await message.answer(temps.wrongent())
                 except TypeError:
-                    await message.answer('Неверно введено число')
+                    await message.answer(temps.wrongent())
 #
 @dp.message_handler(lambda message: message.text and '💼' in message.text)
 async def balance(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('⬇ Пополнить баланс', '⬆ Вывести', '👈 Назад')
+    keyboard.add('⬇ Пополнить баланс', '⬆ Вывести', temps.back())
     cursor = conn.cursor()
     cursor.execute(f'UPDATE users SET cc = 6886 WHERE userid = {message.from_user.id}')
     conn.commit()
@@ -721,7 +825,7 @@ async def balance(message):
     vivc = vivc[0]
     money = former(money)
     vivc = former(vivc)
-    await message.answer(f'Здесь вы можете пополнить или вывести ваш баланс\n\nВаш баланс для покупок: *{money} 💲*\nВаш баланс для вывода: {vivc} 💸', parse_mode= 'Markdown', reply_markup=keyboard)
+    await message.answer(temps.bal(money, vivc), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and '⬇' in message.text and selec(message) == 6886)
     async def popbalance(message):
@@ -730,8 +834,8 @@ async def balance(message):
         conn.commit()
         cursor.close()
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('150 ₽', '300 ₽', '500 ₽','1000 ₽', '👈 Назад')
-        await message.answer('Введите сумму пополнения вашего счета (минимальная сумма пополнения - 150 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💵', reply_markup=keyboard)
+        keyboard.add('150 ₽', '300 ₽', '500 ₽','1000 ₽', temps.back())
+        await message.answer(temps.pop(), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and selec(message) == 68886)
         async def popbalance1(message):
@@ -739,7 +843,7 @@ async def balance(message):
             pop = pop[0]
             print(message.text)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('👈 Назад')
+            keyboard.add(temps.back())
             try:
                 pop = int(pop)
                 if pop >= 150 and pop <= 10000:
@@ -754,22 +858,22 @@ async def balance(message):
                     btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=urrl)
                     markup.add(btn_my_site)
                     #payment_link = requests.get(f'https://clck.ru/--?url={urrl}')
-                    await message.answer(f'Ваша ссылка для пополнения', reply_markup = markup)
+                    await message.answer(temps.link(), reply_markup = markup)
             except ValueError:
-                await message.answer('Неверно введена сумма!', reply_markup=keyboard)
+                await message.answer(temps.wrongent(), reply_markup=keyboard)
             except TypeError:
-                await message.answer('Неверно введена сумма!', reply_markup=keyboard)
+                await message.answer(temps.wrongent(), reply_markup=keyboard)
     
     @dp.message_handler(lambda message: message.text and '⬆' in message.text and selec(message) == 6886)
     async def vivbalance(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('50', '100', '500','👈 Назад')
-        await message.answer('Введите сумму', reply_markup=keyboard)
+        keyboard.add('50', '100', '500', temps.back())
+        await message.answer(temps.viv(), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and '🍓 ' in message.text)
 async def farm(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('💲 Купить растения', '🍒 Мои растения', '✂ Собрать', '👈 Назад')
+    keyboard.add('💲 Купить растения', '🍒 Мои растения', '✂ Собрать', temps.back())
     cursor = conn.cursor()
     cursor.execute(f'UPDATE users SET cc = 10 WHERE userid = {message.from_user.id}')
     conn.commit()
@@ -790,7 +894,7 @@ async def farm(message):
     plod = int(plod)
     plod = former(plod)
     all = former(all)
-    await message.answer(f'Это ваша небольшая горная ферма на севере Калифорнии у необычайно красивого берега \nЗдесь вы можете купить еще фруктовых растений или собрать спелые плоды \n\nУ вас на ферме {str(plod)} 🌟\n\nВ час вы зарабатываете {all} 🌟', reply_markup=keyboard)
+    await message.answer(temps.farm(all, plod), reply_markup=keyboard)
     
     @dp.message_handler(lambda message: message.text and '✂ ' in message.text and selec(message) == 10)
     async def ctch(message):
@@ -804,17 +908,17 @@ async def farm(message):
         conn.commit()
         cursor.close()
         plod = former(plod)
-        await message.answer(f'Готово вы собрали {plod} 🌟!')
+        await message.answer(temps.sbor(plod))
 
     @dp.message_handler(lambda message: message.text and '🍒 ' in message.text and selec(message) == 10)
     async def myfarm(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('👈 Назад')
+        keyboard.add(temps.back())
         cursor = conn.cursor()
         cursor.execute(f'SELECT * FROM fruits WHERE userid={message.from_user.id}')
         myplod = cursor.fetchone()
         cursor.close()
-        await message.answer(f'У вас: \n\n{myplod[2]} грядок клубники 🍓\n\n{myplod[3]} вишневых деревьев 🍒\n\n{myplod[4]} яблочных деревьев 🍎\n\n{myplod[5]} банановых деревьев 🍌\n\n{myplod[6]} персиковых деревьев 🍑\n\n{myplod[7]} виноградных деревьев 🍇', reply_markup=keyboard)
+        await message.answer(temps.allf(myplod), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and '💲 ' in message.text and selec(message) == 10)
     async def buyfarm(message):
@@ -825,8 +929,8 @@ async def farm(message):
         money = cursor.fetchone()
         cursor.close()
         money = money[0]
-        keyboard.add('Купить 🍓','Купить 🍒','Купить 🍎','Купить 🍌','Купить 🍑','Купить 🍇','👈 Назад')
-        await message.answer(f'Здесь вы можете купить растения на вашу ферму: \n\n🍓 - 1.000 💲\nПриносит 100 🌟 в час\n\n🍒 - 5.000 💲\nПриносит 600 🌟 в час\n\n🍎 - 25.000 💲\nПриносит 3.200 🌟 в час\n\n🍌 - 100.000 💲\nПриносит 14.000 🌟 в час\n\n🍑 - 500.000 💲\nПриносит 80.000 🌟 в час\n\n🍇 - 1.000.000 💲\nПриносит 200.000 🌟 в час \n\nУ вас на балансе: {former(money)} 💲', reply_markup=keyboard)
+        keyboard.add('Купить 🍓','Купить 🍒','Купить 🍎','Купить 🍌','Купить 🍑','Купить 🍇', temps.back())
+        await message.answer(temps.buyf(money), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and 'Купить ' in message.text and selec(message) == 11)
         async def buyfarm1(message):
@@ -851,7 +955,7 @@ async def farm(message):
                 fruitm = 1000000
                 nn = 'grape'
             else:
-                await message.answer('Не могу тебя понять')
+                await message.answer(temps.err())
             cursor = conn.cursor()
             cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
             money = cursor.fetchone()
@@ -862,40 +966,40 @@ async def farm(message):
                 conn.commit()
                 cursor.close()
                 logging.info(f"{message.from_user.id} bought {fruit} {fruitm}")
-                await message.answer('Успешно!')
+                await message.answer(temps.succ())
             else:
                 cursor.close()
-                await message.answer('Недостаточно средств')
+                await message.answer(temps.err())
     
-    @dp.message_handler(lambda message: message.text and '✨ suka ' in message.text and selec(message) == 10)
-    async def buyvipfarm(message):
-        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('Купить VIP🍍','Купить VIP🐉','Купить VIP⭐','👈 Назад')
-        await message.answer('магаз', reply_markup=keyboard)
+    #@dp.message_handler(lambda message: message.text and '✨ qswafukwafvb ' in message.text and selec(message) == 10)
+    #async def buyvipfarm(message):
+    #    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    #    keyboard.add('Купить VIP🍍','Купить VIP🐉','Купить VIP⭐',temps.back())
+    #    await message.answer('магаз', reply_markup=keyboard)
    
-    @dp.message_handler(lambda message: message.text and 'Купить VIP suka ' in message.text and selec(message) == 10)
-    async def buyvipfarm1(message):
-        fruit = message.text[-1]
-        if fruit == "🍍":
-            fruitm = 99
-        elif fruit == "🐉":
-            fruitm = 299
-        elif fruit == "⭐":
-            fruitm = 499
-        else:
-            await message.answer('Не могу тебя понять')
-        cursor = conn.cursor()
-        cursor.execute(f"INSERT INTO req(userid, mon, app) VALUES({message.from_user.id}, {fruitm}, 0)")
-        conn.commit()
-        conn.close()
-        opl = hashlib.md5(f'{merchant_id}:{fruitm}:{secret}:RUB:{message.from_user.id}'.encode('utf-8')).hexdigest()
-        print(opl)
-        urrl = f'https://pay.freekassa.ru/?m={merchant_id}&oa={fruitm}&o={message.from_user.id}&s={opl}&currency=RUB&us_key={fruitm}'
-        markup = types.InlineKeyboardMarkup()
-        btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=urrl)
-        markup.add(btn_my_site)
-        logging.info(f"{message.from_user.id} buy ")
-        await message.answer(f'Ваша ссылка для покупки', reply_markup = markup)
+    #@dp.message_handler(lambda message: message.text and 'Купить VIP wsuwarasdfkaw ' in message.text and selec(message) == 10)
+    #async def buyvipfarm1(message):
+    #    fruit = message.text[-1]
+    #    if fruit == "🍍":
+    #        fruitm = 99
+    #    elif fruit == "🐉":
+    #        fruitm = 299
+    #    elif fruit == "⭐":
+    #        fruitm = 499
+    #    else:
+    #        await message.answer('Не могу тебя понять')
+    #    cursor = conn.cursor()
+    #    cursor.execute(f"INSERT INTO req(userid, mon, app) VALUES({message.from_user.id}, {fruitm}, 0)")
+    #    conn.commit()
+    #    conn.close()
+    #    opl = hashlib.md5(f'{merchant_id}:{fruitm}:{secret}:RUB:{message.from_user.id}'.encode('utf-8')).hexdigest()
+    #    print(opl)
+    #    urrl = f'https://pay.freekassa.ru/?m={merchant_id}&oa={fruitm}&o={message.from_user.id}&s={opl}&currency=RUB&us_key={fruitm}'
+    #    markup = types.InlineKeyboardMarkup()
+    #    btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=urrl)
+    #    markup.add(btn_my_site)
+    #    logging.info(f"{message.from_user.id} buy ")
+    #    await message.answer(f'Ваша ссылка для покупки', reply_markup = markup)
 
 @dp.message_handler(lambda message: message.text and '💭' in message.text)
 async def review(message):
@@ -904,22 +1008,22 @@ async def review(message):
     conn.commit()
     cursor.close()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Написать', 'Прочитать','👈 Назад')
-    await message.answer('Здесь вы можете прочитать или написать отзывы', reply_markup=keyboard)
+    keyboard.add('Написать', 'Прочитать', temps.back())
+    await message.answer(temps.rev(), reply_markup=keyboard)
     
     @dp.message_handler(lambda message: message.text and 'Написать' in message.text and selec(message) == 33)
     async def review1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('👈 Назад')
-        await message.answer('В ответном сообщении вы можете оставить отзыв, за каждый качественный отзыв вы получите 50 💲', reply_markup=keyboard)
+        keyboard.add(temps.back())
+        await message.answer(temps.goodrev(), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 33)
         async def review2(message):
             r = requests.get(f'https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id=1737649749&text=z{message.text}{message.from_user.id}')
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('👈 Назад')
+            keyboard.add(temps.back())
             logging.info(f"{message.from_user.id} wrote {message.text}")
-            await message.answer('Принято!', reply_markup=keyboard)
+            await message.answer(temps.succ(), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and 'BONUS' in message.text)
 async def bonus(message):
@@ -932,10 +1036,10 @@ async def bonus(message):
         cursor.execute(f'UPDATE users SET rub = rub + 250 WHERE userid = {message.from_user.id}')
         conn.commit()
         cursor.close()
-        await message.answer('Поздравляем!👏 Ваш бонус: 250 💲')
+        await message.answer(temps.bon1())
     else:
         cursor.close()
-        await message.answer('Вы уже использовали ваш бонус!')
+        await message.answer(temps.err())
 
 @dp.message_handler(lambda message: message.text and '⚡ ' in message.text)
 async def bond(message):
@@ -948,10 +1052,10 @@ async def bond(message):
         cursor.execute(f'UPDATE users SET rub = rub + 200 WHERE userid={message.from_user.id}')
         conn.commit()
         cursor.close()
-        await message.answer('Отлично!👏 Вы получили ваш ежедневный бонус на сумму 200 💲')
+        await message.answer(temps.bone())
     else:
         cursor.close()
-        await message.answer('Бонус доступен только раз в день!')
+        await message.answer(temps.err())
 
 @dp.message_handler(lambda message: message.text and '👥 ' in message.text)
 async def ref(message):
@@ -960,7 +1064,7 @@ async def ref(message):
     refff = cursor.fetchone()
     cursor.close()
     refff = refff[0]
-    await message.answer(f'Ваша реферальная ссылка: \nt.me/coinluck_bot?start={message.from_user.id} \n\nУ вас {refff} рефералов!')
+    await message.answer(temps.refl(message, refff))
 
 @dp.message_handler(lambda message: message.text and 'temp' in message.text and message.from_user.id == 1737649749)
 async def temp(message):
@@ -995,9 +1099,9 @@ async def usender(message):
             i = i[0]
             print(i)
             r = requests.get(f'https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={i}&text={meess}')
-        await message.answer(f'Вы отправили: {meess}')
+        await message.answer(f'You sent: {meess}')
     except Error:
-        await message.answer(f'Ошибка')
+        await message.answer(temps.err())
     
 if __name__ == '__main__':
     executor.start_polling(dp)
