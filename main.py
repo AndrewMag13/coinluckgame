@@ -12,6 +12,7 @@ from exchange import s2d, v2d, plodcourse
 from temps import temps
 from selec import selec
 from referals import referals
+from bonus import bond, obond
 logging.basicConfig(filename="main.log", level=logging.INFO)
 
 API_TOKEN = '1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74'
@@ -801,36 +802,21 @@ async def review(message):
             await message.answer(temps.succ(), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and 'BONUS' in message.text)
-async def bonus(message):
-    cursor = conn.cursor()
-    cursor.execute(f'SELECT bon FROM users WHERE userid = {message.from_user.id}')
-    bbon = cursor.fetchone()
-    bbon = bbon[0]
-    if bbon == 0:
-        cursor.execute(f'UPDATE users SET bon = 1 WHERE userid = {message.from_user.id}')
-        cursor.execute(f'UPDATE users SET rub = rub + 250 WHERE userid = {message.from_user.id}')
-        conn.commit()
-        cursor.close()
-        await message.answer(temps.bon1())
-    else:
-        cursor.close()
+async def bonusm(message):
+    oebonus = obond(message)
+    if oebonus == None:
         await message.answer(temps.err())
+    else:
+        await message.answer(temps.bon1())
 
 @dp.message_handler(lambda message: message.text and '⚡ ' in message.text)
-async def bond(message):
-    cursor = conn.cursor()
-    cursor.execute(f'SELECT bond FROM users WHERE userid = {message.from_user.id}')
-    bbond = cursor.fetchone()
-    bbond= bbond[0]
-    if bbond == 0:
-        cursor.execute(f'UPDATE users SET bond = 1 WHERE userid={message.from_user.id}')
-        cursor.execute(f'UPDATE users SET rub = rub + 200 WHERE userid={message.from_user.id}')
-        conn.commit()
-        cursor.close()
-        await message.answer(temps.bone())
-    else:
-        cursor.close()
+async def bondm(message):
+    ebonus = bond(message)
+    print(ebonus)
+    if ebonus == None:
         await message.answer(temps.err())
+    else:
+        await message.answer(temps.bone())
 
 @dp.message_handler(lambda message: message.text and '👥 ' in message.text)
 async def ref(message):
@@ -854,7 +840,7 @@ async def usender(message):
     if meess == None:
         await message.answer(temps.err())
     else:
-        await message.answer(f'You sent: {meess}')
+        await message.answer(f'You sent: \n{meess}')
     
 if __name__ == '__main__':
     executor.start_polling(dp)
