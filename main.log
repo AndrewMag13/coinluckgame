@@ -488,3 +488,36 @@ WARNING:aiogram:Goodbye!
 INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
 INFO:aiogram.dispatcher.dispatcher:Start polling.
 INFO:root:change 14938 > 108 and 46 userid: 1737649749
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 14069 > 18289 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=NameError("name 'plodcourse' is not defined")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 152, in mart
+    a = plodcourse(message)
+NameError: name 'plodcourse' is not defined
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 219978 > 1525 and 653 userid: 1737649749
+INFO:root:change 653 > 848 userid: 1737649749
+INFO:root:1737649749 bought 🍑 500000
+INFO:root:1737649749 bought 🍌 100000
+INFO:root:1737649749 bought 🍌 100000
+INFO:root:1737649749 bought 🍌 100000

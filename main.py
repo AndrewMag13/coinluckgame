@@ -8,7 +8,7 @@ import subprocess
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from former import former
-from starexchange import s2d
+from exchange import s2d, v2d, plodcourse
 from temps import temps
 from selec import selec
 logging.basicConfig(filename="main.log", level=logging.INFO)
@@ -149,16 +149,9 @@ async def tran(message):
 async def mart(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('Обменять 🌟 на 💲', 'Обменять 💸 на 💲', temps.back())
-    cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc = 110 WHERE userid = {message.from_user.id}')
-    cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
-    course = cursor.fetchone()
-    course = course[0]
-    cursor.execute(f"SELECT plodd FROM users WHERE userid = {message.from_user.id}")
-    plod = cursor.fetchone()
-    plod = plod[0]
-    cursor.close()
-    plod = former(plod)
+    a = plodcourse(message)
+    plod = a[0]
+    course = a[1]
     await message.answer(temps.market(message, plod, course), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and 'Обменять 🌟 на 💲' in message.text and selec(message) == 110)
@@ -179,42 +172,15 @@ async def mart(message):
     async def mart2(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(temps.back())
-        cursor = conn.cursor()
-        cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
-        course = cursor.fetchone()
-        course = course[0]
-        cursor.execute(f'SELECT vivc FROM users WHERE userid={message.from_user.id}')
-        vivc = cursor.fetchone()
-        cursor.close
-        vivc = vivc[0]
-        if vivc >= 10:
-            cursor = conn.cursor()
-            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-            rubs = cursor.fetchone()
-            rubs = rubs[0]
-            rubs = int(rubs)
-            cursor.execute(f"SELECT vivc FROM users WHERE userid = {message.from_user.id}")
-            vivc = cursor.fetchone()
-            vivc = vivc[0]
-            vivc = int(vivc)
-            rubs = vivc * 1.3
-            rubs = int(rubs)
-            print(vivc)
-            print(rubs)
-            cursor.execute(f"UPDATE users SET rub = rub + {rubs} WHERE userid = {message.from_user.id}")
-            cursor.execute(f"UPDATE users SET vivc = 0 WHERE userid = {message.from_user.id}")
-            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-            rub = cursor.fetchone()
-            rub = rub[0]
-            conn.commit()
-            cursor.close()
-            logging.info(f"change {vivc} > {rubs} userid: {message.from_user.id}")
-            rubs = former(rubs)
-            vivc = former(vivc)
-            rub = former(rub)
-            await message.answer(temps.transsucc2(vivc, rubs, rub), reply_markup=keyboard, parse_mode= 'Markdown')
-        else:
+        a = v2d(message)
+        if a == None:
             await message.answer(temps.transerr(), reply_markup=keyboard, parse_mode= 'Markdown')
+        else:
+            rubs = a[0]
+            vivc = a[1]
+            rub = a[2]
+            await message.answer(temps.transsucc2(vivc, rubs, rub), reply_markup=keyboard, parse_mode= 'Markdown')
+
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
     cursor = conn.cursor()
