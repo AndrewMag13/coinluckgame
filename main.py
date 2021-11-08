@@ -4,13 +4,14 @@ from typing import Type
 import requests
 import random
 import hashlib
-import subprocess
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from former import former
+from unitool import temperature, uptime, logger, ally
 from exchange import s2d, v2d, plodcourse
 from temps import temps
 from selec import selec
+from referals import referals
 logging.basicConfig(filename="main.log", level=logging.INFO)
 
 API_TOKEN = '1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74'
@@ -833,49 +834,27 @@ async def bond(message):
 
 @dp.message_handler(lambda message: message.text and '👥 ' in message.text)
 async def ref(message):
-    cursor = conn.cursor()
-    cursor.execute(f"SELECT refco FROM users WHERE userid = {message.from_user.id}")
-    refff = cursor.fetchone()
-    cursor.close()
-    refff = refff[0]
-    await message.answer(temps.refl(message, refff))
+    await message.answer(temps.refl(message, referals(message)))
 
 @dp.message_handler(lambda message: message.text and 'temp' in message.text and message.from_user.id == 1737649749)
 async def temp(message):
-    temp = subprocess.check_output(['vcgencmd', 'measure_temp'])
-    temp = temp.decode()
-    await message.answer(f'{temp}')
+    await message.answer(temperature())
 
 @dp.message_handler(lambda message: message.text and 'uptime' in message.text and message.from_user.id == 1737649749)
 async def upt(message):
-    upt = subprocess.check_output(['uptime'])
-    upt = upt.decode()
-    await message.answer(f'{upt}')
+    await message.answer(uptime())
 
 @dp.message_handler(lambda message: message.text and 'log' in message.text and message.from_user.id == 1737649749)
 async def upt(message):
-    logg = subprocess.check_output(['cat','main.log'])
-    logg = logg.decode()
-    print(logg)
-    await message.answer(f'{logg}')
+    await message.answer(logger())
 
 @dp.message_handler(lambda message: message.text and 'all' in message.text and message.from_user.id == 1737649749)
 async def usender(message):
-    try:
-        meess = message.text.split(' ')
-        meess = meess[1:]
-        meess = " ".join(meess)
-        cursor = conn.cursor()
-        cursor.execute('SELECT userid FROM users')
-        listin = cursor.fetchall()
-        print(listin)
-        for i in listin:
-            i = i[0]
-            print(i)
-            r = requests.get(f'https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={i}&text={meess}')
-        await message.answer(f'You sent: {meess}')
-    except Error:
+    meess = ally(message)
+    if meess == None:
         await message.answer(temps.err())
+    else:
+        await message.answer(f'You sent: {meess}')
     
 if __name__ == '__main__':
     executor.start_polling(dp)
