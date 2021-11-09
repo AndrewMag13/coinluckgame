@@ -26,7 +26,6 @@ def transfer1(message):
 def transfer2(message):
     try:
             mess = message.text.split(' ')
-            print(mess)
             mon = mess[1]
             mon = int(mon)
             cursor = conn.cursor()
@@ -37,7 +36,6 @@ def transfer2(message):
             rub = cursor.fetchone()
             cursor.close()
             rub = rub[0]
-            print(rub)
             if rub >= mon and mon >= 10 and mon <= 10000:
                 try:
                     cursor = conn.cursor()
@@ -48,7 +46,6 @@ def transfer2(message):
                     messid = cursor.fetchone()
                     cursor.close()
                     messid = messid[0]
-                    print(messid)
                     logging.info(f'{message.from_user.id} > {mess[0]} {mon}')
                     r = requests.get(f"https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={messid}&text=Пользователь {id} перевел на ваш счет {mon} 💲!")
                     return mon, mess

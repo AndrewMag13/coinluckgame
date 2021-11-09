@@ -16,6 +16,7 @@ from bonus import bond, obond
 from rev import rev1, rev2
 from mainnn import mainnn
 from transfer import transfer1, transfer2
+from games import gamesintro, ot11, ot12, ot13
 from farm import farm1, catch1, farmall, buyfarm11, buyfruit
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
@@ -112,7 +113,7 @@ async def tran(message):
         if tt != None:
             mon = tt[0]
             mess = tt[1]
-            await message.answer(f'*Готово!* Вы перевели пользователю *{mess[0]}*  {mon}  💲', parse_mode= 'Markdown')
+            await message.answer(temps.transucc(mess, mon), parse_mode= 'Markdown')
         else:
             await message.answer(temps.err())
             
@@ -155,12 +156,9 @@ async def mart(message):
 
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
-    cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc = 666 WHERE userid = {message.from_user.id}')
-    conn.commit()
-    cursor.close()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('Орел и Решка', 'Краш', '1/3', '1/30', temps.back())
+    gamesintro(message)
     await message.answer(temps.choose(), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and message.text == '1/3' and selec(message) == 666)
@@ -168,26 +166,12 @@ async def games(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         ss = temps.standarts()
         keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
-        cursor = conn.cursor()
-        cursor.execute(f'UPDATE users SET cc = 666220 WHERE userid = {message.from_user.id}')
-        conn.commit()
-        cursor.close()
+        ot11(message)
         await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
 
         @dp.message_handler(lambda message: message.text and selec(message) == 666220)
         async def ot2(message):
-            lis = message.text.split()
-            if len(lis) == 2:
-                rubb = message.text
-                rubb = rubb[:-2]
-            if len(lis) == 1:
-                rubb = message.text
-            rubb = int(rubb)
-            cursor = conn.cursor()
-            cursor.execute(f"UPDATE games SET otv = '{rubb}' WHERE userid = {message.from_user.id}")
-            cursor.execute(f'UPDATE users SET cc = 69692 WHERE userid = {message.from_user.id}')
-            conn.commit()
-            cursor.close()
+            ot12(message)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
             keyboard.add('1', '2', '3', temps.back())
             await message.answer(temps.number13(), reply_markup=keyboard, parse_mode= 'Markdown')
@@ -196,66 +180,19 @@ async def games(message):
             async def ot3(message):
                 keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
                 keyboard.add('Повторить', temps.back())
-                try:
-                    if message.text == 'Повторить':
-                            cursor = conn.cursor()
-                            cursor.execute(f'SELECT otk FROM games WHERE userid = {message.from_user.id}')
-                            keff = cursor.fetchone()
-                            keff = keff[0]
-                            keff = int(keff)
-                            cursor.execute(f'SELECT otv FROM games WHERE userid = {message.from_user.id}')
-                            stavka = cursor.fetchone()
-                            stavka = stavka[0]
-                            stavka = int(stavka)
-                            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-                            money = cursor.fetchone()
-                            money = money[0]
-                            cursor.close()
-                    else:
-                        try:
-                            keff = int(message.text)
-                            if keff == 1 or keff == 2 or keff == 3:
-                                cursor = conn.cursor()
-                                cursor.execute(f"UPDATE games SET otk = '{keff}' WHERE userid = {message.from_user.id}")
-                                conn.commit()
-                                cursor.execute(f"SELECT otv FROM games WHERE userid = {message.from_user.id}")
-                                stavka = cursor.fetchone()
-                                stavka = stavka[0]
-                                stavka = int(stavka)
-                                cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-                                money = cursor.fetchone()
-                                money = money[0]
-                                money = int(money)
-                                print(f'is {stavka}')
-                                print(money)
-                                cursor.close()
-                            else:
-                                await message.answer(temps.wrongent())
-                        except Error:
-                            await message.answer(temps.wrongent())
-                    if stavka < 10 and stavka > 10000:
-                        await message.answer(temps.normstavka(), reply_markup=keyboard, parse_mode= 'Markdown')
-                    if money >= stavka and (keff == 1 or keff == 2 or keff == 3) and stavka >= 10 and stavka <= 10000:
-                        cursor = conn.cursor()
-                        cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
-                        conn.commit()
-                        otr = random.randint(1,100)
-                        if otr <= 20:
-                            cc = keff
-                            win = stavka * 3
-                            win = win + stavka
-                            cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
-                            conn.commit()
-                            await message.answer(temps.win13(stavka, money, keff, cc), reply_markup=keyboard, parse_mode= 'Markdown')
-                        else:
-                            cc = random.randint(1,3)
-                            while cc == keff:
-                                cc = random.randint(1,3)
-                            await message.answer(temps.lose13(keff, cc), reply_markup=keyboard, parse_mode= 'Markdown')
-                    else:
-                        await message.answer(temps.transerr(), reply_markup=keyboard)
-                except Error:
+                res = ot13(message)
+                if res == 'wrongent':
                     await message.answer(temps.wrongent())
+                elif res == 'transerr':
+                    await message.answer(temps.transerr(), reply_markup=keyboard)
+                elif res == 'normstavka':
+                    await message.answer(temps.normstavka(), reply_markup=keyboard, parse_mode= 'Markdown')
+                elif res[0] == 'lose':
+                    await message.answer(temps.lose13(res[1], res[2]), reply_markup=keyboard, parse_mode= 'Markdown')
+                elif res[0] == 'win':
+                    await message.answer(temps.win13(res[1], res[2], res[3], res[4]), reply_markup=keyboard, parse_mode= 'Markdown')
+                       
+                   
     @dp.message_handler(lambda message: message.text and '1/30' in message.text and selec(message) == 666)
     async def otc(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
