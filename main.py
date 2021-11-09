@@ -14,6 +14,8 @@ from selec import selec
 from referals import referals
 from bonus import bond, obond
 from rev import rev1, rev2
+from mainnn import mainnn
+from transfer import transfer1, transfer2
 from farm import farm1, catch1, farmall, buyfarm11, buyfruit
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
@@ -91,10 +93,7 @@ async def welcome(message):
     await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
 @dp.message_handler(lambda message: message.text and temps.back() in message.text or 'English' in message.text or 'Русский' in message.text)
 async def mainn(message):
-    cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
-    conn.commit()
-    cursor.close()
+    mainnn(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     kk = temps.startb()
     keyboard.add(kk[0], kk[1], kk[2], kk[3], kk[4], kk[5], kk[6], kk[7])
@@ -102,53 +101,21 @@ async def mainn(message):
 
 @dp.message_handler(lambda message: message.text and '💱' in message.text)
 async def tran(message):
-    cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc = 11290 WHERE userid = {message.from_user.id}')
-    conn.commit()
-    cursor.execute(f'SELECT id FROM users WHERE userid = {message.from_user.id}')
-    id = cursor.fetchone()
-    cursor.close()
-    id = id[0]
+    id = transfer1(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(temps.back())
     await message.answer(temps.trans(id), reply_markup=keyboard, parse_mode='Markdown')
     
     @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 11290)
     async def tran1(message):
-        try:
-            mess = message.text.split(' ')
-            print(mess)
-            mon = mess[1]
-            mon = int(mon)
-            cursor = conn.cursor()
-            cursor.execute(f'SELECT id FROM users WHERE userid = {message.from_user.id}')
-            id = cursor.fetchone()
-            id = id[0]
-            cursor.execute(f'SELECT rub FROM users WHERE userid = {message.from_user.id}')
-            rub = cursor.fetchone()
-            cursor.close()
-            rub = rub[0]
-            print(rub)
-            if rub >= mon and mon >= 10 and mon <= 10000:
-                try:
-                    cursor = conn.cursor()
-                    cursor.execute(f'UPDATE users SET rub = rub - {mon} WHERE userid = {message.from_user.id}')
-                    cursor.execute(f'UPDATE users SET rub = rub + {mon} WHERE id = {mess[0]}')
-                    conn.commit()
-                    cursor.execute(f'SELECT userid FROM users WHERE id = {mess[0]}')
-                    messid = cursor.fetchone()
-                    cursor.close()
-                    messid = messid[0]
-                    print(messid)
-                    logging.info(f'{message.from_user.id} > {mess[0]} {mon}')
-                    r = requests.get(f"https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={messid}&text=Пользователь {id} перевел на ваш счет {mon} 💲!")
-                    await message.answer(f'*Готово!* Вы перевели пользователю *{mess[0]}*  {mon}  💲', parse_mode= 'Markdown')
-                except Error:
-                    await message.answer(temps.err())
-            else:
-                await message.answer(temps.err())
-        except Error:
+        tt = transfer2(message)
+        if tt != None:
+            mon = tt[0]
+            mess = tt[1]
+            await message.answer(f'*Готово!* Вы перевели пользователю *{mess[0]}*  {mon}  💲', parse_mode= 'Markdown')
+        else:
             await message.answer(temps.err())
+            
 
 @dp.message_handler(lambda message: message.text and '🔄' in message.text)
 async def mart(message):
