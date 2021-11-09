@@ -13,6 +13,9 @@ from temps import temps
 from selec import selec
 from referals import referals
 from bonus import bond, obond
+from rev import rev1, rev2
+from farm import farm1, catch1, farmall, buyfarm11, buyfruit
+
 logging.basicConfig(filename="main.log", level=logging.INFO)
 
 API_TOKEN = '1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74'
@@ -680,109 +683,39 @@ async def balance(message):
 async def farm(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('💲 Купить растения', '🍒 Мои растения', '✂ Собрать', temps.back())
-    cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc = 10 WHERE userid = {message.from_user.id}')
-    conn.commit()
-    cursor.execute(f'SELECT plod FROM users WHERE userid={message.from_user.id}')
-    plod = cursor.fetchone()
-    plod = plod[0]
-    cursor.execute(f'SELECT * FROM fruits WHERE userid={message.from_user.id}')
-    i = cursor.fetchone()
-    cursor.close()
-    ssq = i[2] * 100
-    ssq1 = i[3] * 600
-    ssq2 = i[4] * 3200
-    ssq3 = i[5] * 14000
-    ssq4 = i[6] * 80000
-    ssq5 = i[7] * 200000
-    all = ssq + ssq1 + ssq2 + ssq3 + ssq4 + ssq5
-    print(all)
-    plod = int(plod)
-    plod = former(plod)
-    all = former(all)
-    await message.answer(temps.farm(all, plod), reply_markup=keyboard)
+    farmer = farm1(message)
+    await message.answer(temps.farm(farmer[0], farmer[1]), reply_markup=keyboard)
     
     @dp.message_handler(lambda message: message.text and '✂ ' in message.text and selec(message) == 10)
     async def ctch(message):
-        cursor = conn.cursor()
-        cursor.execute(f'SELECT plod FROM users WHERE userid={message.from_user.id}')
-        plod = cursor.fetchone()
-        plod = plod[0]
-        plod = int(plod)
-        cursor.execute(f'UPDATE users SET plod = plod - {plod} WHERE userid={message.from_user.id}')
-        cursor.execute(f'UPDATE users SET plodd = plodd + {plod} WHERE userid={message.from_user.id}')
-        conn.commit()
-        cursor.close()
-        plod = former(plod)
-        await message.answer(temps.sbor(plod))
+        catcher = catch1(message)
+        await message.answer(temps.sbor(catcher))
 
     @dp.message_handler(lambda message: message.text and '🍒 ' in message.text and selec(message) == 10)
     async def myfarm(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(temps.back())
-        cursor = conn.cursor()
-        cursor.execute(f'SELECT * FROM fruits WHERE userid={message.from_user.id}')
-        myplod = cursor.fetchone()
-        cursor.close()
+        myplod = farmall(message)
         await message.answer(temps.allf(myplod), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and '💲 ' in message.text and selec(message) == 10)
     async def buyfarm(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        cursor = conn.cursor()
-        cursor.execute(f'UPDATE users SET cc = 11 WHERE userid = {message.from_user.id}')
-        cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-        money = cursor.fetchone()
-        cursor.close()
-        money = money[0]
+        money = buyfarm11(message)
         keyboard.add('Купить 🍓','Купить 🍒','Купить 🍎','Купить 🍌','Купить 🍑','Купить 🍇', temps.back())
         await message.answer(temps.buyf(money), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and 'Купить ' in message.text and selec(message) == 11)
         async def buyfarm1(message):
-            fruit = message.text[-1]
-            print(fruit)
-            if fruit == "🍓":
-                fruitm = 1000
-                nn = 'straw'
-            elif fruit == "🍒":
-                fruitm = 5000
-                nn = 'cher'
-            elif fruit == "🍎":
-                fruitm = 25000
-                nn = 'appl'
-            elif fruit == "🍌":
-                fruitm = 100000
-                nn = 'banan'
-            elif fruit == "🍑":
-                fruitm = 500000
-                nn = 'sliv'
-            elif fruit == "🍇":
-                fruitm = 1000000
-                nn = 'grape'
-            else:
+            buyf = buyfruit(message)
+            if buyf == None:
                 await message.answer(temps.err())
-            cursor = conn.cursor()
-            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-            money = cursor.fetchone()
-            money = money[0]
-            if money >= fruitm:
-                cursor.execute(f"UPDATE users SET rub = rub - {fruitm} WHERE userid = {message.from_user.id}")
-                cursor.execute(f"UPDATE fruits SET {nn} = {nn} + 1 WHERE userid = {message.from_user.id}")
-                conn.commit()
-                cursor.close()
-                logging.info(f"{message.from_user.id} bought {fruit} {fruitm}")
+            else:
                 await message.answer(temps.succ())
-            else:
-                cursor.close()
-                await message.answer(temps.err())
 
 @dp.message_handler(lambda message: message.text and '💭' in message.text)
 async def review(message):
-    cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc = 33 WHERE userid = {message.from_user.id}')
-    conn.commit()
-    cursor.close()
+    rev1()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('Написать', 'Прочитать', temps.back())
     await message.answer(temps.rev(), reply_markup=keyboard)
@@ -795,10 +728,9 @@ async def review(message):
         
         @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 33)
         async def review2(message):
-            r = requests.get(f'https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id=1737649749&text=z{message.text}{message.from_user.id}')
+            rev2(message)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
             keyboard.add(temps.back())
-            logging.info(f"{message.from_user.id} wrote {message.text}")
             await message.answer(temps.succ(), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and 'BONUS' in message.text)
