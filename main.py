@@ -4,8 +4,6 @@ from typing import Type
 import requests
 import logging
 from aiogram import Bot, Dispatcher, executor, types
-from former import former
-from isint import isint
 from unitool import temperature, uptime, logger, ally
 from exchange import s2d, v2d, plodcourse
 from temps import temps
@@ -82,6 +80,7 @@ async def welcome(message):
     cursor.close()
     logging.info(f"new luder: {userid}")
     await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
+
 @dp.message_handler(lambda message: message.text and temps.back() in message.text or 'English' in message.text or 'Русский' in message.text)
 async def mainn(message):
     mainnn(message)
@@ -107,7 +106,6 @@ async def tran(message):
         else:
             await message.answer(temps.err())
             
-
 @dp.message_handler(lambda message: message.text and '🔄' in message.text)
 async def mart(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)

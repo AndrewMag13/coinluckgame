@@ -3,6 +3,7 @@ from psycopg2 import Error
 from former import former
 from isint import isint
 import random
+
 try:
     conn = psycopg2.connect(user="postgres",
                             password="iwasbornfree",
@@ -13,20 +14,17 @@ try:
 except (Exception, Error) as error:
     print("Ошибка при работе с PostgreSQL", error)
 
-
 def gamesintro(message):
     cursor = conn.cursor()
     cursor.execute(f'UPDATE users SET cc = 666 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.close()
 
-
 def ot11(message):
     cursor = conn.cursor()
     cursor.execute(f'UPDATE users SET cc = 666220 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.close()
-
 
 def ot12(message):
     lis = message.text.split()
@@ -289,7 +287,6 @@ def crash3(message):
                             cc = round(random.uniform(128.00, 1000.00), 2)
                         else:
                             cc = 1.00
-                        print(cc)
                         if cc >= keff:
                             win = keff * stavka
                             win = win + stavka
