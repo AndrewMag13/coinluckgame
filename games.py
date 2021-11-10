@@ -1,6 +1,7 @@
 import psycopg2
 from psycopg2 import Error
 from former import former
+from isint import isint
 import random
 try:
     conn = psycopg2.connect(user="postgres",
@@ -205,4 +206,189 @@ def oirm2(message):
     except ValueError:
         return 'Wrongent'
     except TypeError:
+        return 'Wrongent'
+
+def crash1(message):
+    cursor = conn.cursor()
+    cursor.execute(f'UPDATE users SET cc = 666000 WHERE userid = {message.from_user.id}')
+    conn.commit()
+    cursor.close()
+
+def crash2(message):
+    lis = message.text.split()
+    if len(lis) == 2:
+        rubb = message.text
+        rubb = rubb[:-2]
+    if len(lis) == 1:
+        rubb = message.text
+    rubb = int(rubb)
+    cursor = conn.cursor()
+    cursor.execute(f"UPDATE games SET bustav = '{rubb}' WHERE userid = {message.from_user.id}")
+    cursor.execute(f'UPDATE users SET cc = 6969 WHERE userid = {message.from_user.id}')
+    conn.commit()
+    cursor.close()
+
+def crash3(message):
+    try:
+                    if message.text == 'Повторить':
+                        cursor = conn.cursor()
+                        cursor.execute(f'SELECT bustak FROM games WHERE userid = {message.from_user.id}')
+                        keff = cursor.fetchone()
+                        keff = keff[0]
+                        keff = float(keff)
+                        cursor.execute(f'SELECT bustav FROM games WHERE userid = {message.from_user.id}')
+                        stavka = cursor.fetchone()
+                        stavka = stavka[0]
+                        stavka = int(stavka)
+                        cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                        money = cursor.fetchone()
+                        money = money[0]
+                        cursor.close()
+                    else:
+                        try:
+                            keff = round(float(message.text), 2)
+                            if keff >= 1.2:
+                                cursor = conn.cursor()
+                                cursor.execute(f"UPDATE games SET bustak = '{keff}' WHERE userid = {message.from_user.id}")
+                                conn.commit()
+                                cursor.execute(f"SELECT bustav FROM games WHERE userid = {message.from_user.id}")
+                                stavka = cursor.fetchone()
+                                stavka = stavka[0]
+                                stavka = int(stavka)
+                                cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                                money = cursor.fetchone()
+                                money = money[0]
+                                money = int(money)
+                                cursor.close()
+                            else:
+                                return 'wrongent'
+                        except Error:
+                            return 'wrongent'
+                    if stavka >= 10 and stavka <= 10000 and money >= stavka:
+                        cursor = conn.cursor()
+                        cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
+                        conn.commit()
+                        ab = random.randint(1, 1000)
+                        if ab <= 90:
+                            cc = round(random.uniform(1.00, 1.24), 2)
+                        elif ab <= 400:
+                            cc = round(random.uniform(1.00, 2.00), 2)
+                        elif ab >= 600 and ab <= 800:
+                            cc = round(random.uniform(2.00, 4.00), 2)
+                        elif ab >= 802 and ab <= 915:
+                            cc = round(random.uniform(4.00, 8.00), 2)
+                        elif ab >= 918 and ab <= 960:
+                            cc = round(random.uniform(8.00, 16.00), 2)
+                        elif ab >= 961 and ab <= 980:
+                            cc = round(random.uniform(16.00, 32.00), 2)
+                        elif ab >= 983 and ab <= 990:
+                            cc = round(random.uniform(32.00, 64.00), 2)
+                        elif ab >= 991 and ab <= 996:
+                            cc = round(random.uniform(64.00, 128.00), 2)
+                        elif ab == 999:
+                            cc = round(random.uniform(128.00, 1000.00), 2)
+                        else:
+                            cc = 1.00
+                        print(cc)
+                        if cc >= keff:
+                            win = keff * stavka
+                            win = win + stavka
+                            cursor = conn.cursor()
+                            cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
+                            conn.commit()
+                            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                            money = cursor.fetchone()
+                            money = money[0]
+                            money = int(money)
+                            return 'win', money, stavka, keff, cc
+                        else:
+                            return 'lose', keff, cc
+                    else:
+                        return 'transerr'
+    except Error:
+        return 'transerr'
+
+def othr1(message):
+    cursor = conn.cursor()
+    cursor.execute(f'UPDATE users SET cc = 66620 WHERE userid = {message.from_user.id}')
+    conn.commit()
+    cursor.close()
+
+def othr2(message):
+    lis = message.text.split()
+    if len(lis) == 2:
+        rubb = message.text
+        rubb = rubb[:-2]
+    if len(lis) == 1:
+        rubb = message.text
+        rubb = int(rubb)
+    cursor = conn.cursor()
+    cursor.execute(f"UPDATE games SET otvc = {rubb} WHERE userid = {message.from_user.id}")
+    cursor.execute(f'UPDATE users SET cc = 69694 WHERE userid = {message.from_user.id}')
+    conn.commit()
+    cursor.close()
+
+def othr3(message):
+    try:
+                    if message.text == 'Повторить':
+                            cursor = conn.cursor()
+                            cursor.execute(f'SELECT otvk FROM games WHERE userid = {message.from_user.id}')
+                            keff = cursor.fetchone()
+                            keff = keff[0]
+                            keff = int(keff)
+                            cursor.execute(f'SELECT otvc FROM games WHERE userid = {message.from_user.id}')
+                            stavka = cursor.fetchone()
+                            stavka = stavka[0]
+                            stavka = int(stavka)
+                            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                            money = cursor.fetchone()
+                            money = money[0]
+                            cursor.close()
+                    else:
+                        try:
+                            keff = int(message.text)
+                            if isint(keff) and keff > 0 and keff <= 30:
+                                cursor = conn.cursor()
+                                cursor.execute(f"UPDATE games SET otvk = '{keff}' WHERE userid = {message.from_user.id}")
+                                conn.commit()
+                                cursor.execute(f"SELECT otvc FROM games WHERE userid = {message.from_user.id}")
+                                stavka = cursor.fetchone()
+                                stavka = stavka[0]
+                                stavka = int(stavka)
+                                cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                                money = cursor.fetchone()
+                                money = money[0]
+                                money = int(money)
+                                cursor.close()
+                            else:
+                                return 'Wrongent'
+                        except Error:
+                            return 'Wrongent'
+                    if stavka < 10 and stavka > 10000:
+                        return 'Norms'
+                    if isint(keff) and money >= stavka and stavka >= 10 and stavka <= 10000:
+                        cursor = conn.cursor()
+                        cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
+                        conn.commit()
+                        otr = random.randint(1,45)
+                        if otr == 1:
+                            cc = keff
+                            win = stavka * 30
+                            win = win + stavka
+                            cursor.execute(f"UPDATE users SET rub = rub + {win} WHERE userid = {message.from_user.id}")
+                            conn.commit()
+                            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                            money = cursor.fetchone()
+                            money = money[0]
+                            money = int(money)
+                            return 'win', stavka, money, keff, cc
+                        else:
+                            cc = random.randint(1,30)
+                            while cc == keff:
+                                cc = random.randint(1,30)
+                            return 'lose', keff, cc
+                    else:
+                        return 'Transerr'
+                    
+    except Error:
         return 'Wrongent'
