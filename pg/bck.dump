@@ -287,9 +287,9 @@ COPY public.fruits (id, userid, straw, cher, appl, banan, sliv, grape, caram, ca
 7	1896062007	1	0	0	0	0	0	0	0	0	0	0	0
 8	739045173	1	0	0	0	0	0	0	0	0	0	0	0
 9	1840832309	1	0	0	0	0	0	0	0	0	0	0	0
-5	1737649749	1	10	2	5	1	0	0	0	0	0	0	0
 10	662063426	1	0	0	0	0	0	0	0	0	0	0	0
 11	1022310648	1	0	0	0	0	0	0	0	0	0	0	0
+5	1737649749	5	17	3	8	2	0	0	0	0	0	0	0
 \.
 
 
@@ -303,8 +303,8 @@ COPY public.games (id, userid, oirt, oirv, bustak, bustav, casit, casiv, caset, 
 11	1896062007	\N	\N	\N	\N	\N	\N	\N	\N	10	1	250	1
 13	1840832309	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 14	662063426	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-9	1737649749	Орел	10	1.25	50	\N	\N	\N	\N	1	1	10	1
 15	1022310648	Ребро	10	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+9	1737649749	Орел	10	5	500	\N	\N	\N	\N	10	3	10	1
 \.
 
 
@@ -322,6 +322,7 @@ COPY public.req (id, userid, mon, app) FROM stdin;
 7	1737649749	150	0
 8	1737649749	150	0
 9	1737649749	150	0
+10	1737649749	300	0
 \.
 
 
@@ -330,13 +331,13 @@ COPY public.req (id, userid, mon, app) FROM stdin;
 --
 
 COPY public.users (id, userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, "сс1", cc) FROM stdin;
-42	1840832309	\N	1450	0	0	22553.824	0	1737649749	0	0	0	1	0	105	\N	0
-9	1737649749	astrajah	350675	0	559	2.472724e+06	7696399	0	2	0	0	1	0	105	\N	0
-44	662063426	\N	0	0	0	12176.34	0	0	0	0	0	0	0	105	\N	0
-48	1022310648	\N	0	0	0	1510.7482	0	0	0	0	0	0	0	105	\N	110
-22	1882355196	suckmyliberty	-838	0	0	26042.012	680	0	0	0	0	0	0	105	\N	0
-28	1896062007	sdadsssss	40	0	17	21033.883	83	1737649749	0	0	0	0	0	105	\N	0
-31	739045173	\N	0	0	0	26695.305	0	0	0	0	0	0	0	105	\N	667
+42	1840832309	\N	1450	0	0	27346.18	0	1737649749	0	0	0	1	0	104	\N	0
+44	662063426	\N	0	0	0	16968.695	0	0	0	0	0	0	0	104	\N	0
+48	1022310648	\N	0	0	0	6299.567	0	0	0	0	0	0	0	104	\N	110
+9	1737649749	astrajah	3941	0	0	193220.28	91	0	2	0	0	1	1	104	\N	0
+22	1882355196	suckmyliberty	-838	0	0	30834.367	680	0	0	0	0	0	0	104	\N	0
+28	1896062007	sdadsssss	40	0	17	25826.238	83	1737649749	0	0	0	0	0	104	\N	33
+31	739045173	\N	0	0	0	31487.66	0	0	0	0	0	0	0	104	\N	667
 \.
 
 
@@ -365,14 +366,14 @@ SELECT pg_catalog.setval('public.games_id_seq', 15, true);
 -- Name: req_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.req_id_seq', 9, true);
+SELECT pg_catalog.setval('public.req_id_seq', 10, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 48, true);
+SELECT pg_catalog.setval('public.users_id_seq', 51, true);
 
 
 --

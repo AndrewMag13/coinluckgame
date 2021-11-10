@@ -1,5 +1,6 @@
 import psycopg2
 from psycopg2 import Error
+from former import former
 import random
 try:
     conn = psycopg2.connect(user="postgres",
@@ -14,16 +15,14 @@ except (Exception, Error) as error:
 
 def gamesintro(message):
     cursor = conn.cursor()
-    cursor.execute(
-        f'UPDATE users SET cc = 666 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 666 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.close()
 
 
 def ot11(message):
     cursor = conn.cursor()
-    cursor.execute(
-        f'UPDATE users SET cc = 666220 WHERE userid = {message.from_user.id}')
+    cursor.execute(f'UPDATE users SET cc = 666220 WHERE userid = {message.from_user.id}')
     conn.commit()
     cursor.close()
 
@@ -73,8 +72,6 @@ def ot13(message):
                                 money = cursor.fetchone()
                                 money = money[0]
                                 money = int(money)
-                                print(f'is {stavka}')
-                                print(money)
                                 cursor.close()
                             else:
                                 return 'wrongent'
@@ -100,7 +97,112 @@ def ot13(message):
                                 cc = random.randint(1, 3)
                             return 'lose', keff, cc
                     else:
-                        print(money, stavka, keff)
                         return 'transerr'
     except Error:
         return 'wrongent'
+
+def oirm(message):
+    cursor = conn.cursor()
+    cursor.execute(f"UPDATE games SET oirt = '{message.text}' WHERE userid = {message.from_user.id}")
+    cursor.execute(f'UPDATE users SET cc = 667 WHERE userid = {message.from_user.id}')
+    conn.commit()
+    cursor.close()
+
+def oirm2(message):
+    try:
+                    lis = message.text.split()
+                    if len(lis) == 2:
+                        rubb = message.text
+                        rubb = rubb[:-2]
+                    if len(lis) == 1:
+                        rubb = message.text
+                    if message.text == 'Повторить':
+                        cursor = conn.cursor()
+                        cursor.execute(f'SELECT oirv FROM games WHERE userid = {message.from_user.id}')
+                        rubb = cursor.fetchone()
+                        rubb = rubb[0]
+                        cursor.close
+                    rubb = int(rubb)
+                    if rubb > 10000 or rubb < 10:
+                        return 'Norms'
+                    else:
+                        cursor = conn.cursor()
+                        if message.text == 'Повторить':
+                            cursor.execute(f'SELECT oirt FROM games WHERE userid = {message.from_user.id}')
+                            oirnum = cursor.fetchone()
+                            oirnum = oirnum[0]
+                        else:
+                            cursor.execute(f'UPDATE games SET oirv = {rubb} WHERE userid = {message.from_user.id}')
+                            cursor.execute(f'SELECT oirt FROM games WHERE userid = {message.from_user.id}')
+                            oirnum = cursor.fetchone()
+                            oirnum = oirnum[0]
+                        cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                        money = cursor.fetchone()
+                        money = money[0]
+                        if money >= rubb and money >= 10:
+                            cursor.execute(f"UPDATE users SET rub = rub - {rubb} WHERE userid = {message.from_user.id}")
+                            money = money - rubb
+                            z = random.randint(1,101)
+                            if oirnum == 'Решка':
+                                if z <= 48:
+                                    won = rubb * 2
+                                    cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
+                                    conn.commit()
+                                    won = former(won)
+                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
+                                    paph = 'resh.png'
+                                elif z >= 53:
+                                    won = 0
+                                    wiin = 'Орел! \nВы проиграли'
+                                    paph = 'orel.jpg'
+                                else:
+                                    won = 0
+                                    wiin = 'Ребро! \nВы проиграли'
+                                    paph = 'reb.jpg'
+                            elif oirnum == 'Орел':
+                                if z <= 48:
+                                    won = rubb * 2
+                                    cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
+                                    conn.commit()
+                                    won = former(won)
+                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
+                                    paph = 'orel.jpg'
+                                elif z >= 53:
+                                    won = 0
+                                    wiin = 'Решка! \nВы проиграли'
+                                    paph = 'resh.png'
+                                else:
+                                    won = 0
+                                    wiin = 'Ребро! \nВы проиграли'
+                                    paph = 'reb.jpg'
+                            elif oirnum == 'Ребро':
+                                if z <= 50:
+                                    won = 0
+                                    wiin = 'Орел! \nВы проиграли'
+                                    paph = 'orel.jpg'
+                                elif z >= 54:
+                                    won = 0
+                                    wiin = 'Решка! \nВы проиграли'
+                                    paph = 'resh.png'
+                                else:
+                                    won = rubb * 25
+                                    cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
+                                    conn.commit()
+                                    won = former(won)
+                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
+                                    paph = 'reb.jpg'
+                            else:
+                                pass
+                            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
+                            money = cursor.fetchone()
+                            money = money[0]
+                            cursor.close()
+                            rubb = former(rubb)
+                            money = former(money)
+                            return wiin, money, rubb, paph
+                        else:
+                            return 'NEM'
+    except ValueError:
+        return 'Wrongent'
+    except TypeError:
+        return 'Wrongent'

@@ -3,7 +3,6 @@ from psycopg2 import Error
 from typing import Type
 import requests
 import random
-import hashlib
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from former import former
@@ -16,7 +15,8 @@ from bonus import bond, obond
 from rev import rev1, rev2
 from mainnn import mainnn
 from transfer import transfer1, transfer2
-from games import gamesintro, ot11, ot12, ot13
+from games import gamesintro, ot11, ot12, ot13, oirm, oirm2
+from popbalance import popbal1, popbal2, popbal3
 from farm import farm1, catch1, farmall, buyfarm11, buyfruit
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
@@ -26,9 +26,6 @@ bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
 chk = 0
-
-secret='Y[wUkLSn7W,U>wZ'
-merchant_id='1159'
 
 def isint(s):
     try:
@@ -192,7 +189,6 @@ async def games(message):
                 elif res[0] == 'win':
                     await message.answer(temps.win13(res[1], res[2], res[3], res[4]), reply_markup=keyboard, parse_mode= 'Markdown')
                        
-                   
     @dp.message_handler(lambda message: message.text and '1/30' in message.text and selec(message) == 666)
     async def otc(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -409,173 +405,56 @@ async def games(message):
         
         @dp.message_handler(lambda message: message.text and 'Орел' in message.text or 'Решка' in message.text or 'Ребро' in message.text and selec(message) == 666)
         async def oir2(message):
-            cursor = conn.cursor()
-            cursor.execute(f"UPDATE games SET oirt = '{message.text}' WHERE userid = {message.from_user.id}")
-            cursor.execute(f'UPDATE users SET cc = 667 WHERE userid = {message.from_user.id}')
-            conn.commit()
-            cursor.close()
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
             ss = temps.standarts()
             keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
+            oirm(message)
             await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
             
             @dp.message_handler(lambda message: message.text and selec(message) == 667)
             async def oir3(message):
-                try:
-                    lis = message.text.split()
-                    if len(lis) == 2:
-                        rubb = message.text
-                        rubb = rubb[:-2]
-                    if len(lis) == 1:
-                        rubb = message.text
-                    if message.text == 'Повторить':
-                        cursor = conn.cursor()
-                        cursor.execute(f'SELECT oirv FROM games WHERE userid = {message.from_user.id}')
-                        rubb = cursor.fetchone()
-                        rubb = rubb[0]
-                        cursor.close
-                    rubb = int(rubb)
-                    if rubb > 10000 or rubb < 10:
+                    oirres = oirm2(message)
+                    if oirres == 'Norms':
                         await message.answer(temps.normstavka(), parse_mode= 'Markdown')
+                    elif oirres == 'Wrongent':
+                        await message.answer(temps.wrongent())
                     else:
                         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
                         keyboard.add('Повторить', temps.back())
-                        cursor = conn.cursor()
-                        if message.text == 'Повторить':
-                            cursor.execute(f'SELECT oirt FROM games WHERE userid = {message.from_user.id}')
-                            oirnum = cursor.fetchone()
-                            oirnum = oirnum[0]
-                        else:
-                            cursor.execute(f'UPDATE games SET oirv = {rubb} WHERE userid = {message.from_user.id}')
-                            cursor.execute(f'SELECT oirt FROM games WHERE userid = {message.from_user.id}')
-                            oirnum = cursor.fetchone()
-                            oirnum = oirnum[0]
-                        cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-                        money = cursor.fetchone()
-                        money = money[0]
-                        if money >= rubb and money >= 10:
-                            cursor.execute(f"UPDATE users SET rub = rub - {rubb} WHERE userid = {message.from_user.id}")
-                            money = money - rubb
-                            z = random.randint(1,101)
-                            if oirnum == 'Решка':
-                                if z <= 48:
-                                    won = rubb * 2
-                                    cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
-                                    conn.commit()
-                                    won = former(won)
-                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
-                                    paph = 'resh.png'
-                                elif z >= 53:
-                                    won = 0
-                                    wiin = 'Орел! \nВы проиграли'
-                                    paph = 'orel.jpg'
-                                else:
-                                    won = 0
-                                    wiin = 'Ребро! \nВы проиграли'
-                                    paph = 'reb.jpg'
-                            elif oirnum == 'Орел':
-                                if z <= 48:
-                                    won = rubb * 2
-                                    cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
-                                    conn.commit()
-                                    won = former(won)
-                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
-                                    paph = 'orel.jpg'
-                                elif z >= 53:
-                                    won = 0
-                                    wiin = 'Решка! \nВы проиграли'
-                                    paph = 'resh.png'
-                                else:
-                                    won = 0
-                                    wiin = 'Ребро! \nВы проиграли'
-                                    paph = 'reb.jpg'
-                            elif oirnum == 'Ребро':
-                                if z <= 50:
-                                    won = 0
-                                    wiin = 'Орел! \nВы проиграли'
-                                    paph = 'orel.jpg'
-                                elif z >= 54:
-                                    won = 0
-                                    wiin = 'Решка! \nВы проиграли'
-                                    paph = 'resh.png'
-                                else:
-                                    won = rubb * 25
-                                    cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
-                                    conn.commit()
-                                    won = former(won)
-                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
-                                    paph = 'reb.jpg'
-                            else:
-                                pass
-                            with open(paph,'rb') as photo:
-                                await message.reply_photo(photo, reply_markup=keyboard)
-                            cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-                            money = cursor.fetchone()
-                            money = money[0]
-                            cursor.close()
-                            rubb = former(rubb)
-                            money = former(money)
-                            await message.answer(temps.oirep(wiin, money, rubb), reply_markup=keyboard, parse_mode= 'Markdown')
-                        else:
-                            await message.answer(temps.transerr(), reply_markup=keyboard)
-                except ValueError:
-                    await message.answer(temps.wrongent())
-                except TypeError:
-                    await message.answer(temps.wrongent())
+                        wiin = oirres[0]
+                        money = oirres[1]
+                        rubb = oirres[2]
+                        paph = oirres[3]
+                        with open(paph,'rb') as photo:
+                            await message.reply_photo(photo, reply_markup=keyboard)
+                        await message.answer(temps.oirep(wiin, money, rubb), reply_markup=keyboard, parse_mode= 'Markdown')
 #
 @dp.message_handler(lambda message: message.text and '💼' in message.text)
 async def balance(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add('⬇ Пополнить баланс', '⬆ Вывести', temps.back())
-    cursor = conn.cursor()
-    cursor.execute(f'UPDATE users SET cc = 6886 WHERE userid = {message.from_user.id}')
-    conn.commit()
-    cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")
-    money = cursor.fetchone()
-    money = money[0]
-    cursor.execute(f"SELECT vivc FROM users WHERE userid = {message.from_user.id}")
-    vivc = cursor.fetchone()
-    cursor.close()
-    vivc = vivc[0]
-    money = former(money)
-    vivc = former(vivc)
-    await message.answer(temps.bal(money, vivc), reply_markup=keyboard, parse_mode= 'Markdown')
+    pop1 = popbal1(message)
+    await message.answer(temps.bal(pop1[0], pop1[1]), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and '⬇' in message.text and selec(message) == 6886)
     async def popbalance(message):
-        cursor = conn.cursor()
-        cursor.execute(f'UPDATE users SET cc = 68886 WHERE userid = {message.from_user.id}')
-        conn.commit()
-        cursor.close()
+        popbal2(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add('150 ₽', '300 ₽', '500 ₽','1000 ₽', temps.back())
         await message.answer(temps.pop(), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and selec(message) == 68886)
         async def popbalance1(message):
-            pop = message.text.split()
-            pop = pop[0]
-            print(message.text)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
             keyboard.add(temps.back())
-            try:
-                pop = int(pop)
-                if pop >= 150 and pop <= 10000:
-                    cursor = conn.cursor()
-                    cursor.execute(f"INSERT INTO req(userid, mon, app) VALUES({message.from_user.id}, {pop}, 0)")
-                    conn.commit()
-                    cursor.close()
-                    opl = hashlib.md5(f'{merchant_id}:{pop}:{secret}:RUB:{message.from_user.id}'.encode('utf-8')).hexdigest()
-                    print(opl)
-                    urrl = f'https://pay.freekassa.ru/?m={merchant_id}&oa={pop}&o={message.from_user.id}&s={opl}&currency=RUB'
-                    markup = types.InlineKeyboardMarkup()
-                    btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=urrl)
-                    markup.add(btn_my_site)
-                    #payment_link = requests.get(f'https://clck.ru/--?url={urrl}')
-                    await message.answer(temps.link(), reply_markup = markup)
-            except ValueError:
+            popp = popbal3(message)
+            if popp == None:
                 await message.answer(temps.wrongent(), reply_markup=keyboard)
-            except TypeError:
-                await message.answer(temps.wrongent(), reply_markup=keyboard)
+            else:
+                markup = types.InlineKeyboardMarkup()
+                btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=popp)
+                markup.add(btn_my_site)
+                await message.answer(temps.link(), reply_markup = markup)
     
     @dp.message_handler(lambda message: message.text and '⬆' in message.text and selec(message) == 6886)
     async def vivbalance(message):
