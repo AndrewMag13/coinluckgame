@@ -17,6 +17,7 @@ from transfer import transfer1, transfer2
 from games import gamesintro, ot11, ot12, ot13, oirm, oirm2, crash1, crash2, crash3, othr1, othr2, othr3
 from popbalance import popbal1, popbal2, popbal3
 from farm import farm1, catch1, farmall, buyfarm11, buyfruit
+from intro import intro
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
 
@@ -38,56 +39,21 @@ except (Exception, Error) as error:
 
 @dp.message_handler(commands=['start'])
 async def welcome(message):
-    userid = message.from_user.id
-    username = message.from_user.username
     lang = kb.welcome()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(lang[0], lang[1])
-    cursor = conn.cursor()
-    rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc = 0
-    valua = (userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)
-    try:
-        cursor.execute(f"INSERT INTO users(userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)VALUES{valua};")
-        print('done')
-        cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc)VALUES({userid}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
-        cursor.execute(f"INSERT INTO games(userid)VALUES({userid})")
-        conn.commit()
-    except Error:
+    ww = intro(message)
+    if ww == None:
         await message.answer(temps.intererr(message))
-    try:
-        cursor.execute("UPDATE users SET rub = rub + 100000 WHERE userid = 1737649749;")
-        conn.commit()
-    except Error:
-        cursor.execute("COMMIT;")
-        print('lol')
-        cursor.execute("UPDATE users SET rub = rub + 100000 WHERE userid = 1737649749;")
-        conn.commit()
-    if ' ' in message.text:
-        reaf = message.text[7:]
-        print(reaf)
-        try:
-            cursor.execute(f"SELECT ref FROM users WHERE userid = {message.from_user.id}")
-            reafch = cursor.fetchone()
-            reafch = reafch[0]
-            if reaf != userid and reafch == 0:
-                cursor.execute(f'UPDATE users SET ref = {reaf} WHERE userid = {userid}')
-                cursor.execute(f'UPDATE users SET refco = refco + 1 WHERE userid = {reaf}')
-                conn.commit()
-                logging.info(f"+ref for {reaf}")
-        except Error:
-            pass
-    print(f'+1 wanker {username}')
-    r = requests.get('https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id=1737649749&text=+1luder')
-    cursor.close()
-    logging.info(f"new luder: {userid}")
-    await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
+    else:
+        await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
 
 @dp.message_handler(lambda message: message.text and  kb.back() in message.text or 'English' in message.text or 'Русский' in message.text)
 async def mainn(message):
     mainnn(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     kk = kb.start()
-    keyboard.add(kk[0], kk[1], kk[2], kk[3], kk[4], kk[5], kk[6], kk[7])
+    keyboard.add(kk[0], kk[1], kk[2], kk[3], kk[4], kk[5], kk[6], kk[7], kk[8])
     await message.answer(temps.main(message), parse_mode= 'Markdown', reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and '💱' in message.text)
@@ -391,6 +357,11 @@ async def bondm(message):
 @dp.message_handler(lambda message: message.text and '👥 ' in message.text)
 async def ref(message):
     await message.answer(temps.refl(message, referals(message)))
+
+@dp.message_handler(lambda message: message.text and '🏴‍☠️' in message.text)
+async def language(message):
+    pass
+
 
 @dp.message_handler(lambda message: message.text and 'temp' in message.text and message.from_user.id == 1737649749)
 async def temp(message):

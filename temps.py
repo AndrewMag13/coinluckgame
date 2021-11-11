@@ -20,11 +20,11 @@ class temps(object):
         def fl():
             return('Choose language\nВыберите язык')
         def inter(message):
-            cursor = conn.cursor()
-            cursor.execute(f"SELECT lang FROM users WHERE userid = {message.from_user.id}")
-            slang = cursor.fetchone()
-            cursor.close()
-            return(f'*Приветствую {message.from_user.id}♦* \nЭтот бот представляет собой игру-симулятор фермера\n\nВыбрав язык вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n\n*Welcome {message.from_user.id}♦* \This bot is a farming simulator\n\nBy choosing the language you accept the User Agreement: telegra.ph/Polzovatelskoe-soglashenie-07-06\nYou can also get a bonus, if you dont have one, enter BONUS\n\nGood luck!🍀\n{pho}')
+        #    cursor = conn.cursor()
+        #    cursor.execute(f"SELECT lang FROM users WHERE userid = {message.from_user.id}")
+        #    slang = cursor.fetchone()
+        #    cursor.close()
+            return(f'*Приветствую {message.from_user.id}♦* \nЭтот бот представляет собой игру-симулятор фермера\n\nВыбрав язык вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n\n*Welcome {message.from_user.id}♦*\nThis bot is a farming simulator\n\nBy choosing the language you accept the User Agreement: telegra.ph/Polzovatelskoe-soglashenie-07-06\nYou can also get a bonus, if you dont have one, enter BONUS\n\nGood luck!🍀\n{pho}')
         def intererr(message):
             return(f'*Ошибка регистарции, {message.from_user.id}!*')
         ###
