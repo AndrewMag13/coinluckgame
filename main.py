@@ -40,7 +40,7 @@ except (Exception, Error) as error:
 async def welcome(message):
     userid = message.from_user.id
     username = message.from_user.username
-    lang = temps.start()
+    lang = kb.welcome()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(lang[0], lang[1])
     cursor = conn.cursor()
@@ -86,7 +86,7 @@ async def welcome(message):
 async def mainn(message):
     mainnn(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    kk = temps.startb()
+    kk = kb.start()
     keyboard.add(kk[0], kk[1], kk[2], kk[3], kk[4], kk[5], kk[6], kk[7])
     await message.answer(temps.main(message), parse_mode= 'Markdown', reply_markup=keyboard)
 
@@ -94,7 +94,7 @@ async def mainn(message):
 async def tran(message):
     id = transfer1(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add( kb.back())
+    keyboard.add(kb.back())
     await message.answer(temps.trans(id), reply_markup=keyboard, parse_mode='Markdown')
     
     @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 11290)
@@ -109,8 +109,9 @@ async def tran(message):
             
 @dp.message_handler(lambda message: message.text and '🔄' in message.text)
 async def mart(message):
+    tr = kb.tr()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Обменять 🌟 на 💲', 'Обменять 💸 на 💲', kb.back())
+    keyboard.add(tr[0], tr[1], kb.back())
     a = plodcourse(message)
     plod = a[0]
     course = a[1]
@@ -145,8 +146,9 @@ async def mart(message):
 
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
+    gg = kb.games()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Орел и Решка', 'Краш', '1/3', '1/30', kb.back())
+    keyboard.add(gg[0], gg[1], gg[2], gg[3], kb.back())
     gamesintro(message)
     await message.answer(temps.choose(), reply_markup=keyboard, parse_mode= 'Markdown')
     
@@ -161,8 +163,9 @@ async def games(message):
         @dp.message_handler(lambda message: message.text and selec(message) == 666220)
         async def ot2(message):
             ot12(message)
+            ns = kb.nums()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1', '2', '3', kb.back())
+            keyboard.add(ns[0], ns[1], ns[2], kb.back())
             await message.answer(temps.number13(), reply_markup=keyboard, parse_mode= 'Markdown')
 
             @dp.message_handler(lambda message: message.text and selec(message) == 69692)
@@ -192,8 +195,9 @@ async def games(message):
         @dp.message_handler(lambda message: message.text and selec(message) == 66620)
         async def otc2(message):
             othr2(message)
+            nn = kb.nums()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1', '2', '3', '4', '5', '10', kb.back())
+            keyboard.add(nn[0], nn[1], nn[2], nn[3], nn[4], nn[5], kb.back())
             await message.answer(temps.otri(), reply_markup=keyboard, parse_mode= 'Markdown')
 
             @dp.message_handler(lambda message: message.text and selec(message) == 69694)
@@ -214,7 +218,6 @@ async def games(message):
                 else:
                     await message.answer(temps.err(), reply_markup=keyboard)
 
-
     @dp.message_handler(lambda message: message.text and 'Краш' in message.text and selec(message) == 666)
     async def bus1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -226,8 +229,9 @@ async def games(message):
         @dp.message_handler(lambda message: message.text and selec(message) == 666000)
         async def bus2(message):
             crash2(message)
+            kf = kb.keff()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1.25', '1.5', '2', '3', '5', '10', '20', kb.back())
+            keyboard.add(kf[0], kf[1], kf[2], kf[3], kf[4], kf[5], kf[6], kb.back())
             await message.answer(temps.keffs(), reply_markup=keyboard, parse_mode= 'Markdown')
             
             @dp.message_handler(lambda message: message.text and selec(message) == 6969)
@@ -247,8 +251,9 @@ async def games(message):
                     await message.answer(temps.err(), reply_markup=keyboard)
     @dp.message_handler(lambda message: message.text and 'Орел и Решка' in message.text and selec(message) == 666)
     async def oir1(message):
+        oir = kb.oir()
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('Орел', 'Решка', 'Ребро', kb.back())
+        keyboard.add(oir[0], oir[1], oir[2], kb.back())
         await message.answer(temps.oirs(), reply_markup=keyboard, parse_mode= 'Markdown')
         
         @dp.message_handler(lambda message: message.text and 'Орел' in message.text or 'Решка' in message.text or 'Ребро' in message.text and selec(message) == 666)
@@ -275,16 +280,18 @@ async def games(message):
 #
 @dp.message_handler(lambda message: message.text and '💼' in message.text)
 async def balance(message):
+    pp = kb.popb()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('⬇ Пополнить баланс', '⬆ Вывести', kb.back())
+    keyboard.add(pp[0], pp[1], kb.back())
     pop1 = popbal1(message)
     await message.answer(temps.bal(pop1[0], pop1[1]), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and '⬇' in message.text and selec(message) == 6886)
     async def popbalance(message):
         popbal2(message)
+        pm = kb.popm()
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('150 ₽', '300 ₽', '500 ₽','1000 ₽', kb.back())
+        keyboard.add(pm[0], pm[1], pm[2], pm[3], kb.back())
         await message.answer(temps.pop(), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and selec(message) == 68886)
@@ -302,14 +309,16 @@ async def balance(message):
     
     @dp.message_handler(lambda message: message.text and '⬆' in message.text and selec(message) == 6886)
     async def vivbalance(message):
+        pm = kb.popm()
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('50', '100', '500', kb.back())
+        keyboard.add(pm[0], pm[1], pm[2], pm[3], kb.back())
         await message.answer(temps.viv(), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and '🍓 ' in message.text)
 async def farm(message):
+    ff = kb.fruit()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('💲 Купить растения', '🍒 Мои растения', '✂ Собрать', kb.back())
+    keyboard.add(ff[0], ff[1], ff[2], kb.back())
     farmer = farm1(message)
     await message.answer(temps.farm(farmer[0], farmer[1]), reply_markup=keyboard)
     
@@ -327,9 +336,10 @@ async def farm(message):
 
     @dp.message_handler(lambda message: message.text and '💲 ' in message.text and selec(message) == 10)
     async def buyfarm(message):
+        bf = kb.fruitb()
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         money = buyfarm11(message)
-        keyboard.add('Купить 🍓','Купить 🍒','Купить 🍎','Купить 🍌','Купить 🍑','Купить 🍇', kb.back())
+        keyboard.add(bf[0], bf[1], bf[2], bf[3], bf[4], bf[5], kb.back())
         await message.answer(temps.buyf(money), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and 'Купить ' in message.text and selec(message) == 11)
@@ -342,9 +352,10 @@ async def farm(message):
 
 @dp.message_handler(lambda message: message.text and '💭' in message.text)
 async def review(message):
-    rev1()
+    rev1(message)
+    rr = kb.rev()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Написать', 'Прочитать', kb.back())
+    keyboard.add(rr[0], rr[1], kb.back())
     await message.answer(temps.rev(), reply_markup=keyboard)
     
     @dp.message_handler(lambda message: message.text and 'Написать' in message.text and selec(message) == 33)

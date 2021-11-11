@@ -19,8 +19,6 @@ pho = 'https://imbt.ga/ZFdnBeO4pg'
 class temps(object):
         def fl():
             return('Choose language\nВыберите язык')
-        def start():
-            return('English','Русский')
         def inter(message):
             cursor = conn.cursor()
             cursor.execute(f"SELECT lang FROM users WHERE userid = {message.from_user.id}")
@@ -30,8 +28,6 @@ class temps(object):
         def intererr(message):
             return(f'*Ошибка регистарции, {message.from_user.id}!*')
         ###
-        def startb():
-            return('▶ Играть', '🍓 Ферма', '🔄 Рынок', '💼 Баланс', '💱 Перевод', '⚡ Ежедневный бонус', '💭 Отзывы', '👥 Реферальная система')
         def market(message, plod, course):
             return(f'Здесь вы можете *обменять* ваши 🌟 на 💲 и 💸 на 💲\nУ вас для продажи {plod} 🌟\n\nТекущий курс для обмена 🌟 на 💲: \n1 🔄 = {course} 🌟\nС каждого *обмена* вы получите 70% 💲 и 30% 💸\n\nПри переводе 💸 на 💲 курс: 1 💸 = 1.3 💲')
         ###
