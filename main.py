@@ -7,6 +7,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from unitool import temperature, uptime, logger, ally
 from exchange import s2d, v2d, plodcourse
 from temps import temps
+from kb import kb
 from selec import selec
 from referals import referals
 from bonus import bond, obond
@@ -81,7 +82,7 @@ async def welcome(message):
     logging.info(f"new luder: {userid}")
     await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
 
-@dp.message_handler(lambda message: message.text and temps.back() in message.text or 'English' in message.text or 'Русский' in message.text)
+@dp.message_handler(lambda message: message.text and  kb.back() in message.text or 'English' in message.text or 'Русский' in message.text)
 async def mainn(message):
     mainnn(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -93,7 +94,7 @@ async def mainn(message):
 async def tran(message):
     id = transfer1(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add(temps.back())
+    keyboard.add( kb.back())
     await message.answer(temps.trans(id), reply_markup=keyboard, parse_mode='Markdown')
     
     @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 11290)
@@ -109,7 +110,7 @@ async def tran(message):
 @dp.message_handler(lambda message: message.text and '🔄' in message.text)
 async def mart(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Обменять 🌟 на 💲', 'Обменять 💸 на 💲', temps.back())
+    keyboard.add('Обменять 🌟 на 💲', 'Обменять 💸 на 💲', kb.back())
     a = plodcourse(message)
     plod = a[0]
     course = a[1]
@@ -118,7 +119,7 @@ async def mart(message):
     @dp.message_handler(lambda message: message.text and 'Обменять 🌟 на 💲' in message.text and selec(message) == 110)
     async def mart1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add(temps.back())
+        keyboard.add(kb.back())
         a = s2d(message)
         if a == None:
             await message.answer(temps.transerr(), reply_markup=keyboard)
@@ -132,7 +133,7 @@ async def mart(message):
     @dp.message_handler(lambda message: message.text and 'Обменять 💸 на 💲' in message.text and selec(message) == 110)
     async def mart2(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add(temps.back())
+        keyboard.add(kb.back())
         a = v2d(message)
         if a == None:
             await message.answer(temps.transerr(), reply_markup=keyboard, parse_mode= 'Markdown')
@@ -145,15 +146,15 @@ async def mart(message):
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Орел и Решка', 'Краш', '1/3', '1/30', temps.back())
+    keyboard.add('Орел и Решка', 'Краш', '1/3', '1/30', kb.back())
     gamesintro(message)
     await message.answer(temps.choose(), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and message.text == '1/3' and selec(message) == 666)
     async def ot(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        ss = temps.standarts()
-        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
+        ss = kb.ots()
+        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], kb.back())
         ot11(message)
         await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
 
@@ -161,13 +162,13 @@ async def games(message):
         async def ot2(message):
             ot12(message)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1', '2', '3', temps.back())
+            keyboard.add('1', '2', '3', kb.back())
             await message.answer(temps.number13(), reply_markup=keyboard, parse_mode= 'Markdown')
 
             @dp.message_handler(lambda message: message.text and selec(message) == 69692)
             async def ot3(message):
                 keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                keyboard.add('Повторить', temps.back())
+                keyboard.add(kb.repeat(), kb.back())
                 res = ot13(message)
                 if res == 'wrongent':
                     await message.answer(temps.wrongent())
@@ -183,8 +184,8 @@ async def games(message):
     @dp.message_handler(lambda message: message.text and '1/30' in message.text and selec(message) == 666)
     async def otc(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        ss = temps.standarts()
-        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
+        ss = kb.ots()
+        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], kb.back())
         othr1(message)
         await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
 
@@ -192,13 +193,13 @@ async def games(message):
         async def otc2(message):
             othr2(message)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1', '2', '3', '4', '5', '10', temps.back())
+            keyboard.add('1', '2', '3', '4', '5', '10', kb.back())
             await message.answer(temps.otri(), reply_markup=keyboard, parse_mode= 'Markdown')
 
             @dp.message_handler(lambda message: message.text and selec(message) == 69694)
             async def otc3(message):
                 keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                keyboard.add('Повторить', temps.back())
+                keyboard.add(kb.repeat(), kb.back())
                 othrser = othr3(message)
                 if othrser == 'Wrongent':
                     await message.answer(temps.wrongent(), reply_markup=keyboard)
@@ -217,8 +218,8 @@ async def games(message):
     @dp.message_handler(lambda message: message.text and 'Краш' in message.text and selec(message) == 666)
     async def bus1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        ss = temps.standarts()
-        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
+        ss = kb.ots()
+        keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], kb.back())
         crash1(message)
         await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
         
@@ -226,13 +227,13 @@ async def games(message):
         async def bus2(message):
             crash2(message)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add('1.25', '1.5', '2', '3', '5', '10', '20', temps.back())
+            keyboard.add('1.25', '1.5', '2', '3', '5', '10', '20', kb.back())
             await message.answer(temps.keffs(), reply_markup=keyboard, parse_mode= 'Markdown')
             
             @dp.message_handler(lambda message: message.text and selec(message) == 6969)
             async def bus3(message):
                 keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                keyboard.add('Повторить', temps.back())
+                keyboard.add(kb.repeat(), kb.back())
                 crashres = crash3(message)
                 if crashres == 'wrongent':
                     await message.answer(temps.wrongent())
@@ -247,14 +248,14 @@ async def games(message):
     @dp.message_handler(lambda message: message.text and 'Орел и Решка' in message.text and selec(message) == 666)
     async def oir1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('Орел', 'Решка', 'Ребро', temps.back())
+        keyboard.add('Орел', 'Решка', 'Ребро', kb.back())
         await message.answer(temps.oirs(), reply_markup=keyboard, parse_mode= 'Markdown')
         
         @dp.message_handler(lambda message: message.text and 'Орел' in message.text or 'Решка' in message.text or 'Ребро' in message.text and selec(message) == 666)
         async def oir2(message):
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            ss = temps.standarts()
-            keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], ss[9])
+            ss = kb.ots()
+            keyboard.add(ss[0], ss[1], ss[2], ss[3], ss[4], ss[5], ss[6], ss[7], ss[8], kb.back())
             oirm(message)
             await message.answer(temps.stavka13(), reply_markup=keyboard, parse_mode= 'Markdown')
             
@@ -267,7 +268,7 @@ async def games(message):
                         await message.answer(temps.wrongent())
                     else:
                         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                        keyboard.add('Повторить', temps.back())
+                        keyboard.add(kb.repeat(), kb.back())
                         with open(oirres[3],'rb') as photo:
                             await message.reply_photo(photo, reply_markup=keyboard)
                         await message.answer(temps.oirep(oirres[0], oirres[1], oirres[2]), reply_markup=keyboard, parse_mode= 'Markdown')
@@ -275,7 +276,7 @@ async def games(message):
 @dp.message_handler(lambda message: message.text and '💼' in message.text)
 async def balance(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('⬇ Пополнить баланс', '⬆ Вывести', temps.back())
+    keyboard.add('⬇ Пополнить баланс', '⬆ Вывести', kb.back())
     pop1 = popbal1(message)
     await message.answer(temps.bal(pop1[0], pop1[1]), reply_markup=keyboard, parse_mode= 'Markdown')
     
@@ -283,13 +284,13 @@ async def balance(message):
     async def popbalance(message):
         popbal2(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('150 ₽', '300 ₽', '500 ₽','1000 ₽', temps.back())
+        keyboard.add('150 ₽', '300 ₽', '500 ₽','1000 ₽', kb.back())
         await message.answer(temps.pop(), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and selec(message) == 68886)
         async def popbalance1(message):
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add(temps.back())
+            keyboard.add(kb.back())
             popp = popbal3(message)
             if popp == None:
                 await message.answer(temps.wrongent(), reply_markup=keyboard)
@@ -302,13 +303,13 @@ async def balance(message):
     @dp.message_handler(lambda message: message.text and '⬆' in message.text and selec(message) == 6886)
     async def vivbalance(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add('50', '100', '500', temps.back())
+        keyboard.add('50', '100', '500', kb.back())
         await message.answer(temps.viv(), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and '🍓 ' in message.text)
 async def farm(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('💲 Купить растения', '🍒 Мои растения', '✂ Собрать', temps.back())
+    keyboard.add('💲 Купить растения', '🍒 Мои растения', '✂ Собрать', kb.back())
     farmer = farm1(message)
     await message.answer(temps.farm(farmer[0], farmer[1]), reply_markup=keyboard)
     
@@ -320,7 +321,7 @@ async def farm(message):
     @dp.message_handler(lambda message: message.text and '🍒 ' in message.text and selec(message) == 10)
     async def myfarm(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add(temps.back())
+        keyboard.add(kb.back())
         myplod = farmall(message)
         await message.answer(temps.allf(myplod), reply_markup=keyboard)
 
@@ -328,7 +329,7 @@ async def farm(message):
     async def buyfarm(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         money = buyfarm11(message)
-        keyboard.add('Купить 🍓','Купить 🍒','Купить 🍎','Купить 🍌','Купить 🍑','Купить 🍇', temps.back())
+        keyboard.add('Купить 🍓','Купить 🍒','Купить 🍎','Купить 🍌','Купить 🍑','Купить 🍇', kb.back())
         await message.answer(temps.buyf(money), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and 'Купить ' in message.text and selec(message) == 11)
@@ -343,20 +344,20 @@ async def farm(message):
 async def review(message):
     rev1()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Написать', 'Прочитать', temps.back())
+    keyboard.add('Написать', 'Прочитать', kb.back())
     await message.answer(temps.rev(), reply_markup=keyboard)
     
     @dp.message_handler(lambda message: message.text and 'Написать' in message.text and selec(message) == 33)
     async def review1(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add(temps.back())
+        keyboard.add(kb.back())
         await message.answer(temps.goodrev(), reply_markup=keyboard)
         
         @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 33)
         async def review2(message):
             rev2(message)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add(temps.back())
+            keyboard.add(kb.back())
             await message.answer(temps.succ(), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and 'BONUS' in message.text)
