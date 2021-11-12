@@ -12,18 +12,12 @@ try:
 except (Exception, Error) as error:
     print("Ошибка при работе с PostgreSQL", error)
 
-
 pho = 'https://imbt.ga/ZFdnBeO4pg'
-
 
 class temps(object):
         def fl():
             return('Choose language\nВыберите язык')
         def inter(message):
-        #    cursor = conn.cursor()
-        #    cursor.execute(f"SELECT lang FROM users WHERE userid = {message.from_user.id}")
-        #    slang = cursor.fetchone()
-        #    cursor.close()
             return(f'*Приветствую {message.from_user.id}♦* \nЭтот бот представляет собой игру-симулятор фермера\n\nВыбрав язык вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n\n*Welcome {message.from_user.id}♦*\nThis bot is a farming simulator\n\nBy choosing the language you accept the User Agreement: telegra.ph/Polzovatelskoe-soglashenie-07-06\nYou can also get a bonus, if you dont have one, enter BONUS\n\nGood luck!🍀\n{pho}')
         def intererr(message):
             return(f'*Ошибка регистарции, {message.from_user.id}!*')
@@ -55,7 +49,7 @@ class temps(object):
         def wrongent():
             return('Неверный ввод!')
         def normstavka():
-            return(f'Ставка должна быть от 10 💲 до 10000 💲')
+            return('Ставка должна быть от 10 💲 до 10000 💲')
         def win13(stavka, money, keff, cc):
             return(f'*Поздравляем!👏*\nВаш выйгрыш: {stavka * 3} 💲\n\nВаш текущий баланс: {money} 💲\nВаша ставка: {stavka} 💲\n\nВаше число: {keff}\nВыпавшее число: {cc}')
         def lose13(keff, cc):
@@ -81,7 +75,7 @@ class temps(object):
         def pop():
             return('Введите сумму пополнения вашего счета (минимальная сумма пополнения 150 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💵')
         def link():
-            return(f'Ваша ссылка для пополнения')
+            return('Ваша ссылка для пополнения')
         def viv():
             return('Введите сумму')
         def farm(all, plod):

@@ -15,7 +15,7 @@ except (Exception, Error) as error:
 def mainnn(message):
     cursor = conn.cursor()
     cursor.execute(f'UPDATE users SET cc = 0 WHERE userid = {message.from_user.id}')
-    if selec(message) == 9990:
+    if selec(message) == 99990:
         cursor.execute(f"UPDATE users SET lang = '{message.text}' WHERE userid = {message.from_user.id}")
     conn.commit()
     cursor.close()
