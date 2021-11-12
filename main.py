@@ -1,7 +1,6 @@
 import psycopg2
 from psycopg2 import Error
 from typing import Type
-import requests
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from unitool import temperature, uptime, logger, ally
@@ -18,6 +17,7 @@ from games import gamesintro, ot11, ot12, ot13, oirm, oirm2, crash1, crash2, cra
 from popbalance import popbal1, popbal2, popbal3
 from farm import farm1, catch1, farmall, buyfarm11, buyfruit
 from intro import intro
+from lang import llang1, llang2
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
 
@@ -67,9 +67,7 @@ async def tran(message):
     async def tran1(message):
         tt = transfer2(message)
         if tt != None:
-            mon = tt[0]
-            mess = tt[1]
-            await message.answer(temps.transucc(mess, mon), parse_mode= 'Markdown')
+            await message.answer(temps.transucc(tt[1], tt[0]), parse_mode= 'Markdown')
         else:
             await message.answer(temps.err())
             
@@ -105,10 +103,7 @@ async def mart(message):
         if a == None:
             await message.answer(temps.transerr(), reply_markup=keyboard, parse_mode= 'Markdown')
         else:
-            rubs = a[0]
-            vivc = a[1]
-            rub = a[2]
-            await message.answer(temps.transsucc2(vivc, rubs, rub), reply_markup=keyboard, parse_mode= 'Markdown')
+            await message.answer(temps.transsucc2(a[1], a[0], a[2]), reply_markup=keyboard, parse_mode= 'Markdown')
 
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
@@ -215,6 +210,7 @@ async def games(message):
                     await message.answer(temps.crashlose(crashres[1], crashres[2]), reply_markup=keyboard)
                 else:
                     await message.answer(temps.err(), reply_markup=keyboard)
+
     @dp.message_handler(lambda message: message.text and 'Орел и Решка' in message.text and selec(message) == 666)
     async def oir1(message):
         oir = kb.oir()
@@ -243,7 +239,7 @@ async def games(message):
                         with open(oirres[3],'rb') as photo:
                             await message.reply_photo(photo, reply_markup=keyboard)
                         await message.answer(temps.oirep(oirres[0], oirres[1], oirres[2]), reply_markup=keyboard, parse_mode= 'Markdown')
-#
+
 @dp.message_handler(lambda message: message.text and '💼' in message.text)
 async def balance(message):
     pp = kb.popb()
@@ -348,7 +344,6 @@ async def bonusm(message):
 @dp.message_handler(lambda message: message.text and '⚡ ' in message.text)
 async def bondm(message):
     ebonus = bond(message)
-    print(ebonus)
     if ebonus == None:
         await message.answer(temps.err())
     else:
@@ -360,8 +355,17 @@ async def ref(message):
 
 @dp.message_handler(lambda message: message.text and '🏴‍☠️' in message.text)
 async def language(message):
-    pass
+    lng = kb.welcome()
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.add(lng[0], lng[1], kb.back())
+    await message.answer(temps.langu(llang1(message)), reply_markup=keyboard)
 
+    @dp.message_handler(lambda message: message.text and ('English' in message.text or 'Русский' in message.text) and selec(message) == 1777)
+    async def language2(message):
+        ll = llang2(message)
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        keyboard.add(kb.back())
+        await message.answer(temps.langu2(ll), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and 'temp' in message.text and message.from_user.id == 1737649749)
 async def temp(message):
@@ -382,6 +386,6 @@ async def usender(message):
         await message.answer(temps.err())
     else:
         await message.answer(f'You sent: \n{meess}')
-    
+
 if __name__ == '__main__':
     executor.start_polling(dp)
