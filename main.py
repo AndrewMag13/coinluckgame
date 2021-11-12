@@ -25,8 +25,6 @@ API_TOKEN = '1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74'
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-chk = 0
-
 try:
     conn = psycopg2.connect(user="postgres",
                                 password="iwasbornfree",
@@ -77,9 +75,7 @@ async def mart(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(tr[0], tr[1], kb.back())
     a = plodcourse(message)
-    plod = a[0]
-    course = a[1]
-    await message.answer(temps.market(message, plod, course), reply_markup=keyboard, parse_mode= 'Markdown')
+    await message.answer(temps.market(message, a[0], a[1]), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and 'Обменять 🌟 на 💲' in message.text and selec(message) == 110)
     async def mart1(message):
@@ -89,11 +85,7 @@ async def mart(message):
         if a == None:
             await message.answer(temps.transerr(), reply_markup=keyboard)
         else:
-            plods = a[0]
-            rubs = a[1]
-            vivc = a[2]
-            rub = a[3]
-            await message.answer(temps.transsucc(plods, rubs, vivc, rub), reply_markup=keyboard, parse_mode= 'Markdown')
+            await message.answer(temps.transsucc(a[0], a[1], a[2], a[3]), reply_markup=keyboard, parse_mode= 'Markdown')
 
     @dp.message_handler(lambda message: message.text and 'Обменять 💸 на 💲' in message.text and selec(message) == 110)
     async def mart2(message):
