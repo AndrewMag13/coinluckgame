@@ -61,6 +61,7 @@ def intro(message):
                     logging.info(f"+ref for {reaf}")
             except Error:
                 pass
+        cursor.execute(f'UPDATE users SET cc = 9990 WHERE userid = {message.from_user.id}')
         r = requests.get('https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id=1737649749&text=+1luder')
         cursor.close()
         logging.info(f"new luder: {userid}")

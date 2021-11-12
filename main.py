@@ -48,7 +48,7 @@ async def welcome(message):
     else:
         await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
 
-@dp.message_handler(lambda message: message.text and  kb.back() in message.text or 'English' in message.text or 'Русский' in message.text)
+@dp.message_handler(lambda message: message.text and (kb.back() in message.text or selec(message) == 9990))
 async def mainn(message):
     mainnn(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -355,12 +355,12 @@ async def ref(message):
 
 @dp.message_handler(lambda message: message.text and '🏴‍☠️' in message.text)
 async def language(message):
-    lng = kb.welcome()
+    lng = kb.lngs()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(lng[0], lng[1], kb.back())
     await message.answer(temps.langu(llang1(message)), reply_markup=keyboard)
 
-    @dp.message_handler(lambda message: message.text and ('English' in message.text or 'Русский' in message.text) and selec(message) == 1777)
+    @dp.message_handler(lambda message: message.text and selec(message) == 1777)
     async def language2(message):
         ll = llang2(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
