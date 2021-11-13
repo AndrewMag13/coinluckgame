@@ -42,7 +42,7 @@ def ot12(message):
 
 def ot13(message):
     try:
-                    if message.text == 'Повторить':
+                    if message.text == 'Повторить' or message.text == 'Repeat':
                             cursor = conn.cursor()
                             cursor.execute(f'SELECT otk FROM games WHERE userid = {message.from_user.id}')
                             keff = cursor.fetchone()
@@ -115,7 +115,7 @@ def oirm2(message):
                         rubb = rubb[:-2]
                     if len(lis) == 1:
                         rubb = message.text
-                    if message.text == 'Повторить':
+                    if message.text == 'Повторить' or message.text == 'Repeat':
                         cursor = conn.cursor()
                         cursor.execute(f'SELECT oirv FROM games WHERE userid = {message.from_user.id}')
                         rubb = cursor.fetchone()
@@ -142,7 +142,7 @@ def oirm2(message):
                             cursor.execute(f"UPDATE users SET rub = rub - {rubb} WHERE userid = {message.from_user.id}")
                             money = money - rubb
                             z = random.randint(1,101)
-                            if oirnum == 'Решка':
+                            if oirnum == 'Решка' or oirnum == 'Head':
                                 if z <= 48:
                                     won = rubb * 2
                                     cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
@@ -158,7 +158,7 @@ def oirm2(message):
                                     won = 0
                                     wiin = 'Ребро! \nВы проиграли'
                                     paph = 'reb.jpg'
-                            elif oirnum == 'Орел':
+                            elif oirnum == 'Орел' or oirnum == 'Tail':
                                 if z <= 48:
                                     won = rubb * 2
                                     cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
@@ -174,7 +174,7 @@ def oirm2(message):
                                     won = 0
                                     wiin = 'Ребро! \nВы проиграли'
                                     paph = 'reb.jpg'
-                            elif oirnum == 'Ребро':
+                            elif oirnum == 'Ребро' or oirnum == 'Edge':
                                 if z <= 50:
                                     won = 0
                                     wiin = 'Орел! \nВы проиграли'
@@ -228,7 +228,7 @@ def crash2(message):
 
 def crash3(message):
     try:
-                    if message.text == 'Повторить':
+                    if message.text == 'Повторить' or message.text == 'Repeat':
                         cursor = conn.cursor()
                         cursor.execute(f'SELECT bustak FROM games WHERE userid = {message.from_user.id}')
                         keff = cursor.fetchone()
@@ -327,7 +327,7 @@ def othr2(message):
 
 def othr3(message):
     try:
-                    if message.text == 'Повторить':
+                    if message.text == 'Повторить' or message.text == 'Repeat':
                             cursor = conn.cursor()
                             cursor.execute(f'SELECT otvk FROM games WHERE userid = {message.from_user.id}')
                             keff = cursor.fetchone()

@@ -22,3 +22,9 @@ def rev1(message):
 def rev2(message):
     r = requests.get(f'https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id=1737649749&text=z{message.text}\n{message.from_user.id}')
     logging.info(f"{message.from_user.id} wrote {message.text}")
+
+def rev11(message):
+    cursor = conn.cursor()
+    cursor.execute(f'UPDATE users SET cc = 34 WHERE userid = {message.from_user.id}')
+    conn.commit()
+    cursor.close()

@@ -1313,3 +1313,58 @@ INFO:aiogram.dispatcher.dispatcher:Stop polling...
 WARNING:aiogram:Goodbye!
 INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
 INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+ERROR:aiogram.dispatcher.dispatcher:Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 383, in start_polling
+    updates = await self.bot.get_updates(
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/bot/bot.py", line 97, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/bot/base.py", line 208, in request
+    return await api.make_request(self.session, self.server, self.__token, method, data, files,
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:change 234234 > 1657 and 709 userid: 1737649749
+INFO:root:change 709 > 921 userid: 1737649749
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-113' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py:409> exception=UnboundLocalError("local variable 'wiin' referenced before assignment")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 417, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 238, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/dispatcher.py", line 259, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.9/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 223, in oir3
+    oirres = oirm2(message)
+  File "/home/nail/oir/games.py", line 201, in oirm2
+    return wiin, money, rubb, paph
+UnboundLocalError: local variable 'wiin' referenced before assignment
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:1737649749 bought 🍓 1000
+INFO:root:change 11845 > 81 and 34 userid: 1737649749
+INFO:root:change 34 > 44 userid: 1737649749
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: CoinLuck Game 🍀 [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:1737649749 wrote afffff efsdd
