@@ -32,10 +32,16 @@ class temps(object):
         def main(message):
             return(f'*Приветствую {message.from_user.first_name}♦* \nВы находитесь в главном меню CoinLuck Game\n{pho}')
         ###
-        def trans(id):
-            return(f'Здесь вы можете *перевести* 💲 другим пользователям по *id*. \nВаш id: {id}\n\nДля перевода в ответном сообщении введите сначала *id* пользователя, затем *сумму перевода* через *пробел*.\nПример: 12 700\nЕдиноразово вы можете перевести от *10* 💲 до *10.000* 💲')
-        def err():
-            return('Ошибка!')
+        def trans(id, message):
+            if langich(message) == "English":
+                return(f'Here you can *transfer* 💲 to other users by *id*. \nYour id: {id}\n\nTo transfer in a reply message, first enter *id*, then *transfer amount* separated by *space*.\nExample: 12 700\nYou can transfer one time from *10* 💲 to *10.000* 💲')
+            else:
+                return(f'Здесь вы можете *перевести* 💲 другим пользователям по *id*. \nВаш id: {id}\n\nДля перевода в ответном сообщении введите сначала *id* пользователя, затем *сумму перевода* через *пробел*.\nПример: 12 700\nЕдиноразово вы можете перевести от *10* 💲 до *10.000* 💲')
+        def err(message):
+            if langich(message) == "English":
+                return('Error!')
+            else:
+                return('Ошибка!')
         def transsucc(message, plods, rubs, vivc, rub):
             if langich(message) == "English":
                 return(f'*Done!*\n\nYou exchanged {plods} 🌟 to {rubs} 💲 and to {vivc} 💸\n\nYou have: {rub} 💲')
@@ -52,8 +58,11 @@ class temps(object):
             else:
                 return(f'*Готово!*\n\nВы обменяли {vivc} 💸 на {rubs} 💲\n\nУ вас на балансе: {rub} 💲')
         ###
-        def choose():
-            return('Выберите игру')
+        def choose(message):
+            if langich(message) == "English":
+                return('Select game')
+            else:
+                return('Выберите игру')
         ###
         def stavka13():
             return('Делайте *ставку*\n\nСтавка должна быть от 10 до 10.000\nВы также можете ввести свою сумму введя ее в ответном сообщении')

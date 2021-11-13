@@ -58,7 +58,7 @@ async def tran(message):
     id = transfer1(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(kb.back(message))
-    await message.answer(temps.trans(id), reply_markup=keyboard, parse_mode='Markdown')
+    await message.answer(temps.trans(id, message), reply_markup=keyboard, parse_mode='Markdown')
     
     @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 11290)
     async def tran1(message):
@@ -66,7 +66,7 @@ async def tran(message):
         if tt != None:
             await message.answer(temps.transucc(tt[1], tt[0]), parse_mode= 'Markdown')
         else:
-            await message.answer(temps.err())
+            await message.answer(temps.err(message))
             
 @dp.message_handler(lambda message: message.text and '🔄' in message.text)
 async def mart(message):
@@ -102,7 +102,7 @@ async def games(message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(gg[0], gg[1], gg[2], gg[3], kb.back(message))
     gamesintro(message)
-    await message.answer(temps.choose(), reply_markup=keyboard, parse_mode= 'Markdown')
+    await message.answer(temps.choose(message), reply_markup=keyboard, parse_mode= 'Markdown')
     
     @dp.message_handler(lambda message: message.text and message.text == '1/3' and selec(message) == 666)
     async def ot(message):
@@ -128,7 +128,7 @@ async def games(message):
                 if res == 'wrongent':
                     await message.answer(temps.wrongent())
                 elif res == 'transerr':
-                    await message.answer(temps.transerr(), reply_markup=keyboard)
+                    await message.answer(temps.transerr(message), reply_markup=keyboard)
                 elif res == 'normstavka':
                     await message.answer(temps.normstavka(), reply_markup=keyboard, parse_mode= 'Markdown')
                 elif res[0] == 'lose':
@@ -168,7 +168,7 @@ async def games(message):
                 elif othrser[0] == 'lose':
                     await message.answer(temps.otrlose(othrser[1], othrser[2]), reply_markup=keyboard)
                 else:
-                    await message.answer(temps.err(), reply_markup=keyboard)
+                    await message.answer(temps.err(message), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and ('Краш' in message.text or 'Busta' in message.text) and selec(message) == 666)
     async def bus1(message):
@@ -200,7 +200,7 @@ async def games(message):
                 elif crashres[0] == 'lose':
                     await message.answer(temps.crashlose(crashres[1], crashres[2]), reply_markup=keyboard)
                 else:
-                    await message.answer(temps.err(), reply_markup=keyboard)
+                    await message.answer(temps.err(message), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and ('Орел и Решка' in message.text or 'Heads and Tails' in message.text) and selec(message) == 666)
     async def oir1(message):
@@ -299,7 +299,7 @@ async def farm(message):
         async def buyfarm1(message):
             buyf = buyfruit(message)
             if buyf == None:
-                await message.answer(temps.err())
+                await message.answer(temps.err(message))
             else:
                 await message.answer(temps.succ())
 
@@ -329,7 +329,7 @@ async def review(message):
 async def bonusm(message):
     oebonus = obond(message)
     if oebonus == None:
-        await message.answer(temps.err())
+        await message.answer(temps.err(message))
     else:
         await message.answer(temps.bon1())
 
@@ -337,7 +337,7 @@ async def bonusm(message):
 async def bondm(message):
     ebonus = bond(message)
     if ebonus == None:
-        await message.answer(temps.err())
+        await message.answer(temps.err(message))
     else:
         await message.answer(temps.bone())
 
@@ -375,7 +375,7 @@ async def upt(message):
 async def usender(message):
     meess = ally(message)
     if meess == None:
-        await message.answer(temps.err())
+        await message.answer(temps.err(message))
     else:
         await message.answer(f'You sent: \n{meess}')
 
