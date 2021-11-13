@@ -1,6 +1,5 @@
 import psycopg2
 from psycopg2 import Error
-from typing import Type
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from unitool import temperature, uptime, logger, ally
@@ -83,9 +82,9 @@ async def mart(message):
         keyboard.add(kb.back(message))
         a = s2d(message)
         if a == None:
-            await message.answer(temps.transerr(), reply_markup=keyboard)
+            await message.answer(temps.transerr(message), reply_markup=keyboard)
         else:
-            await message.answer(temps.transsucc(a[0], a[1], a[2], a[3]), reply_markup=keyboard, parse_mode= 'Markdown')
+            await message.answer(temps.transsucc(message, a[0], a[1], a[2], a[3]), reply_markup=keyboard, parse_mode= 'Markdown')
 
     @dp.message_handler(lambda message: message.text and '💸' in message.text and selec(message) == 110)
     async def mart2(message):
@@ -93,9 +92,9 @@ async def mart(message):
         keyboard.add(kb.back(message))
         a = v2d(message)
         if a == None:
-            await message.answer(temps.transerr(), reply_markup=keyboard, parse_mode= 'Markdown')
+            await message.answer(temps.transerr(message), reply_markup=keyboard, parse_mode= 'Markdown')
         else:
-            await message.answer(temps.transsucc2(a[1], a[0], a[2]), reply_markup=keyboard, parse_mode= 'Markdown')
+            await message.answer(temps.transsucc2(message, a[1], a[0], a[2]), reply_markup=keyboard, parse_mode= 'Markdown')
 
 @dp.message_handler(lambda message: message.text and '▶' in message.text)
 async def games(message):
@@ -208,7 +207,7 @@ async def games(message):
         oir = kb.oir(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(oir[0], oir[1], oir[2], kb.back(message))
-        await message.answer(temps.oirs(), reply_markup=keyboard, parse_mode= 'Markdown')
+        await message.answer(temps.oirs(message), reply_markup=keyboard, parse_mode= 'Markdown')
         
         @dp.message_handler(lambda message: message.text and ('Орел' in message.text or 'Решка' in message.text or 'Ребро' in message.text or 'Tail' in message.text or 'Head' in message.text or 'Edge' in message.text) and selec(message) == 666)
         async def oir2(message):

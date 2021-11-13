@@ -1,7 +1,9 @@
+from langich import langich
 import psycopg2
 from psycopg2 import Error
 from former import former
 from isint import isint
+from temps import temps
 import random
 
 try:
@@ -126,7 +128,7 @@ def oirm2(message):
                         return 'Norms'
                     else:
                         cursor = conn.cursor()
-                        if message.text == 'Повторить':
+                        if message.text == 'Повторить' or message.text == 'Repeat':
                             cursor.execute(f'SELECT oirt FROM games WHERE userid = {message.from_user.id}')
                             oirnum = cursor.fetchone()
                             oirnum = oirnum[0]
@@ -148,15 +150,15 @@ def oirm2(message):
                                     cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
                                     conn.commit()
                                     won = former(won)
-                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
+                                    wiin = temps.winn(won, message)
                                     paph = 'resh.png'
                                 elif z >= 53:
                                     won = 0
-                                    wiin = 'Орел! \nВы проиграли'
+                                    wiin = temps.orel(message)
                                     paph = 'orel.jpg'
                                 else:
                                     won = 0
-                                    wiin = 'Ребро! \nВы проиграли'
+                                    wiin = temps.edge(message)
                                     paph = 'reb.jpg'
                             elif oirnum == 'Орел' or oirnum == 'Tail':
                                 if z <= 48:
@@ -164,31 +166,31 @@ def oirm2(message):
                                     cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
                                     conn.commit()
                                     won = former(won)
-                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
+                                    wiin = temps.winn(won, message)
                                     paph = 'orel.jpg'
                                 elif z >= 53:
                                     won = 0
-                                    wiin = 'Решка! \nВы проиграли'
+                                    wiin = temps.head(message)
                                     paph = 'resh.png'
                                 else:
                                     won = 0
-                                    wiin = 'Ребро! \nВы проиграли'
+                                    wiin = temps.edge(message)
                                     paph = 'reb.jpg'
                             elif oirnum == 'Ребро' or oirnum == 'Edge':
                                 if z <= 50:
                                     won = 0
-                                    wiin = 'Орел! \nВы проиграли'
+                                    wiin = temps.orel(message)
                                     paph = 'orel.jpg'
                                 elif z >= 54:
                                     won = 0
-                                    wiin = 'Решка! \nВы проиграли'
+                                    wiin = temps.head(message)
                                     paph = 'resh.png'
                                 else:
                                     won = rubb * 25
                                     cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")
                                     conn.commit()
                                     won = former(won)
-                                    wiin = f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
+                                    wiin = temps.winn(won, message)
                                     paph = 'reb.jpg'
                             else:
                                 pass

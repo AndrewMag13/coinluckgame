@@ -1,3 +1,4 @@
+from langich import langich
 import psycopg2
 from psycopg2 import Error
 from former import former
@@ -20,10 +21,13 @@ class temps(object):
         def inter(message):
             return(f'*Приветствую {message.from_user.id}♦* \nЭтот бот представляет собой игру-симулятор фермера\n\nВыбрав язык вы принимаете Пользовательское соглашение: telegra.ph/Polzovatelskoe-soglashenie-07-06\nВы также можете бонусный код, если его у вас нет введите BONUS\n\nУдачи!🍀\n\n*Welcome {message.from_user.id}♦*\nThis bot is a farming simulator\n\nBy choosing the language you accept the User Agreement: telegra.ph/Polzovatelskoe-soglashenie-07-06\nYou can also get a bonus, if you dont have one, enter BONUS\n\nGood luck!🍀\n{pho}')
         def intererr(message):
-            return(f'*Ошибка регистарции, {message.from_user.id}!*')
+            return(f'*Reg. error, {message.from_user.id}!*')
         ###
         def market(message, plod, course):
-            return(f'Здесь вы можете *обменять* ваши 🌟 на 💲 и 💸 на 💲\nУ вас для продажи {plod} 🌟\n\nТекущий курс для обмена 🌟 на 💲: \n1 🔄 = {course} 🌟\nС каждого *обмена* вы получите 70% 💲 и 30% 💸\n\nПри переводе 💸 на 💲 курс: 1 💸 = 1.3 💲')
+            if langich(message) == "English":
+                return(f'Here you can *exchange* your 🌟 to 💲 and 💸 to 💲\nFor exchange you have {plod} 🌟\n\nCurrent exchange course for 🌟 to 💲: \n1 🔄 = {course} 🌟\nFrom each *exchange* you will receive 70% 💲 and 30% 💸\n\nFor exchange 💸 to 💲 current course: 1 💸 = 1.3 💲')
+            else:
+                return(f'Здесь вы можете *обменять* ваши 🌟 на 💲 и 💸 на 💲\nУ вас для продажи {plod} 🌟\n\nТекущий курс для обмена 🌟 на 💲: \n1 🔄 = {course} 🌟\nС каждого *обмена* вы получите 70% 💲 и 30% 💸\n\nПри переводе 💸 на 💲 курс: 1 💸 = 1.3 💲')
         ###
         def main(message):
             return(f'*Приветствую {message.from_user.first_name}♦* \nВы находитесь в главном меню CoinLuck Game\n{pho}')
@@ -32,12 +36,21 @@ class temps(object):
             return(f'Здесь вы можете *перевести* 💲 другим пользователям по *id*. \nВаш id: {id}\n\nДля перевода в ответном сообщении введите сначала *id* пользователя, затем *сумму перевода* через *пробел*.\nПример: 12 700\nЕдиноразово вы можете перевести от *10* 💲 до *10.000* 💲')
         def err():
             return('Ошибка!')
-        def transsucc(plods, rubs, vivc, rub):
-            return(f'*Готово!*\n\nВы обменяли {plods} 🌟 на {rubs} 💲 и на {vivc} 💸\n\nУ вас на балансе: {rub} 💲')
-        def transerr():
-            return(f'Недостаточно средств!')
-        def transsucc2(vivc, rubs, rub):
-            return(f'*Готово!*\n\nВы обменяли {vivc} 💸 на {rubs} 💲\n\nУ вас на балансе: {rub} 💲')
+        def transsucc(message, plods, rubs, vivc, rub):
+            if langich(message) == "English":
+                return(f'*Done!*\n\nYou exchanged {plods} 🌟 to {rubs} 💲 and to {vivc} 💸\n\nYou have: {rub} 💲')
+            else:
+                return(f'*Готово!*\n\nВы обменяли {plods} 🌟 на {rubs} 💲 и на {vivc} 💸\n\nУ вас на балансе: {rub} 💲')
+        def transerr(message):
+            if langich(message) == "English":
+                return(f'Not enough actives!')
+            else:
+                return(f'Недостаточно средств!')
+        def transsucc2(message, vivc, rubs, rub):
+            if langich(message) == "English":
+                return(f'*Done!*\n\nYou exchanged {vivc} 💸 to {rubs} 💲\n\nYou have: {rub} 💲')
+            else:
+                return(f'*Готово!*\n\nВы обменяли {vivc} 💸 на {rubs} 💲\n\nУ вас на балансе: {rub} 💲')
         ###
         def choose():
             return('Выберите игру')
@@ -66,8 +79,11 @@ class temps(object):
             return(f'Поздравляем!👏 \nВаш выйгрыш: {keff * stavka} 💲\n\nВаш текущий баланс   *{money} 💲*\nВаша ставка: *{stavka}* 💲\n\nВаш коэффицент: *{keff}*\nКоэффицент: {cc}')
         def crashlose(keff, cc):
             return(f'Сожалеем, вы проиграли!\n\nВаш коэффицент: {keff}\nКоэффицент: {cc}')
-        def oirs():
-            return('*Выберите сторону*\n\nКоэффиценты для сторон:\n\n*Орел/Решка* 2x \n*Ребро* 25x')
+        def oirs(message):
+            if langich(message) == "English":
+                return ('*Choose a side*\n\nCoefficient for sides:\n\n*Tail/Head* 2x \n*Edge* 25x')
+            else:
+                return('*Выберите сторону*\n\nКоэффиценты для сторон:\n\n*Орел/Решка* 2x \n*Ребро* 25x')
         def oirep(wiin, money, rubb):
             return(f'{wiin} \n\nВаш текущий баланс *{money} 💲*\nВаша ставка: {rubb} 💲')
         def bal(money, vivc):
@@ -104,3 +120,23 @@ class temps(object):
             return (f'Ваш текущий язык: {l}\nВы можете изменить его в любое время в этой вкладке.')
         def langu2(ll):
             return (f'Готово!\nВаш новый язык: {ll}')
+        def winn(won, message):
+            if langich(message) == "English":
+                return f'Congrats!👏 \nYour winnings: {won} 💲'
+            else:
+                return f'Поздравляем!👏 \nВаш выйгрыш: {won} 💲'
+        def orel(message):
+            if langich(message) == "English":
+                return 'Tail! \nYou lose'
+            else:
+                return 'Орел! \nВы проиграли'
+        def edge(message):
+            if langich(message) == "English":
+                return 'Edge! \nYou lose'
+            else:
+                return 'Ребро! \nВы проиграли'
+        def head(message):
+            if langich(message) == "English":
+                return 'Head! \nYou lose'
+            else:
+                return 'Решка! \nВы проиграли'
