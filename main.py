@@ -269,7 +269,7 @@ async def balance(message):
 async def farm(message):
     ff = kb.fruit(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add(ff[0], ff[1], ff[2], kb.back(message))
+    keyboard.add(ff[0], ff[1], ff[2], ff[3], kb.back(message))
     farmer = farm1(message)
     await message.answer(temps.farm(farmer[0], farmer[1], message), reply_markup=keyboard)
     
@@ -279,7 +279,8 @@ async def farm(message):
 
     @dp.message_handler(lambda message: message.text and '🌊 ' in message.text and selec(message) == 10)
     async def wtr(message):
-        await message.answer(temps.water(waters(message), message))
+        waters(message)
+        await message.answer(temps.water(message))
 
     @dp.message_handler(lambda message: message.text and '🍒 ' in message.text and selec(message) == 10)
     async def myfarm(message):
