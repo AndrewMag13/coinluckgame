@@ -24,9 +24,9 @@ def upd():
             ss()
         elif now.minute%10 == 0 and now.second == 3:
             mm()
-        elif now.hour == 5 and now.minute == 1 and now.second == 3:
+        elif now.hour == 1 and now.minute == 1 and now.second == 3:
             hh()
-        elif now.hour == 4 and now.minute == 16 and now.second == 3:
+        elif now.hour == 1 and now.minute == 16 and now.second == 3:
             bck()
         time.sleep(1)
 def ss():
@@ -76,6 +76,7 @@ def hh():
     for i in table:
         cursor = conn.cursor()
         cursor.execute(f'UPDATE users SET bond = 0')
+        cursor.execute(f'UPDATE users SET waterc = 0')
     conn.commit()
     cursor.close()
 def bck():

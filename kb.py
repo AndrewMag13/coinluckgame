@@ -43,9 +43,9 @@ class kb(object):
         return ('150 ₽', '300 ₽', '500 ₽','1000 ₽')
     def fruit(message):
         if langich(message) == "English":
-            return ('💲 Buy plants', '🍒 My plants', '✂ Collect')
+            return ('💲 Buy plants', '🍒 My plants', '🌊 Water plants', '✂ Collect')
         else:
-            return ('💲 Купить растения', '🍒 Мои растения', '✂ Собрать')
+            return ('💲 Купить растения', '🍒 Мои растения', '🌊 Полить растения', '✂ Собрать')
     def fruitb(message):
         if langich(message) == "English":
             return ('Buy 🍓', 'Buy 🍒', 'Buy 🍎', 'Buy 🍌', 'Buy 🍑', 'Buy 🍇')

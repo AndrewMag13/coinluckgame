@@ -20,6 +20,9 @@ cursor.execute("""
     bond       INTEGER,
     course     INTEGER,
     сс1        INTEGER,
+    сс         INTEGER,
+    lang       TEXT,
+    water      INTEGER,
     UNIQUE     ("userid"));
     """)
 cursor.execute("""

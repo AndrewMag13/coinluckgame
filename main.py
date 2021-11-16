@@ -39,13 +39,12 @@ async def welcome(message):
     lang = kb.welcome()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(lang[0], lang[1])
-    ww = intro(message)
-    if ww == None:
+    if intro(message) == None:
         await message.answer(temps.intererr(message))
     else:
         await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
 
-@dp.message_handler(lambda message: message.text and (kb.back(message) in message.text or selec(message) == 9990))
+@dp.message_handler(lambda message: message.text and ((kb.back(message) in message.text or '👈' in message.text) or selec(message) == 9990))
 async def mainn(message):
     mainnn(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -55,10 +54,9 @@ async def mainn(message):
 
 @dp.message_handler(lambda message: message.text and '💱' in message.text)
 async def tran(message):
-    id = transfer1(message)
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(kb.back(message))
-    await message.answer(temps.trans(id, message), reply_markup=keyboard, parse_mode='Markdown')
+    await message.answer(temps.trans(transfer1(message), message), reply_markup=keyboard, parse_mode='Markdown')
     
     @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 11290)
     async def tran1(message):
@@ -297,8 +295,7 @@ async def farm(message):
         
         @dp.message_handler(lambda message: message.text and ('Купить ' in message.text or 'Buy' in message.text) and selec(message) == 11)
         async def buyfarm1(message):
-            buyf = buyfruit(message)
-            if buyf == None:
+            if buyfruit(message) == None:
                 await message.answer(temps.err(message))
             else:
                 await message.answer(temps.succ(message))
@@ -327,16 +324,14 @@ async def review(message):
 
 @dp.message_handler(lambda message: message.text and 'BONUS' in message.text)
 async def bonusm(message):
-    oebonus = obond(message)
-    if oebonus == None:
+    if obond(message) == None:
         await message.answer(temps.err(message))
     else:
         await message.answer(temps.bon1(message))
 
 @dp.message_handler(lambda message: message.text and '⚡ ' in message.text)
 async def bondm(message):
-    ebonus = bond(message)
-    if ebonus == None:
+    if bond(message) == None:
         await message.answer(temps.err(message))
     else:
         await message.answer(temps.bone(message))
@@ -354,10 +349,9 @@ async def language(message):
 
     @dp.message_handler(lambda message: message.text and selec(message) == 1777)
     async def language2(message):
-        ll = llang2(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(kb.back(message))
-        await message.answer(temps.langu2(ll, message), reply_markup=keyboard)
+        await message.answer(temps.langu2(llang2(message), message), reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text and 'temp' in message.text and message.from_user.id == 1737649749)
 async def temp(message):
