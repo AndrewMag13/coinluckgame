@@ -169,6 +169,11 @@ class temps(object):
                 return(f'Done! You collect {plod} 🌟!')
             else:
                 return(f'Готово вы собрали {plod} 🌟!')
+        def water(message):
+            if langich(message) == "English":
+                return('You watered your plants')
+            else:
+                return('Вы полили ваши растения')
         def allf(myplod, message):
             if langich(message) == "English":
                 return(f'You have: \n\n{myplod[2]} beds of strawberry 🍓\n\n{myplod[3]} cherry trees 🍒\n\n{myplod[4]} apple trees🍎\n\n{myplod[5]} banana trees 🍌\n\n{myplod[6]} peach trees 🍑\n\n{myplod[7]} grape trees 🍇')

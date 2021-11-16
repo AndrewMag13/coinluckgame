@@ -67,6 +67,9 @@ def buyfarm11(message):
     money = money[0]
     return money
 
+def waters(message):
+    pass
+
 def buyfruit(message):
     fruit = message.text[-1]
     if fruit == "🍓":

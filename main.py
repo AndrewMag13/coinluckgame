@@ -14,7 +14,7 @@ from mainnn import mainnn
 from transfer import transfer1, transfer2
 from games import gamesintro, ot11, ot12, ot13, oirm, oirm2, crash1, crash2, crash3, othr1, othr2, othr3
 from popbalance import popbal1, popbal2, popbal3
-from farm import farm1, catch1, farmall, buyfarm11, buyfruit
+from farm import farm1, catch1, farmall, buyfarm11, buyfruit, waters
 from intro import intro
 from lang import llang1, llang2
 
@@ -275,15 +275,17 @@ async def farm(message):
     
     @dp.message_handler(lambda message: message.text and '✂ ' in message.text and selec(message) == 10)
     async def ctch(message):
-        catcher = catch1(message)
-        await message.answer(temps.sbor(catcher, message))
+        await message.answer(temps.sbor(catch1(message), message))
+
+    @dp.message_handler(lambda message: message.text and '🌊 ' in message.text and selec(message) == 10)
+    async def wtr(message):
+        await message.answer(temps.water(waters(message), message))
 
     @dp.message_handler(lambda message: message.text and '🍒 ' in message.text and selec(message) == 10)
     async def myfarm(message):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(kb.back(message))
-        myplod = farmall(message)
-        await message.answer(temps.allf(myplod, message), reply_markup=keyboard)
+        await message.answer(temps.allf(farmall(message), message), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and '💲 ' in message.text and selec(message) == 10)
     async def buyfarm(message):
