@@ -350,7 +350,7 @@ async def language(message):
     lng = kb.welcome()
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(lng[0], lng[1], kb.back(message))
-    await message.answer(temps.langu(llang1(message)), reply_markup=keyboard)
+    await message.answer(temps.langu(llang1(message), message), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and selec(message) == 1777)
     async def language2(message):
