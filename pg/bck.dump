@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.3
--- Dumped by pg_dump version 13.3
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -284,8 +284,10 @@ COPY public.actual (id, userid, username, link) FROM stdin;
 --
 
 COPY public.fruits (id, userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc) FROM stdin;
-13	1737649749	1	0	0	1	0	0	0	0	0	0	0	0
 14	1882355196	1	0	0	0	0	0	0	0	0	0	0	0
+15	1896062007	1	0	0	0	0	0	0	0	0	0	0	0
+16	1840832309	1	0	0	0	0	0	0	0	0	0	0	0
+13	1737649749	7	4	3	3	0	0	0	0	0	0	0	0
 \.
 
 
@@ -294,8 +296,10 @@ COPY public.fruits (id, userid, straw, cher, appl, banan, sliv, grape, caram, ca
 --
 
 COPY public.games (id, userid, oirt, oirv, bustak, bustav, casit, casiv, caset, casev, otv, otk, otvc, otvk) FROM stdin;
-17	1737649749	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 18	1882355196	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+19	1896062007	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+20	1840832309	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+17	1737649749	Tail	250	5	500	\N	\N	\N	\N	500	2	500	3
 \.
 
 
@@ -312,8 +316,10 @@ COPY public.req (id, userid, mon, app) FROM stdin;
 --
 
 COPY public.users (id, userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, "сс1", cc, lang) FROM stdin;
-54	1737649749	\N	100000	0	0	186216.19	56	0	1	0	0	0	0	102	\N	0	👈 Назад
-55	1882355196	\N	0	0	0	22.079985	0	1737649749	0	0	0	0	0	102	\N	0	English
+55	1882355196	\N	3	0	0	1960.6111	58	1737649749	0	0	0	0	0	102	\N	0	English
+56	1896062007	\N	0	0	0	1960.0084	255	0	0	0	0	0	0	102	\N	0	English
+57	1840832309	\N	200	0	0	1958.0437	0	0	0	0	0	0	1	102	\N	0	English
+54	1737649749	\N	4952	0	0	637091.9	65	0	1	0	0	0	1	102	\N	0	English
 \.
 
 
@@ -328,14 +334,14 @@ SELECT pg_catalog.setval('public.actual_id_seq', 15, true);
 -- Name: fruits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.fruits_id_seq', 14, true);
+SELECT pg_catalog.setval('public.fruits_id_seq', 16, true);
 
 
 --
 -- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.games_id_seq', 18, true);
+SELECT pg_catalog.setval('public.games_id_seq', 20, true);
 
 
 --
@@ -349,7 +355,7 @@ SELECT pg_catalog.setval('public.req_id_seq', 10, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 55, true);
+SELECT pg_catalog.setval('public.users_id_seq', 58, true);
 
 
 --
