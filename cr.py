@@ -22,7 +22,7 @@ cursor.execute("""
     сс1        INTEGER,
     сс         INTEGER,
     lang       TEXT,
-    water      INTEGER,
+    waterc      INTEGER,
     UNIQUE     ("userid"));
     """)
 cursor.execute("""
@@ -41,6 +41,7 @@ cursor.execute("""
     pineapplc  INTEGER,
     drag       INTEGER,
     dragc      INTEGER,
+    water      INTEGER,
     UNIQUE     ("userid"));
     """)
 cursor.execute("""

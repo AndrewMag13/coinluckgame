@@ -16,9 +16,8 @@ except (Exception, Error) as error:
 def intro(message):
         cursor = conn.cursor()
         try:
-            cursor.execute(f"INSERT INTO users(userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc)VALUES({message.from_user.id}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);")
-            print('done')
-            cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc)VALUES({message.from_user.id}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)")
+            cursor.execute(f"INSERT INTO users(userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc, waterc)VALUES({message.from_user.id}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);")
+            cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc, waterx)VALUES({message.from_user.id}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)")
             cursor.execute(f"INSERT INTO games(userid)VALUES({message.from_user.id})")
             conn.commit()
         except Error:
@@ -32,7 +31,6 @@ def intro(message):
             conn.commit()
         if ' ' in message.text:
             reaf = message.text[7:]
-            print(reaf)
             try:
                 cursor.execute(f"SELECT ref FROM users WHERE userid = {message.from_user.id}")
                 reafch = cursor.fetchone()

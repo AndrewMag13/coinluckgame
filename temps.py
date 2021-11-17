@@ -171,9 +171,14 @@ class temps(object):
                 return(f'Готово вы собрали {plod} 🌟!')
         def water(message):
             if langich(message) == "English":
-                return('You watered your plants')
+                return('Great! You watered your plants.\nWatering gives you a 1.2x for all your plants.\nThe bonus works until the beginning of the next hour and available only once a day')
             else:
-                return('Вы полили ваши растения')
+                return('Отлично! Вы полили ваши растения.\nПоливка растений дает вам 1.2 множитель для всех ваших растений.\nБонус работает до начала следующего часа и доступен раз в день')
+        def waterf(message):
+            if langich(message) == "English":
+                return('The bonus available only once a day')
+            else:
+                return('Бонус доступен только раз в день')
         def allf(myplod, message):
             if langich(message) == "English":
                 return(f'You have: \n\n{myplod[2]} beds of strawberry 🍓\n\n{myplod[3]} cherry trees 🍒\n\n{myplod[4]} apple trees🍎\n\n{myplod[5]} banana trees 🍌\n\n{myplod[6]} peach trees 🍑\n\n{myplod[7]} grape trees 🍇')

@@ -31,12 +31,13 @@ def farm1(message):
     ssq3 = i[5] * 14000
     ssq4 = i[6] * 80000
     ssq5 = i[7] * 200000
-    all = ssq + ssq1 + ssq2 + ssq3 + ssq4 + ssq5
+    ww = i[14]
+    all = (ssq + ssq1 + ssq2 + ssq3 + ssq4 + ssq5) * ww
     plod = int(plod)
     plod = former(plod)
+    all = int(all)
     all = former(all)
     return all, plod
-
 
 def catch1(message):
     cursor = conn.cursor()
@@ -68,7 +69,17 @@ def buyfarm11(message):
     return money
 
 def waters(message):
-    pass
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT waterc FROM users WHERE userid = {message.from_user.id}")
+    a = cursor.fetchone()
+    a = a[0]
+    if a == 1:
+        cursor.execute(f'UPDATE users SET waterc = 0 WHERE userid = {message.from_user.id}')
+        cursor.execute(f"UPDATE fruits Set waterx = 1.2 WHERE userid = {message.from_user.id}")
+        cursor.close()
+        return 'good'
+    else:
+        cursor.close()
 
 def buyfruit(message):
     fruit = message.text[-1]

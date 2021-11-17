@@ -282,8 +282,10 @@ try:
 
         @dp.message_handler(lambda message: message.text and '🌊 ' in message.text and selec(message) == 10)
         async def wtr(message):
-            waters(message)
-            await message.answer(temps.water(message))
+            if waters(message) == 'good':
+                await message.answer(temps.water(message))
+            else:
+                await message.answer(temps.waterf(message))
 
         @dp.message_handler(lambda message: message.text and '🍒 ' in message.text and selec(message) == 10)
         async def myfarm(message):
@@ -338,7 +340,7 @@ try:
     @dp.message_handler(lambda message: message.text and '⚡ ' in message.text)
     async def bondm(message):
         if bond(message) == None:
-            await message.answer(temps.err(message))
+            await message.answer(temps.waterf(message))
         else:
             await message.answer(temps.bone(message))
 
