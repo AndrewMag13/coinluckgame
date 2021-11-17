@@ -15,6 +15,7 @@ try:
                                     database="luck")
 except (Exception, Error) as error:
     print("Ошибка при работе с PostgreSQL", error)
+
 def upd():
     while True:
         global now
@@ -24,10 +25,11 @@ def upd():
             ss()
         elif now.minute%10 == 0 and now.second == 3:
             mm()
-        elif now.hour == 1 and now.minute == 1 and now.second == 3:
+        elif now.hour == 1 and now.minute == 6 and now.second == 3:
             hh()
         elif now.hour == 1 and now.minute == 16 and now.second == 3:
             bck()
+
         time.sleep(1)
 def ss():
     try:
@@ -82,4 +84,5 @@ def hh():
 def bck():
     subprocess.call(['pg_dump', 'luck', '-f', '/home/nail/oir/pg/bck.dump'])
     print("BACKUP DONE!")
+
 upd()
