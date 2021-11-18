@@ -18,6 +18,7 @@ from popbalance import popbal1, popbal2, popbal3
 from farm import farm1, catch1, farmall, buyfarm11, buyfruit, waters
 from intro import intro
 from lang import llang1, llang2
+from vivod import vivod1, vivod2
 import time
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
@@ -263,10 +264,15 @@ try:
         
         @dp.message_handler(lambda message: message.text and '⬆' in message.text and selec(message) == 6886)
         async def vivbalance(message):
-            pm = kb.popm()
+            vivod1(message)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add(pm[0], pm[1], pm[2], pm[3], kb.back(message))
+            keyboard.add(kb.back(message))
             await message.answer(temps.viv(message), reply_markup=keyboard)
+        
+            @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 6886990)
+            async def vivbalance(message):
+                vivod2(message)
+                await message.answer(temps.viv2(message), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and '🍓 ' in message.text)
     async def farm(message):

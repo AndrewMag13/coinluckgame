@@ -156,9 +156,14 @@ class temps(object):
                 return('Ваша ссылка для пополнения')
         def viv(message):
             if langich(message) == "English":
-                return('Enter the amount')
+                return('In reply message enter the amount and requisites\nCourse: 100 💸 = 1 ₽\nExample: 20000 qiwi +79XXXXXXXXX.')
             else:
-                return('Введите сумму')
+                return('В ответном сообщении введите сумму вывода и реквизиты\nКурс: 100 💸 = 1 ₽\nПример: 20000 на киви +79XXXXXXXXX.')
+        def viv2(message):
+            if langich(message) == "English":
+                return('Application sent!')
+            else:
+                return('Заявление отправлено!')
         def farm(all, plod, message):
             if langich(message) == "English":
                 return(f'Thats your moderate mountain farm in the north of California by an extraordinarily beautiful rocky coast\nHere you can buy more fruit plants or collect ripe fruits\n\nOn your farm {str(plod)} 🌟\n\nYou earn {all} 🌟 per hour')
