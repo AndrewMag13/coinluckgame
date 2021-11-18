@@ -269,24 +269,24 @@ def crash3(message):
                         cursor.execute(f'UPDATE users SET rub = rub - {stavka} WHERE userid = {message.from_user.id}')
                         conn.commit()
                         ab = random.randint(1, 1000)
-                        if ab <= 90:
+                        if ab <= 99:
                             cc = round(random.uniform(1.00, 1.24), 2)
-                        elif ab <= 400:
-                            cc = round(random.uniform(1.00, 2.00), 2)
+                        elif ab > 99 and ab <= 400:
+                            cc = round(random.uniform(1.00, 1.49), 2)
                         elif ab >= 600 and ab <= 800:
-                            cc = round(random.uniform(2.00, 4.00), 2)
+                            cc = round(random.uniform(1.00, 3.00), 2)
                         elif ab >= 802 and ab <= 915:
-                            cc = round(random.uniform(4.00, 8.00), 2)
+                            cc = round(random.uniform(2.00, 5.00), 2)
                         elif ab >= 918 and ab <= 960:
-                            cc = round(random.uniform(8.00, 16.00), 2)
+                            cc = round(random.uniform(4.00, 10.00), 2)
                         elif ab >= 961 and ab <= 980:
-                            cc = round(random.uniform(16.00, 32.00), 2)
+                            cc = round(random.uniform(8.00, 22.00), 2)
                         elif ab >= 983 and ab <= 990:
-                            cc = round(random.uniform(32.00, 64.00), 2)
+                            cc = round(random.uniform(16.00, 42.00), 2)
                         elif ab >= 991 and ab <= 996:
-                            cc = round(random.uniform(64.00, 128.00), 2)
+                            cc = round(random.uniform(16.00, 55.00), 2)
                         elif ab == 999:
-                            cc = round(random.uniform(128.00, 1000.00), 2)
+                            cc = round(random.uniform(32.00, 1000.00), 2)
                         else:
                             cc = 1.00
                         if cc >= keff:
