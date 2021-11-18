@@ -16,19 +16,23 @@ except (Exception, Error) as error:
 def intro(message):
         cursor = conn.cursor()
         try:
-            cursor.execute(f"INSERT INTO users(userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc, waterc)VALUES({message.from_user.id}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);")
+            cursor.execute(f"INSERT INTO users(userid, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, cc, waterc)VALUES({message.from_user.id}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);")
             cursor.execute(f"INSERT INTO fruits(userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc, waterx)VALUES({message.from_user.id}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)")
             cursor.execute(f"INSERT INTO games(userid)VALUES({message.from_user.id})")
             conn.commit()
+            print('1')
         except Error:
+            print('2')
             return None
         try:
             cursor.execute("UPDATE users SET rub = rub + 100000 WHERE userid = 1737649749;")
             conn.commit()
+            print('3')
         except Error:
             cursor.execute("COMMIT;")
             cursor.execute("UPDATE users SET rub = rub + 100000 WHERE userid = 1737649749;")
             conn.commit()
+            print('4')
         if ' ' in message.text:
             reaf = message.text[7:]
             try:

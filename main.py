@@ -47,7 +47,7 @@ try:
         else:
             await message.answer(temps.inter(message), reply_markup=keyboard, parse_mode= 'Markdown')
 
-    @dp.message_handler(lambda message: message.text and ((kb.back(message) in message.text or '👈' in message.text) or selec(message) == 9990))
+    @dp.message_handler(lambda message: message.text and ('👈' in message.text or selec(message) == 99990))
     async def mainn(message):
         mainnn(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -65,7 +65,7 @@ try:
         async def tran1(message):
             tt = transfer2(message)
             if tt != None:
-                await message.answer(temps.transucc(tt[1], tt[0]), parse_mode= 'Markdown')
+                await message.answer(temps.transucc(tt[1], tt[0], message), parse_mode= 'Markdown')
             else:
                 await message.answer(temps.err(message))
                 
