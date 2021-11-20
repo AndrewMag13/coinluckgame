@@ -287,11 +287,11 @@ COPY public.actual (id, userid, username, link) FROM stdin;
 --
 
 COPY public.fruits (id, userid, straw, cher, appl, banan, sliv, grape, caram, caramc, pineappl, pineapplc, drag, dragc, waterx) FROM stdin;
-14	1882355196	1	0	0	0	0	0	0	0	0	0	0	0	1
+13	1737649749	27	17	6	6	0	0	0	0	0	0	0	0	1
+20	1882355196	1	0	0	0	0	0	0	0	0	0	0	0	1
+21	2096259032	1	0	0	1	0	0	0	0	0	0	0	0	1
 15	1896062007	1	0	0	0	0	0	0	0	0	0	0	0	1
 16	1840832309	1	0	0	0	0	0	0	0	0	0	0	0	1
-17	2096259032	1	0	0	0	0	0	0	0	0	0	0	0	1
-13	1737649749	13	6	4	4	0	0	0	0	0	0	0	0	1
 \.
 
 
@@ -300,11 +300,11 @@ COPY public.fruits (id, userid, straw, cher, appl, banan, sliv, grape, caram, ca
 --
 
 COPY public.games (id, userid, oirt, oirv, bustak, bustav, casit, casiv, caset, casev, otv, otk, otvc, otvk) FROM stdin;
-18	1882355196	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 19	1896062007	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 20	1840832309	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
-17	1737649749	Tail	1000	5	500	\N	\N	\N	\N	500	2	500	3
-21	2096259032	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+25	2096259032	\N	\N	1.25	500	\N	\N	\N	\N	\N	\N	1250	5
+24	1882355196	\N	\N	1.5	10	\N	\N	\N	\N	\N	\N	\N	\N
+17	1737649749	Edge	1500	1.25	10	\N	\N	\N	\N	500	2	10	1
 \.
 
 
@@ -322,11 +322,11 @@ COPY public.req (id, userid, mon, app) FROM stdin;
 --
 
 COPY public.users (id, userid, username, rub, mesh, vivc, plod, plodd, ref, refco, inp, outp, bon, bond, course, "сс1", cc, lang, water, waterc) FROM stdin;
-55	1882355196	\N	520	0	0	619.0753	22	1737649749	0	0	0	1	0	99	\N	0	English	\N	1
-56	1896062007	\N	0	0	0	6907.084	255	0	0	0	0	0	0	99	\N	0	English	\N	1
-57	1840832309	\N	200	0	0	6905.1177	0	0	0	0	0	0	0	99	\N	0	English	\N	1
-59	2096259032	\N	0	0	0	3290.1802	0	1737649749	0	0	0	0	0	99	\N	99990	\N	\N	1
-54	1737649749	\N	738	0	0	409195.22	66033	0	2	0	0	0	0	99	\N	0	English	\N	1
+54	1737649749	\N	129	0	0	909408.2	988	0	2	0	0	0	0	97	\N	0	English	\N	1
+63	1882355196	\N	2332	0	0	2977.3132	24	0	0	0	0	0	0	97	\N	0	English	\N	1
+64	2096259032	\N	63875	0	0	452885.7	270	0	0	0	0	0	0	97	\N	10	English	\N	1
+56	1896062007	\N	0	0	0	11297.607	255	0	0	0	0	0	0	97	\N	0	English	\N	1
+57	1840832309	\N	200	0	0	11295.641	0	0	0	0	0	0	0	97	\N	0	English	\N	1
 \.
 
 
@@ -341,14 +341,14 @@ SELECT pg_catalog.setval('public.actual_id_seq', 15, true);
 -- Name: fruits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.fruits_id_seq', 17, true);
+SELECT pg_catalog.setval('public.fruits_id_seq', 21, true);
 
 
 --
 -- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.games_id_seq', 21, true);
+SELECT pg_catalog.setval('public.games_id_seq', 25, true);
 
 
 --
@@ -362,7 +362,7 @@ SELECT pg_catalog.setval('public.req_id_seq', 11, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 59, true);
+SELECT pg_catalog.setval('public.users_id_seq', 64, true);
 
 
 --

@@ -1,3 +1,4 @@
+from langich import langich
 import psycopg2
 from psycopg2 import Error
 import logging
@@ -47,7 +48,10 @@ def transfer2(message):
                     cursor.close()
                     messid = messid[0]
                     logging.info(f'{message.from_user.id} > {mess[0]} {mon}')
-                    r = requests.get(f"https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={messid}&text=Пользователь {id} перевел на ваш счет {mon} 💲!")
+                    if langich(message) == "English":
+                        r = requests.get(f"https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={messid}&text=User {id} transfered to you {mon} 💲!")
+                    else:
+                        r = requests.get(f"https://api.telegram.org/bot1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74/sendMessage?chat_id={messid}&text=Пользователь {id} перевел на ваш счет {mon} 💲!")
                     return mon, mess
                 except Error:
                     return None
