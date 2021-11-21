@@ -18,7 +18,6 @@ from popbalance import popbal1, popbal2, popbal3
 from farm import farm1, catch1, farmall, buyfarm11, buyfruit, waters
 from intro import intro
 from lang import llang1, llang2
-from vivod import vivod1, vivod2
 import time
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
@@ -261,20 +260,8 @@ try:
                     btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=popp)
                     markup.add(btn_my_site)
                     await message.answer(temps.link(message), reply_markup = markup)
-        
-        @dp.message_handler(lambda message: message.text and '⬆' in message.text and selec(message) == 6886)
-        async def vivbalance(message):
-            vivod1(message)
-            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add(kb.back(message))
-            await message.answer(temps.viv(message), reply_markup=keyboard)
-        
-            @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 6886990)
-            async def vivbalance(message):
-                vivod2(message)
-                await message.answer(temps.viv2(message), reply_markup=keyboard)
 
-    @dp.message_handler(lambda message: message.text and '🍓 ' in message.text)
+    @dp.message_handler(lambda message: message.text and '🍓' in message.text)
     async def farm(message):
         ff = kb.fruit(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -282,24 +269,24 @@ try:
         farmer = farm1(message)
         await message.answer(temps.farm(farmer[0], farmer[1], message), reply_markup=keyboard)
         
-        @dp.message_handler(lambda message: message.text and '✂ ' in message.text and selec(message) == 10)
+        @dp.message_handler(lambda message: message.text and '✂' in message.text and selec(message) == 10)
         async def ctch(message):
             await message.answer(temps.sbor(catch1(message), message))
 
-        @dp.message_handler(lambda message: message.text and '🌊 ' in message.text and selec(message) == 10)
+        @dp.message_handler(lambda message: message.text and '🌊' in message.text and selec(message) == 10)
         async def wtr(message):
             if waters(message) == 'good':
                 await message.answer(temps.water(message))
             else:
                 await message.answer(temps.waterf(message))
 
-        @dp.message_handler(lambda message: message.text and '🍒 ' in message.text and selec(message) == 10)
+        @dp.message_handler(lambda message: message.text and '🍒' in message.text and selec(message) == 10)
         async def myfarm(message):
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
             keyboard.add(kb.back(message))
             await message.answer(temps.allf(farmall(message), message), reply_markup=keyboard)
 
-        @dp.message_handler(lambda message: message.text and '💲 ' in message.text and selec(message) == 10)
+        @dp.message_handler(lambda message: message.text and '💲' in message.text and selec(message) == 10)
         async def buyfarm(message):
             bf = kb.fruitb(message)
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -307,7 +294,7 @@ try:
             keyboard.add(bf[0], bf[1], bf[2], bf[3], bf[4], bf[5], kb.back(message))
             await message.answer(temps.buyf(money, message), reply_markup=keyboard)
             
-            @dp.message_handler(lambda message: message.text and ('Купить ' in message.text or 'Buy' in message.text) and selec(message) == 11)
+            @dp.message_handler(lambda message: message.text and ('Купить' in message.text or 'Buy' in message.text) and selec(message) == 11)
             async def buyfarm1(message):
                 if buyfruit(message) == None:
                     await message.answer(temps.err(message))
@@ -343,14 +330,14 @@ try:
         else:
             await message.answer(temps.bon1(message))
 
-    @dp.message_handler(lambda message: message.text and '⚡ ' in message.text)
+    @dp.message_handler(lambda message: message.text and '⚡' in message.text)
     async def bondm(message):
         if bond(message) == None:
             await message.answer(temps.waterf(message))
         else:
             await message.answer(temps.bone(message))
 
-    @dp.message_handler(lambda message: message.text and '👥 ' in message.text)
+    @dp.message_handler(lambda message: message.text and '👥' in message.text)
     async def ref(message):
         await message.answer(temps.refl(message, referals(message)))
 
@@ -388,7 +375,7 @@ try:
             await message.answer(f'You sent: \n{meess}')
 
 except client_exceptions.ClientConnectorError:
-    print('cannot connect waitin...')
+    print("cannot connect waitin'...")
     time.sleep(1)
 
 if __name__ == '__main__':

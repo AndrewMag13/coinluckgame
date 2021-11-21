@@ -1,5 +1,5 @@
 from langich import langich
-class kb(object):
+class kb:
     def welcome():
         return('English', 'Русский')
     def start(message):
@@ -36,9 +36,9 @@ class kb(object):
             return ('Орел', 'Решка', 'Ребро')
     def popb(message):
         if langich(message) == "English":
-            return ('⬇ Top-up', '⬆ Withdraw')
+            return ('⬇ Top-up')
         else:
-            return ('⬇ Пополнить баланс', '⬆ Вывести')
+            return ('⬇ Пополнить баланс')
     def popm():
         return ('150 ₽', '300 ₽', '500 ₽','1000 ₽')
     def fruit(message):

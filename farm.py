@@ -1,4 +1,3 @@
-import requests
 import logging
 import psycopg2
 from former import former
@@ -13,7 +12,6 @@ try:
     conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 except (Exception, Error) as error:
     print("Ошибка при работе с PostgreSQL", error)
-
 
 def farm1(message):
     cursor = conn.cursor()
