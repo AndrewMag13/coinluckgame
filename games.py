@@ -150,7 +150,7 @@ def oirm2(message):
                                     conn.commit()
                                     won = former(won)
                                     wiin = temps.winn(won, message)
-                                    paph = 'resh.png'
+                                    paph = 'resh.jpg'
                                 elif z >= 53:
                                     won = 0
                                     wiin = temps.orel(message)
@@ -170,7 +170,7 @@ def oirm2(message):
                                 elif z >= 53:
                                     won = 0
                                     wiin = temps.head(message)
-                                    paph = 'resh.png'
+                                    paph = 'resh.jpg'
                                 else:
                                     won = 0
                                     wiin = temps.edge(message)
@@ -183,7 +183,7 @@ def oirm2(message):
                                 elif z >= 54:
                                     won = 0
                                     wiin = temps.head(message)
-                                    paph = 'resh.png'
+                                    paph = 'resh.jpg'
                                 else:
                                     won = rubb * 25
                                     cursor.execute(f"UPDATE users SET rub = rub + {won} WHERE userid = {message.from_user.id}")

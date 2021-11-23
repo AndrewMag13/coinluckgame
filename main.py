@@ -1,7 +1,5 @@
-import psycopg2
-from psycopg2 import Error
 import logging
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot, Dispatcher, executor, types, utils
 from aiohttp import client_exceptions
 from unitool import temperature, uptime, logger, ally
 from exchange import s2d, v2d, plodcourse
@@ -25,16 +23,6 @@ logging.basicConfig(filename="main.log", level=logging.INFO)
 API_TOKEN = '1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74'
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
-
-try:
-    conn = psycopg2.connect(user="postgres",
-                                password="iwasbornfree",
-                                host="127.0.0.1",
-                                port="5432",
-                                database="luck")
-    conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-except (Exception, Error) as error:
-    print("Ошибка при работе с PostgreSQL", error)
 
 try:
     @dp.message_handler(commands=['start'])
@@ -234,9 +222,8 @@ try:
 
     @dp.message_handler(lambda message: message.text and '💼' in message.text)
     async def balance(message):
-        pp = kb.popb(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add(pp[0], pp[1], kb.back(message))
+        keyboard.add(kb.popb(message), kb.back(message))
         pop1 = popbal1(message)
         await message.answer(temps.bal(pop1[0], pop1[1], message), reply_markup=keyboard, parse_mode= 'Markdown')
         
@@ -246,7 +233,7 @@ try:
             pm = kb.popm()
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
             keyboard.add(pm[0], pm[1], pm[2], pm[3], kb.back(message))
-            await message.answer(temps.pop(message), reply_markup=keyboard)
+            await message.answer(temps.pop(message), reply_markup=keyboard, parse_mode= 'Markdown')
             
             @dp.message_handler(lambda message: message.text and selec(message) == 68886)
             async def popbalance1(message):
@@ -254,20 +241,22 @@ try:
                 keyboard.add(kb.back(message))
                 popp = popbal3(message)
                 if popp == None:
-                    await message.answer(temps.wrongent(message), reply_markup=keyboard)
+                    await message.answer(temps.wrongent(message), reply_markup=keyboard, parse_mode= 'Markdown')
                 else:
                     markup = types.InlineKeyboardMarkup()
                     btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=popp)
                     markup.add(btn_my_site)
-                    await message.answer(temps.link(message), reply_markup = markup)
+                    await message.answer(temps.link(message), reply_markup = markup, parse_mode= 'Markdown')
 
-    @dp.message_handler(lambda message: message.text and '🍓' in message.text)
+    @dp.message_handler(lambda message: message.text and '🌄' in message.text)
     async def farm(message):
         ff = kb.fruit(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(ff[0], ff[1], ff[2], ff[3], kb.back(message))
         farmer = farm1(message)
-        await message.answer(temps.farm(farmer[0], farmer[1], message), reply_markup=keyboard)
+        with open('/home/nail/oir/cali.jpg', 'rb') as photo:
+            await message.reply_photo(photo, reply_markup=keyboard)
+        await message.answer(temps.farm(farmer[0], farmer[1], message), reply_markup=keyboard, parse_mode= 'Markdown')
         
         @dp.message_handler(lambda message: message.text and '✂' in message.text and selec(message) == 10)
         async def ctch(message):
@@ -374,7 +363,7 @@ try:
         else:
             await message.answer(f'You sent: \n{meess}')
 
-except client_exceptions.ClientConnectorError:
+except (client_exceptions.ClientConnectorError, utils.exceptions.NetworkError) as error:
     print("cannot connect waitin'...")
     time.sleep(1)
 

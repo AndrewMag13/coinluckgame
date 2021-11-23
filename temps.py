@@ -131,24 +131,24 @@ class temps:
                 return(f'Сожалеем, вы проиграли!\n\nВаш коэффицент: {keff}\nКоэффицент: {cc}')
         def oirs(message):
             if langich(message) == "English":
-                return ('*Choose a side*\n\nCoefficient for sides:\n\n*Tail/Head* 2x \n*Edge* 25x')
+                return ('*Choose a side*\n\nCoefficient for sides:\n\n*Tail/Head* 2x\n*Edge* 25x')
             else:
-                return('*Выберите сторону*\n\nКоэффиценты для сторон:\n\n*Орел/Решка* 2x \n*Ребро* 25x')
+                return('*Выберите сторону*\n\nКоэффиценты для сторон:\n\n*Орел/Решка* 2x\n*Ребро* 25x')
         def oirep(wiin, money, rubb, message):
             if langich(message) == "English":
-                return(f'{wiin}\n\nYour current balance:*{money} 💲*\nYour bet: {rubb} 💲')
+                return(f'{wiin}\n\nYour current balance: *{money} 💲*\nYour bet: {rubb} 💲')
             else:
                 return(f'{wiin}\n\nВаш текущий баланс: *{money} 💲*\nВаша ставка: {rubb} 💲')
         def bal(money, vivc, message):
             if langich(message) == "English":
-                return(f'Here you can top-up or withdraw your balance\n\nYour balance for shopping: {money} 💲\nYour balance for withdraw: {vivc} 💸')
+                return(f'Here you can top-up your balance\n\nYour balance for shopping: {money} 💲\nYour special balance: {vivc} 💸')
             else:
-                return(f'Здесь вы можете пополнить или вывести ваш баланс\n\nВаш баланс для покупок: {money} 💲\nВаш баланс для вывода: {vivc} 💸')
+                return(f'Здесь вы можете пополнить ваш баланс\n\nВаш баланс для покупок: {money} 💲\nВаш особенный баланс: {vivc} 💸')
         def pop(message):
             if langich(message) == "English":
-                return("Enter the amount to top-up your account (minimal amount to top-up is 150 ₽)\n\nCourse:\n1 ₽ = 100 💲\n25 % of the amount of your top-up will become 💵")
+                return("Enter the amount to top-up your account (minimal amount to top-up is 150 ₽)\n\nCourse:\n1 ₽ = 100 💲\n25 % of the amount of your top-up will become 💸")
             else:
-                return('Введите сумму пополнения вашего счета (минимальная сумма пополнения 150 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💵')
+                return('Введите сумму пополнения вашего счета (минимальная сумма пополнения 150 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💸')
         def link(message):
             if langich(message) == "English":
                 return('Your top-up link')

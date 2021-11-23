@@ -7,6 +7,8 @@ cursor.execute("""
     id         SERIAL PRIMARY KEY NOT NULL,
     userid     INTEGER,
     username   TEXT,
+    fname      TEXT,
+    lname      TEXT,
     rub        INTEGER,
     mesh       INTEGER,
     vivc       INTEGER,
