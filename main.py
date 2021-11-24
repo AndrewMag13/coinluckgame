@@ -63,6 +63,8 @@ try:
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(tr[0], tr[1], kb.back(message))
         a = plodcourse(message)
+        with open('/home/nail/oir/market.jpg', 'rb') as photo:
+            await message.reply_photo(photo, reply_markup=keyboard)
         await message.answer(temps.market(message, a[0], a[1]), reply_markup=keyboard, parse_mode= 'Markdown')
         
         @dp.message_handler(lambda message: message.text and '🌟' in message.text and selec(message) == 110)
