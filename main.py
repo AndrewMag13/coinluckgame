@@ -1,20 +1,20 @@
 import logging
 from aiogram import Bot, Dispatcher, executor, types, utils
 from aiohttp import client_exceptions
-from unitool import temperature, uptime, logger, ally
-from exchange import s2d, v2d, plodcourse
-from temps import temps
-from kb import kb
-from selec import selec
-from referals import referals
-from bonus import bond, obond
-from mainnn import mainnn
-from transfer import transfer1, transfer2
-from games import gamesintro, ot11, ot12, ot13, oirm, oirm2, crash1, crash2, crash3, othr1, othr2, othr3
-from popbalance import popbal1, popbal2, popbal3
-from farm import farm1, catch1, farmall, buyfarm11, buyfruit, waters
-from intro import intro
-from lang import llang1, llang2
+from unitool import *
+from exchange import *
+from temps import *
+from kb import *
+from selec import *
+from referals import *
+from bonus import *
+from mainnn import *
+from transfer import *
+from games import *
+from popbalance import *
+from farm import *
+from intro import *
+from lang import *
 import time
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
@@ -315,7 +315,7 @@ try:
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         keyboard.add(lng[0], lng[1], kb.back(message))
         await message.answer(temps.langu(llang1(message), message), reply_markup=keyboard)
-
+        
         @dp.message_handler(lambda message: message.text and selec(message) == 1777)
         async def language2(message):
             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -325,15 +325,12 @@ try:
     @dp.message_handler(lambda message: message.text and 'temp' in message.text and message.from_user.id == 1737649749)
     async def temp(message):
         await message.answer(temperature())
-
     @dp.message_handler(lambda message: message.text and 'uptime' in message.text and message.from_user.id == 1737649749)
     async def upt(message):
         await message.answer(uptime())
-
     @dp.message_handler(lambda message: message.text and 'log' in message.text and message.from_user.id == 1737649749)
     async def upt(message):
         await message.answer(logger())
-
     @dp.message_handler(lambda message: message.text and 'all' in message.text and message.from_user.id == 1737649749)
     async def usender(message):
         meess = ally(message)
