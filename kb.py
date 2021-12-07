@@ -4,10 +4,10 @@ class kb:
         return('English', 'Русский')
     def start(message):
         if langich(message) == "English":
-            return('▶ Games', '🌄 Farm', '🔄 Market', '💼 Balance', '💱 Transfer', '⚡ Daily bonus', '💭 Messenger', '👥 Referals', '🏴‍☠️ Language')
+            return('▶ Games', '🌄 Farm', '🔄 Market', '💼 Balance', '💱 Transfer', '⚡ Daily bonus', '👥 Referals', '🏴‍☠️ Language')
         else:
             print(langich(message))
-            return('▶ Играть', '🌄 Ферма', '🔄 Рынок', '💼 Баланс', '💱 Перевод', '⚡ Ежедневный бонус', '💭 Мессенджер', '👥 Рефералы', '🏴‍☠️ Язык')
+            return('▶ Играть', '🌄 Ферма', '🔄 Рынок', '💼 Баланс', '💱 Перевод', '⚡ Ежедневный бонус', '👥 Рефералы', '🏴‍☠️ Язык')
     def ots():
         return ('10 💲', '50 💲', '100 💲', '250 💲', '500 💲', '750 💲','1000 💲','1250 💲','1500 💲')
     def back(message):
@@ -56,11 +56,6 @@ class kb:
             return ('Buy 🍓', 'Buy 🍒', 'Buy 🍎', 'Buy 🍌', 'Buy 🍑', 'Buy 🍇')
         else:
             return ('Купить 🍓', 'Купить 🍒', 'Купить 🍎', 'Купить 🍌', 'Купить 🍑', 'Купить 🍇')
-    def rev(message):
-        if langich(message) == "English":
-            return ('Messages', 'Friends')
-        else:
-            return ('Сообщения', 'Друзья')
     def tr(message):
         if langich(message) == "English":
             return ('Exchange 🌟 to 💲', 'Exchange 💸 to 💲')

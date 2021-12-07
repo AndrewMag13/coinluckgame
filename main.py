@@ -8,7 +8,6 @@ from kb import kb
 from selec import selec
 from referals import referals
 from bonus import bond, obond
-from rev import rev1, rev2, rev11
 from mainnn import mainnn
 from transfer import transfer1, transfer2
 from games import gamesintro, ot11, ot12, ot13, oirm, oirm2, crash1, crash2, crash3, othr1, othr2, othr3
@@ -40,7 +39,7 @@ try:
         mainnn(message)
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
         kk = kb.start(message)
-        keyboard.add(kk[0], kk[1], kk[2], kk[3], kk[4], kk[5], kk[6], kk[7], kk[8])
+        keyboard.add(kk[0], kk[1], kk[2], kk[3], kk[4], kk[5], kk[6], kk[7])
         await message.answer(temps.main(message), parse_mode= 'Markdown', reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and '💱' in message.text)
@@ -291,28 +290,6 @@ try:
                     await message.answer(temps.err(message))
                 else:
                     await message.answer(temps.succ(message))
-
-    @dp.message_handler(lambda message: message.text and '💭' in message.text)
-    async def review(message):
-        rev1(message)
-        rr = kb.rev(message)
-        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard.add(rr[0], rr[1], kb.back(message))
-        await message.answer(temps.rev(message), reply_markup=keyboard)
-        
-        @dp.message_handler(lambda message: message.text and ('Написать' in message.text or 'Write') and selec(message) == 33)
-        async def review1(message):
-            rev11(message)
-            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            keyboard.add(kb.back(message))
-            await message.answer(temps.goodrev(message), reply_markup=keyboard)
-            
-            @dp.message_handler(lambda message: message.text and ' ' in message.text and selec(message) == 34)
-            async def review2(message):
-                rev2(message)
-                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                keyboard.add(kb.back(message))
-                await message.answer(temps.succ(message), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and 'BONUS' in message.text)
     async def bonusm(message):

@@ -199,16 +199,6 @@ class temps:
                 return('Great!👏 You have received your daily bonus in the amount of 200 💲')
             else:
                 return('Отлично!👏 Вы получили ваш ежедневный бонус на сумму 200 💲')
-        def rev(message):
-            if langich(message) == "English":
-                return('Here you can read or write reviews')
-            else:
-                return('Здесь вы можете прочитать или написать отзывы')
-        def goodrev(message):
-            if langich(message) == "English":
-                return('In reply message you can place your review, for every quality review you will recieve 50 💲')
-            else:
-                return('В ответном сообщении вы можете оставить отзыв, за каждый качественный отзыв вы получите 50 💲')
         def refl(message, refff):
             if langich(message) == "English":
                 return(f'Your referal link: \nt.me/coinluck_bot?start={message.from_user.id} \n\nYou have {refff} referals!')
