@@ -10,7 +10,7 @@ try:
                                 database="luck")
     conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 except (Exception, Error) as error:
-    print("Ошибка при работе с PostgreSQL", error)
+    print("connError", error)
 def s2d(message):
         cursor = conn.cursor()
         cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")

@@ -12,7 +12,7 @@ try:
                                     port="5432",
                                     database="luck")
 except (Exception, Error) as error:
-    print("Ошибка при работе с PostgreSQL", error)
+    print("connError", error)
 
 API_TOKEN = '1840809585:AAG841k0MzuQ2HhGQ6u2j9BTt6DFAWbhr1A'
 bot = Bot(token=API_TOKEN)

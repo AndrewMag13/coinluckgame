@@ -9,7 +9,7 @@ try:
                                 database="luck")
     conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 except (Exception, Error) as error:
-    print("Ошибка при работе с PostgreSQL", error)
+    print("connError", error)
 
 
 def selec(message):
