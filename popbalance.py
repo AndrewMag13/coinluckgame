@@ -13,8 +13,8 @@ try:
 except (Exception, Error) as error:
     print("connError", error)
 
-secret='Y[wUkLSn7W,U>wZ'
-merchant_id='1159'
+secret='3v5NNVon^{bX{i@'
+merchant_id='1348'
 
 def popbal1(message):
     cursor = conn.cursor()
