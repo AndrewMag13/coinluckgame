@@ -21,9 +21,9 @@ def upd():
             ss()
         if now.minute%10 == 0 and now.second == 3:
             mm()
-        if now.hour == 1 and now.minute == 6 and now.second == 3:
+        if now.hour == 7 and now.minute == 6 and now.second == 3:
             hh()
-        if now.hour == 1 and now.minute == 16 and now.second == 3:
+        if now.hour == 7 and now.minute == 16 and now.second == 3:
             bck()
         if now.minute == 0 and now.second == 1:
             wat()

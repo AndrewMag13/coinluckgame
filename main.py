@@ -16,6 +16,7 @@ from farm import *
 from intro import *
 from lang import *
 import time
+from rec import *
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
 
@@ -338,6 +339,9 @@ try:
             await message.answer(temps.err(message))
         else:
             await message.answer(f'You sent: \n{meess}')
+    @dp.message_handler(lambda message: message.text and 'rec' in message.text and message.from_user.id == 1737649749)
+    async def rec(message):
+        hh()
 
 except (client_exceptions.ClientConnectorError, utils.exceptions.NetworkError) as error:
     print("cannot connect waitin'...")
