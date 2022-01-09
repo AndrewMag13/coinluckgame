@@ -43,7 +43,7 @@ def popbal3(message):
     print(message.text)
     try:
         pop = int(pop)
-        if pop >= 150 and pop <= 10000:
+        if pop >= 50:
             cursor = conn.cursor()
             cursor.execute(f"INSERT INTO req(userid, mon, app) VALUES({message.from_user.id}, {pop}, 0)")
             conn.commit()

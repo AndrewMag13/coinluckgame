@@ -40,7 +40,7 @@ class kb:
         else:
             return ('⬇ Пополнить баланс')
     def popm():
-        return ('150 ₽', '300 ₽', '500 ₽','1000 ₽')
+        return ('100 ₽', '300 ₽', '500 ₽','1000 ₽')
     def fruit(message):
         if langich(message) == "English":
             return ('💲 Buy plants', '🍒 My plants', '🌊 Water plants', '✂ Collect')

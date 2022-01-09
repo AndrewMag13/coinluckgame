@@ -146,9 +146,9 @@ class temps:
                 return(f'Здесь вы можете пополнить ваш баланс\n\nВаш баланс для покупок: {money} 💲\nВаш особенный баланс: {vivc} 💸')
         def pop(message):
             if langich(message) == "English":
-                return("Enter the amount to top-up your account (minimal amount to top-up is 150 ₽)\n\nCourse:\n1 ₽ = 100 💲\n25 % of the amount of your top-up will become 💸")
+                return("Enter the amount to top-up your account (minimal amount to top-up is 50 ₽)\n\nCourse:\n1 ₽ = 100 💲\n25 % of the amount of your top-up will become 💸")
             else:
-                return('Введите сумму пополнения вашего счета (минимальная сумма пополнения 150 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💸')
+                return('Введите сумму пополнения вашего счета (минимальная сумма пополнения 50 ₽)\n\nКурс:\n1 рубль = 100 💲\nПри пополнении 25% от суммы вашего пополнения станут 💸')
         def link(message):
             if langich(message) == "English":
                 return('Your top-up link')
