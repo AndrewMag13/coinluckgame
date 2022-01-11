@@ -1,6 +1,7 @@
 import logging
 from aiogram import Bot, Dispatcher, executor, types, utils
 from aiohttp import client_exceptions
+import time
 from unitool import *
 from exchange import *
 from temps import *
@@ -15,7 +16,6 @@ from popbalance import *
 from farm import *
 from intro import *
 from lang import *
-import time
 from rec import *
 
 logging.basicConfig(filename="main.log", level=logging.INFO)

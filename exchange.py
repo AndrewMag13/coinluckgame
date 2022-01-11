@@ -1,16 +1,7 @@
 from former import former
-import psycopg2
-from psycopg2 import Error
 import logging
-try:
-    conn = psycopg2.connect(user="postgres",
-                                password="iwasbornfree",
-                                host="127.0.0.1",
-                                port="5432",
-                                database="luck")
-    conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-except (Exception, Error) as error:
-    print("connError", error)
+from postgresso import *
+
 def s2d(message):
         cursor = conn.cursor()
         cursor.execute(f"SELECT course FROM users WHERE userid = {message.from_user.id}")
@@ -32,15 +23,10 @@ def s2d(message):
             plods = int(plod)
             rubs = plod // course
             vivc = rubs / 100 * 30
-            print(vivc)
             vivc = int(vivc)
             rubs = rubs - vivc
             plod = plod % course
             plods = plods - plod
-            print(rubs)
-            print(plod)
-            print(plods)
-            print(course)
             cursor.execute(f"UPDATE users SET rub = rub + {rubs} WHERE userid = {message.from_user.id}")
             cursor.execute(f"UPDATE users SET plodd = plodd - {plods} WHERE userid = {message.from_user.id}")
             cursor.execute(f"UPDATE users SET vivc = vivc + {vivc} WHERE userid = {message.from_user.id}")
@@ -78,8 +64,6 @@ def v2d(message):
             vivc = int(vivc)
             rubs = vivc * 1.3
             rubs = int(rubs)
-            print(vivc)
-            print(rubs)
             cursor.execute(f"UPDATE users SET rub = rub + {rubs} WHERE userid = {message.from_user.id}")
             cursor.execute(f"UPDATE users SET vivc = 0 WHERE userid = {message.from_user.id}")
             cursor.execute(f"SELECT rub FROM users WHERE userid = {message.from_user.id}")

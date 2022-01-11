@@ -1,6 +1,5 @@
-import psycopg2
+from postgresso import *
 
-conn = psycopg2.connect(user = "postgres", password = "iwasbornfree", host = "127.0.0.1", database = "luck")
 cursor = conn.cursor()
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS users(

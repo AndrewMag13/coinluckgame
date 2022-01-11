@@ -1,16 +1,8 @@
-import psycopg2
-from psycopg2 import Error
 import time
 import datetime
 import random
-try:
-    conn = psycopg2.connect(user="postgres",
-                                    password="iwasbornfree",
-                                    host="127.0.0.1",
-                                    port="5432",
-                                    database="luck")
-except (Exception, Error) as error:
-    print("Ошибка при работе с PostgreSQL", error)
+from postgresso import *
+
 def upd():
     while True:
         now = datetime.datetime.now()

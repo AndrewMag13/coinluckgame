@@ -1,19 +1,9 @@
-import psycopg2
-from psycopg2 import Error
 import logging
 import base64
 from aiogram import Bot, Dispatcher, executor, utils
 from aiohttp import client_exceptions
+from postgresso import *
 logging.basicConfig(filename="inputer.log", level=logging.INFO)
-
-try:
-    conn = psycopg2.connect(user="postgres",
-                                    password="iwasbornfree",
-                                    host="127.0.0.1",
-                                    port="5432",
-                                    database="luck")
-except (Exception, Error) as error:
-    print("connError", error)
 
 API_TOKEN = '1840809585:AAFI1EUEsjO5EORDIaijJ3ZTJsg_rZOkAgQ'
 bot = Bot(token=API_TOKEN)

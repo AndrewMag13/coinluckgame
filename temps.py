@@ -1,17 +1,6 @@
 from langich import langich
-import psycopg2
-from psycopg2 import Error
 from former import former
-
-try:
-    conn = psycopg2.connect(user="postgres",
-                                password="iwasbornfree",
-                                host="127.0.0.1",
-                                port="5432",
-                                database="luck")
-    conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-except (Exception, Error) as error:
-    print("connError", error)
+from postgresso import *
 
 pho = 'https://imbt.ga/ZFdnBeO4pg'
 
