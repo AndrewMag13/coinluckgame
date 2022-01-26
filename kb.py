@@ -61,3 +61,7 @@ class kb:
             return ('Exchange 🌟 to 💲', 'Exchange 💸 to 💲')
         else:
             return ('Обменять 🌟 на 💲', 'Обменять 💸 на 💲')
+    def op(message):
+        return("Done")
+    def opc(message):
+        return("Cancel")

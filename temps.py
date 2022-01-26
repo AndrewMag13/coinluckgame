@@ -228,3 +228,23 @@ class temps:
                 return 'Head! \nYou lose'
             else:
                 return 'Решка! \nВы проиграли'
+        def inv(message, bill):
+            if langich(message) == "English":
+                return f"Here's your invoice:\n {bill.pay_url}"
+            else:
+                return f"Ваша ссылка:\n {bill.pay_url}"
+        def ops(message):
+            if langich(message) == "English":
+                return "Success! Your balance has been topped up."
+            else:
+                return "Успешно! Ваш баланс был пополнен."
+        def opf(message):
+            if langich(message) == "English":
+                return "Invoice was not paid"
+            else:
+                return "Счет не был оплачен" 
+        def canceled(message):
+            if langich(message) == "English":
+                return "Your invoice was canceled"
+            else:
+                return "Ваш платеж был отменен"

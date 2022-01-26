@@ -17,12 +17,19 @@ from farm import *
 from intro import *
 from lang import *
 from rec import *
+import topup
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from glQiwiApi import QiwiWrapper, types as qiwi_types
+from typing import Union
+from aiogram.dispatcher import FSMContext
 
 logging.basicConfig(filename="main.log", level=logging.INFO)
 
+storage = MemoryStorage()
+wallet = QiwiWrapper(secret_p2p="eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6Ink0NmN6Mi0wMCIsInVzZXJfaWQiOiI3OTM3MTM4NDQ0MCIsInNlY3JldCI6ImQzZGQ2NTNlNzg3MGRkYjhlOGExOGJiMTQ5NWRlY2M2ZGJiMGM2YWIyOTFlOWI2MWY5YzMwZjRjNWNkYjRhMjQifX0=")
 API_TOKEN = '1825655292:AAHzXTkiiIQUDh-xPtLdpgNcOEs9jO4Jz74'
 bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+dp = Dispatcher(bot, storage = storage)
 
 try:
     @dp.message_handler(commands=['start'])
@@ -238,17 +245,52 @@ try:
             await message.answer(temps.pop(message), reply_markup=keyboard, parse_mode= 'Markdown')
             
             @dp.message_handler(lambda message: message.text and selec(message) == 68886)
-            async def popbalance1(message):
+            async def popbalance1(message: types.Message, state: FSMContext):
                 keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-                keyboard.add(kb.back(message))
-                popp = popbal3(message)
-                if popp == None:
+                pop = message.text.split()
+                pop = pop[0]
+                print(message.text)
+                try:
+                    pop = int(pop)
+                    #if pop >= 50:
+                    bill = await create_payment(pop)
+                    #else:
+                    #    return None
+                except ValueError:
+                    return None
+                except TypeError:
+                    return None
+                if bill == None:
                     await message.answer(temps.wrongent(message), reply_markup=keyboard, parse_mode= 'Markdown')
                 else:
-                    markup = types.InlineKeyboardMarkup()
-                    btn_my_site= types.InlineKeyboardButton(text='Оплатить', url=popp)
-                    markup.add(btn_my_site)
-                    await message.answer(temps.link(message), reply_markup = markup, parse_mode= 'Markdown')
+                    keyboard.add(kb.op(message), kb.opc(message))
+                    await message.answer(temps.inv(message, bill), reply_markup=keyboard)
+                    await state.set_state("payment")
+                    await state.update_data(bill=bill)
+
+            @dp.message_handler(state="payment", text="Done")
+            async def successful_payment(message: types.Message, state: FSMContext):
+                async with state.proxy() as data:
+                    bill: qiwi_types.Bill = data.get("bill")
+                status = await bill.check()
+                am = bill.amount.value
+                cu = bill.amount.currency
+                if status:
+                    topup.topup(message, am, cu)
+                    await message.answer(temps.ops(message))
+                    await state.finish()
+                else:
+                    await message.answer(temps.opf(message))
+            
+            @dp.message_handler(state="payment", text="Cancel")
+            async def canc(message: types.Message, state: FSMContext):
+                async with state.proxy() as data:
+                    bill: qiwi_types.Bill = data.get("bill")
+                await bill.reject()
+                await state.finish()
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                keyboard.add(kb.back(message))
+                await message.answer(temps.canceled(message), reply_markup=keyboard)
 
     @dp.message_handler(lambda message: message.text and '🌄' in message.text)
     async def farm(message):
@@ -343,6 +385,10 @@ try:
     async def rec(message):
         hh()
 
+    async def create_payment(pop) -> qiwi_types.Bill:
+        async with wallet:
+            return await wallet.create_p2p_bill(amount=pop)
+    
 except (client_exceptions.ClientConnectorError, utils.exceptions.NetworkError) as error:
     print("cannot connect waitin'...")
     time.sleep(1)
