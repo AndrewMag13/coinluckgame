@@ -48,25 +48,4 @@ def popbal3(message):
     except TypeError:
         return None
 
-
-async def popbal3(message):
-    pop = await message.text.split()
-    pop = pop[0]
-    print(message.text)
-    try:
-        pop = int(pop)
-        if pop >= 50:
-            bill = await create_payment(pop)
-            return bill.pay_url, bill
-        else:
-            return None
-    except ValueError:
-        return None
-    except TypeError:
-        return None
-    
-async def create_payment(pop) -> qiwi_types.Bill:
-    async with wallet:
-        return await wallet.create_p2p_bill(amount=pop)
-
 '''
