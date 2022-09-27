@@ -8,5 +8,6 @@ try:
                                 port="5432",
                                 database="luck")
     conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+    print('aa')
 except (Exception, Error) as error:
     print("connError", error)

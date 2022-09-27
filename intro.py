@@ -2,6 +2,8 @@ import logging
 import requests
 from postgresso import *
 
+logging.basicConfig(filename="intro.log", level=logging.WARNING)
+
 def intro(message):
         cursor = conn.cursor()
         try:

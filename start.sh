@@ -1,5 +1,5 @@
 #!/bin/bash
 
-exec python3 main.py &
-exec python3 upd.py &
-exec python3 updater.py
+exec python3 /home/nail/oir/main.py &
+exec python3 /home/nail/oir/upd.py &
+exec python3 /home/nail/oir/updater.py

@@ -1,5 +1,4 @@
 from former import former
-import hashlib
 from postgresso import *
 from glQiwiApi import QiwiWrapper, types as qiwi_types
 

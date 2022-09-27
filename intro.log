@@ -1,0 +1,42 @@
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:aiogram:Make request: "getMe" with data: "{}" and files "None"
+DEBUG:aiogram:Response for getMe: [200] "'{"ok":true,"result":{"id":1825655292,"is_bot":true,"first_name":"CoinLuck","username":"coinluck_bot","can_join_groups":true,"can_read_all_group_messages":false,"supports_inline_queries":false}}'"
+INFO:aiogram:Bot: CoinLuck [@coinluck_bot]
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+DEBUG:aiogram:Make request: "getWebhookInfo" with data: "{}" and files "None"
+DEBUG:aiogram:Response for getWebhookInfo: [200] "'{"ok":true,"result":{"url":"","has_custom_certificate":false,"pending_update_count":0}}'"
+DEBUG:aiogram:Make request: "getUpdates" with data: "{'timeout': 20}" and files "None"
+DEBUG:aiogram:Response for getUpdates: [200] "'{"ok":true,"result":[{"update_id":124686664,\n"message":{"message_id":31313,"from":{"id":1882355196,"is_bot":false,"first_name":"\\u0417\\u0430\\u043c\\u0438\\u0440","last_name":"\\u0417\\u0430\\u043a\\u0438\\u0435\\u0432","username":"longingass","language_code":"en"},"chat":{"id":1882355196,"first_name":"\\u0417\\u0430\\u043c\\u0438\\u0440","last_name":"\\u0417\\u0430\\u043a\\u0438\\u0435\\u0432","username":"longingass","type":"private"},"date":1664288338,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}},{"update_id":124686665,\n"message":{"message_id":31313,"from":{"id":1882355196,"is_bot":false,"first_name":"\\u0417\\u0430\\u043c\\u0438\\u0440","last_name":"\\u0417\\u0430\\u043a\\u0438\\u0435\\u0432","username":"longingass","language_code":"en"},"chat":{"id":1882355196,"first_name":"\\u0417\\u0430\\u043c\\u0438\\u0440","last_name":"\\u0417\\u0430\\u043a\\u0438\\u0435\\u0432","username":"longingass","type":"private"},"date":1664288338,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}]}'"
+DEBUG:aiogram.dispatcher.dispatcher:Received 2 updates.
+DEBUG:aiogram:Make request: "sendMessage" with data: "{'chat_id': 1882355196, 'text': '*Reg. error, 1882355196!*'}" and files "None"
+DEBUG:aiogram:Make request: "sendMessage" with data: "{'chat_id': 1882355196, 'text': '*Reg. error, 1882355196!*'}" and files "None"
+DEBUG:aiogram:Make request: "getUpdates" with data: "{'offset': 124686666, 'timeout': 20}" and files "None"
+DEBUG:aiogram:Response for sendMessage: [200] "'{"ok":true,"result":{"message_id":31314,"from":{"id":1825655292,"is_bot":true,"first_name":"CoinLuck","username":"coinluck_bot"},"chat":{"id":1882355196,"first_name":"\\u0417\\u0430\\u043c\\u0438\\u0440","last_name":"\\u0417\\u0430\\u043a\\u0438\\u0435\\u0432","username":"longingass","type":"private"},"date":1664288338,"text":"*Reg. error, 1882355196!*"}}'"
+DEBUG:aiogram:Response for sendMessage: [200] "'{"ok":true,"result":{"message_id":31315,"from":{"id":1825655292,"is_bot":true,"first_name":"CoinLuck","username":"coinluck_bot"},"chat":{"id":1882355196,"first_name":"\\u0417\\u0430\\u043c\\u0438\\u0440","last_name":"\\u0417\\u0430\\u043a\\u0438\\u0435\\u0432","username":"longingass","type":"private"},"date":1664288339,"text":"*Reg. error, 1882355196!*"}}'"
+DEBUG:aiogram:Response for getUpdates: [200] "'{"ok":true,"result":[]}'"
+DEBUG:aiogram:Make request: "getUpdates" with data: "{'offset': 124686666, 'timeout': 20}" and files "None"
+DEBUG:aiogram:Response for getUpdates: [200] "'{"ok":true,"result":[]}'"
+DEBUG:aiogram:Make request: "getUpdates" with data: "{'offset': 124686666, 'timeout': 20}" and files "None"
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-25' coro=<Dispatcher._process_polling_updates() done, defined at /home/nail/.local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:407> exception=TypeError("'NoneType' object is not subscriptable")>
+Traceback (most recent call last):
+  File "/home/nail/.local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 415, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+  File "/home/nail/.local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 235, in process_updates
+    return await asyncio.gather(*tasks)
+  File "/home/nail/.local/lib/python3.10/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/.local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 256, in process_update
+    return await self.message_handlers.notify(update.message)
+  File "/home/nail/.local/lib/python3.10/site-packages/aiogram/dispatcher/handler.py", line 116, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+  File "/home/nail/oir/main.py", line 298, in farm
+    ff = kb.fruit(message)
+  File "/home/nail/oir/kb.py", line 45, in fruit
+    if langich(message) == "English":
+  File "/home/nail/oir/langich.py", line 7, in langich
+    slang = slang[0]
+TypeError: 'NoneType' object is not subscriptable
+WARNING:aiogram:Goodbye!
